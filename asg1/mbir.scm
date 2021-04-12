@@ -26,11 +26,32 @@
 
 (for-each (lambda (var) (hash-set! *var-table* (car var) (cadr var)))
    `(
+        
         (e    ,(exp 1.0))
         (eof  0.0)
         (nan  ,(/ 0.0 0.0))
         (pi   ,(acos -1.0))
-    ))
+    )
+)
+
+(for-each (lambda (fn) (hash-set! *function-table* (car fn) (cadr fn)))
+   `(
+        (+   ,+)
+        (*   ,*)
+        (-   ,-)
+        (/   ,/)
+
+
+        (atan, atan)
+        (exp, exp)
+        (^, expt)
+        (log, log)
+        (sqrt, sqrt)
+        
+                
+    )
+)
+
 
 (define *RUN-FILE*
     (let-values
@@ -76,7 +97,16 @@
 (define (eval-expr expr)
     (cond ((number? expr) (+ expr 0.0))
           ((symbol? expr) (hash-ref *var-table* expr 0.0))
-          (else (not-implemented 'eval-expr expr))))
+          ((pair? expr) (let((operator (hash-ref *function-table* (car expr) #f) )
+                             (operands (map eval-expr (cdr expr))))
+                        (
+                        (if (not operator)
+                            (/ 0.0 0.0)
+                            ((operator (cadr expr) (caddr expr))))
+                        )))
+          (else 0.0)
+    )
+)
 
 ;; NEED TO IMPLEMENT
 (define (interp-dim args continuation)
