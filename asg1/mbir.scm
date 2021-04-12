@@ -90,8 +90,16 @@
 
 ;; NEED TO IMPLEMENT
 (define (interp-goto args continuation)
-    (not-implemented 'interp-goto args 'nl)
-    (interp-program continuation))
+    ;;(not-implemented 'interp-goto args 'nl)
+    (let 
+        (
+            (flag (hash-ref *label-table* (car args)                      ;; flag = hash-ref[]
+                  (lambda () (die `("ERROR: goto flag does not exist")))) ;;
+            )
+        )
+        (interp-program flag)
+    )
+)
 
 ;; NEED TO IMPLEMENT
 (define (interp-if args continuation)
@@ -106,6 +114,7 @@
     (for-each print args)
     (printf "~n");
     (interp-program continuation))
+
 ;; NEED TO IMPLEMENT
 (define (interp-input args continuation)
     (not-implemented 'interp-input args 'nl)
@@ -119,7 +128,8 @@
         (if    ,interp-if)
         (print ,interp-print)
         (input ,interp-input)
-    ))
+    )
+)
 
 (define (interp-program program)
     (when (not (null? program))
@@ -137,13 +147,13 @@
 ;; very similar to interp-program
 (define (scan-for-labels program)
     ;; (not-implemented 'scan-for-labels '() 'nl)
-    (when (not (null? program))                         ;; if the progam (list of all lines) is not empty
+    (when (not (null? program))                         ;; if(program != null)
         (let 
-            ((label (line-label(car program))))         ;;
-            (when (symbol? label)                       ;;
-                (hash-set! *label-table* label program) ;;
+            ((label (line-label(car program))))         ;; label = line-label(program[0])
+            (when (symbol? label)                       ;; if(label.type == symbol)
+                (hash-set! *label-table* label program) ;; (label, program) pair added to label-table
             ) 
-            (scan-for-labels(cdr program))              ;; 
+            (scan-for-labels(cdr program))              ;; scan-for-labels(program[1:len(program)-1])
         )
     )
 )
