@@ -90,14 +90,14 @@
 
 ;; NEED TO IMPLEMENT
 (define (interp-goto args continuation)
-    ;;(not-implemented 'interp-goto args 'nl)
+    ;; (not-implemented 'interp-goto args 'nl)
     (let 
         (
-            (flag (hash-ref *label-table* (car args)                      ;; flag = hash-ref[]
-                  (lambda () (die `("ERROR: goto flag does not exist")))) ;;
+            (flag (hash-ref *label-table* (car args)                      ;; flag = val at *label-table* for key args[0]
+                  (lambda () (die `("ERROR: goto flag does not exist")))) ;; if key args[0] not in *label-table*, kill
             )
         )
-        (interp-program flag)
+        (interp-program flag)                                             ;; interp-program(flag)
     )
 )
 
