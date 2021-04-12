@@ -30,7 +30,42 @@
         (eof  0.0)
         (nan  ,(/ 0.0 0.0))
         (pi   ,(acos -1.0))
-    ))
+    )
+)
+
+(for-each (lambda (var) (hash-set! *function-table* (car var) (cadr var)))
+    `(
+        ;; from doc: abs, acos, asin, atan, ceil, cos, exp, floor, log, log10, round, sin, sqrt, tan, trunc
+        (abs   ,abs)
+        (acos  ,acos)
+        (asin  ,asin)
+        (atan  ,atan)
+        (ceil  ,ceiling)
+        (cos   ,cos)
+        (exp   ,exp) ;; exp = e ^ num
+        (floor ,floor)
+        (log   ,log)
+        (log10 ,lambda (a) (/ (log a) (log 10)))
+        (round ,round)
+        (sin   ,sin)
+        (sqrt  ,sqrt)
+        (tan   ,tan)
+        (trunc ,truncate)
+        
+        ;; from tests
+        (=  ,=)
+        (+  ,+)
+        (-  ,-)
+        (*  ,*)
+        (/  ,/)
+        (^  ,expt)
+        (<  ,<)
+        (<= ,<=)
+        (!= ,(lambda (a b) (not (eq? a b))))
+        (>  ,>)
+        (>= ,>=)
+     )
+)
 
 (define *RUN-FILE*
     (let-values
