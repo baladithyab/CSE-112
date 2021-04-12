@@ -46,7 +46,7 @@
         (exp   ,exp) ;; exp = e ^ num
         (floor ,floor)
         (log   ,log)
-        (log10 ,lambda (a) (/ (log a) (log 10)))
+        (log10 ,(lambda (a) (/ (log a) (log 10))))
         (round ,round)
         (sin   ,sin)
         (sqrt  ,sqrt)
@@ -108,20 +108,23 @@
     (printf "(NOT-IMPLEMENTED: ~s ~s)" function args)
     (when (not (null? nl)) (printf "~n")))
 
-;; NEED TO IMPLEMENT
+; IMPLEMENTED NEED TO TEST
 (define (eval-expr expr)
     (cond ((number? expr) (+ expr 0.0))
           ((symbol? expr) (hash-ref *var-table* expr 0.0))
-          ((pair? expr) (let((operator (hash-ref *function-table* (car expr) #f) )
-                             (operands (map eval-expr (cdr expr))))
-                        (
-                        (if (not operator)
-                            (/ 0.0 0.0)
-                            ((operator (cadr expr) (caddr expr))))
-                        )))
-          (else 0.0)
-    )
-)
+          ((pair? expr) (let
+                            (
+                                (operator (hash-ref *function-table* (car expr) (lambda () ((die `("Error: No such Symbol",(car expr)))(exit 1)))))
+                                (operands (map eval-expr (cdr expr)))
+                            )
+                            (
+                                apply operator operands
+                            )
+                        )
+            )
+        (else (/ 0.0 0.0))
+     )
+ )
 
 ;; NEED TO IMPLEMENT
 (define (interp-dim args continuation)
@@ -133,16 +136,16 @@
     (not-implemented 'interp-let args 'nl)
     (interp-program continuation))
 
-;; NEED TO IMPLEMENT
+;; IMPLEMENTED, NEED TO TEST
 (define (interp-goto args continuation)
     ;; (not-implemented 'interp-goto args 'nl)
     (let 
         (
-            (flag (hash-ref *label-table* (car args)                      ;; flag = val at *label-table* for key args[0]
-                  (lambda () (die `("ERROR: goto flag does not exist")))) ;; if key args[0] not in *label-table*, kill
+            (flag (hash-ref *label-table* (car args)                       ;; flag = val at *label-table* for key args[0]
+                   (lambda () (die `("ERROR: goto flag does not exist")))) ;; if key args[0] not in *label-table*, kill
             )
         )
-        (interp-program flag)                                             ;; interp-program(flag)
+        (interp-program flag)                                              ;; interp-program(flag)
     )
 )
 
