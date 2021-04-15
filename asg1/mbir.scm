@@ -191,9 +191,10 @@
 ;; NEED TO IMPLEMENT
 (define (interp-input args continuation)
     ;; (not-implemented 'interp-input args 'nl)
+    
     (define (read-input x)
-        (let (input (read)) 
-            ((cond  ((eof-object? input) 
+        ( (define input (read))
+            (cond  ((eof-object? input) 
                             ((hash-set! *var-table* 'eof 1.0) (/ 0.0 0.0))
                     )
                     ((number? input) 
@@ -203,9 +204,10 @@
                     )
                     (else (read-input x))
              )
-            )
+            
         )
     )
+    (for-each read-input x)
     (interp-program continuation)
 )
 
