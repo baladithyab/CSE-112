@@ -131,10 +131,28 @@
     (not-implemented 'interp-dim args 'nl)
     (interp-program continuation))
 
-;; NEED TO IMPLEMENT
+;; IMPLEMENTED, NEED TO TEST
 (define (interp-let args continuation)
-    (not-implemented 'interp-let args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-let args 'nl)
+    (when(symbol? (car args))
+        (hash-set! *var-table* (car args) (eval-expr(cadr args))) ;; add (args[1], args[2]) pair to var-table
+        ;; NEED TO ADD ARRAY STUFF
+    )
+    (interp-program continuation)
+)
+
+;; (define (scan-for-labels program)
+;;     ;; (not-implemented 'scan-for-labels '() 'nl)
+;;     (when (not (null? program))                         ;; if(program != null)
+;;         (let 
+;;             ((label (line-label(car program))))         ;; label = line-label(program[0])
+;;             (when (symbol? label)                       ;; if(label.type == symbol)
+;;                 (hash-set! *label-table* label program) ;; (label, program) pair added to label-table
+;;             ) 
+;;             (scan-for-labels(cdr program))              ;; scan-for-labels(program[1:len(program)-1])
+;;         )
+;;     )
+;; )
 
 ;; IMPLEMENTED, NEED TO TEST
 (define (interp-goto args continuation)
@@ -149,10 +167,17 @@
     )
 )
 
-;; NEED TO IMPLEMENT
+;; IMPLEMENTED, NEED TO TEST
 (define (interp-if args continuation)
-    (not-implemented 'interp-if args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-if args 'nl)
+    ;;(    5          (if (<= i 10) loop))
+    (if(eval-expr(car args))
+        (let ((flag (hash-ref *label-table* (cadr args) (lambda () (die `("ERROR: goto flag does not exist"))))))
+            (interp-program flag)
+        )
+    (interp-program continuation)
+    )
+)
 
 (define (interp-print args continuation)
     (define (print item)
@@ -165,8 +190,24 @@
 
 ;; NEED TO IMPLEMENT
 (define (interp-input args continuation)
-    (not-implemented 'interp-input args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-input args 'nl)
+    (define (read-input x)
+        (let (input (read)) 
+            ((cond  ((eof-object? input) 
+                            ((hash-set! *var-table* 'eof 1.0) (/ 0.0 0.0))
+                    )
+                    ((number? input) 
+                        (if (or (symbol? x) (eq? 0.0 (hash-ref *var-table* 'eof #f))) 
+                            (hash-set! *var-table* x input) (/ 0.0 0.0)
+                        )
+                    )
+                    (else (read-input x))
+             )
+            )
+        )
+    )
+    (interp-program continuation)
+)
 
 (for-each (lambda (fn) (hash-set! *stmt-table* (car fn) (cadr fn)))
    `(
