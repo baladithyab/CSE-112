@@ -193,8 +193,8 @@
     ;; (not-implemented 'interp-input args 'nl)
     
     (define (read-input x)
-        ( (define input (read))
-            (cond  ((eof-object? input) 
+        ( let((input (read)))
+            ((cond  ((eof-object? input) 
                             ((hash-set! *var-table* 'eof 1.0) (/ 0.0 0.0))
                     )
                     ((number? input) 
@@ -202,12 +202,12 @@
                             (hash-set! *var-table* x input) (/ 0.0 0.0)
                         )
                     )
-                    (else (read-input x))
-             )
+                    (else ((display "Invalid Input...~nTry Again~n")(read-input x)))
+             ))
             
         )
     )
-    (for-each read-input x)
+    (for-each read-input args)
     (interp-program continuation)
 )
 
