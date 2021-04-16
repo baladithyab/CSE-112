@@ -26,11 +26,48 @@
 
 (for-each (lambda (var) (hash-set! *var-table* (car var) (cadr var)))
    `(
+        
         (e    ,(exp 1.0))
         (eof  0.0)
         (nan  ,(/ 0.0 0.0))
         (pi   ,(acos -1.0))
-    ))
+    )
+)
+
+(for-each (lambda (var) (hash-set! *function-table* (car var) (cadr var)))
+    `(
+        ;; from doc: abs, acos, asin, atan, ceil, cos, exp, floor, log, log10, round, sin, sqrt, tan, trunc
+        (abs   ,abs)
+        (acos  ,acos)
+        (asin  ,asin)
+        (atan  ,atan)
+        (ceil  ,ceiling)
+        (cos   ,cos)
+        (exp   ,exp) ;; exp = e ^ num
+        (floor ,floor)
+        (log   ,log)
+        (log10 ,(lambda (a) (/ (log a) (log 10.0))))
+        (round ,round)
+        (sin   ,sin)
+        (sqrt  ,sqrt)
+        (tan   ,tan)
+        (trunc ,truncate)
+        
+        ;; from tests
+        (=  ,=)
+        (+  ,+)
+        (-  ,-)
+        (*  ,*)
+        (/  ,/)
+        (^  ,expt)
+        (<  ,<)
+        (<= ,<=)
+        ;; (!= ,(lambda (a b) (not (eq? a b))))
+        (!= , (lambda (x y) (not (= x y))))
+        (>  ,>)
+        (>= ,>=)
+     )
+)
 
 (define *RUN-FILE*
     (let-values
@@ -72,26 +109,133 @@
     (printf "(NOT-IMPLEMENTED: ~s ~s)" function args)
     (when (not (null? nl)) (printf "~n")))
 
+;; HELPER FUNCTION TO PRINT AN ERROR STATEMENT
+(define (print-err obj item)
+    (
+        (printf "Error: No such ~A ~s~n" obj item) 
+        (exit 1)
+    )
+)
+
+;; CURRENTLY IMPLEMENTING
 (define (eval-expr expr)
-    (cond ((number? expr) (+ expr 0.0))
-          ((symbol? expr) (hash-ref *var-table* expr 0.0))
-          (else (not-implemented 'eval-expr expr))))
+    (cond 
+        ((number? expr) 
+            (+ expr 0.0)
+        )
+        ((symbol? expr) 
+            (hash-ref *var-table* expr 0.0)
+        )
+        ((and (pair? expr) (eq? `asub (car expr))) (vector-ref (hash-ref *array-table* (cadr expr) (lambda () (print-err "Array" (cadr expr)))) (exact-round(eval-expr (caddr expr)))))
+        ((pair? expr) 
+            (let 
+                (
+                    (operator (hash-ref *function-table* (car expr) (lambda () (print-err "Function" (car expr)))))
+                    (operands (map eval-expr (cdr expr)))
+                )
+                (apply operator operands)
+            )
+        )
+        (else 
+            (/ 0.0 0.0)
+        )
+     )
+ )
 
+;; IMPLEMENTED, TESTED, AND DOCUMENTED
 (define (interp-dim args continuation)
-    (not-implemented 'interp-dim args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-dim args 'nl)
+    (if (symbol? (caddar args))  ;; if args[0][1:][1:][0] is a symbol
+        ;; if the if condition is true:
+        (hash-set! *array-table* ;; maps (key, value) pair to array-table   
+            (cadar args)         ;; key: args[0][1:][0] 
+            (make-vector         ;; value: vector of with size and default value
+                (exact-round (hash-ref *var-table* 
+                                (caddar args)                        ;; size: var-table(args[0][1:][1:][0])
+                                (lambda () (print-err "Variable" (caddar args))) ;; else (not found): die
+                             )
+                ) 
+                0.0                                                  ;; default value: 0.0
+            ) ;; (dim (asub gojo n))
+        )
+        ;; if the if condition is false:
+        (hash-set! *array-table* ;; maps (key, value) pair to array-table
+            (cadar args)         ;; key: args[0][1:][0]
+            (make-vector         ;; value: vector of size args[0][1:][1:][0], values initialized to 0.0
+                (exact-round (caddar args)) ;; size : args[0][1:][1:][0]
+                0.0                         ;; default value: 0.0
+            )
+        ) ;; (dim (asub megumi 10))
+    )
+    (interp-program continuation)
+)
 
+;; NEED TO IMPELEMENT ARRAY STUFF
 (define (interp-let args continuation)
-    (not-implemented 'interp-let args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-let args 'nl)
+    (if (symbol? (car args))
+        (hash-set! *var-table*      ;; add (args[1], args[2]) pair to var-table
+            (car args)              ;; key  : args[0] 
+            (eval-expr(cadr args))  ;; value: eval-expr(args[1:][0])
+        ) 
+        ;; NEED TO ADD ARRAY STUFF 
+        ;; ELSE
+        (if (symbol? (caddar args))
+            (vector-set! 
+                (hash-ref *array-table* 
+                    (cadar args) 
+                    (lambda () (print-err "Array" (cadar args)))
+                )
+                (exact-round (eval-expr(hash-ref *var-table* 
+                                        (caddar args) 
+                                        (lambda () (print-err "Variable" (caddar args)))
+                                       )
+                             )
+                )
+                (eval-expr(cadr args))
+            ) 
+            (vector-set! (hash-ref *array-table* 
+                            (cadar args)
+                            (lambda () (print-err "Array" (cadar args)))
+                         ) 
+                         (exact-round(eval-expr(caddar args)))
+                         (eval-expr(cadr args))
+            )
+        )
+    )
+    (interp-program continuation)
+)
 
+;; IMPLEMENTED, TESTED, AND DOCUMENTED
 (define (interp-goto args continuation)
-    (not-implemented 'interp-goto args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-goto args 'nl)
+    (let 
+        ((flag (hash-ref *label-table*         ;; let flag = value at key in label-table
+                (car args)                     ;; key: args[0]          
+                (lambda () (print-err "Array" (car args))) ;; else (not found): die
+               ) 
+        ))
+        (interp-program flag)                  ;; execute interp-program(flag)         
+    )
+)
 
+;; IMPLEMENTED, TESTED, AND DOCUMENTED
 (define (interp-if args continuation)
-    (not-implemented 'interp-if args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-if args 'nl)
+    (if(eval-expr(car args)) ;; if eval-expr(args[0]) is true
+        ;; if the if condition is true:
+        (let
+            ((flag (hash-ref *label-table*                     ;; let flag = value at key in label-table
+                    (cadr args)                                ;; key: args[1:][0]
+                    (lambda () (print-err "Flag" (cadr args))) ;; else (not found): die
+                   )
+            ))
+            (interp-program flag)                              ;; execute interp-progran(flag)
+        )
+        ;; if the if condition if false:
+        (interp-program continuation)
+    )
+)
 
 (define (interp-print args continuation)
     (define (print item)
@@ -102,9 +246,34 @@
     (printf "~n");
     (interp-program continuation))
 
+;; IMPLEMENTED, TESTED, NEEDS DOCUMENTATION
 (define (interp-input args continuation)
-    (not-implemented 'interp-input args 'nl)
-    (interp-program continuation))
+    ;; (not-implemented 'interp-input args 'nl)
+    
+    (define (read-input x)
+        (let((input (read)))
+            (cond  
+                ((eof-object? input) 
+                    (hash-set! *var-table* 'eof 1.0) 
+                )
+                ((number? input) 
+                    (if (or (symbol? x) (eq? 0.0 (hash-ref *var-table* 'eof #f))) 
+                        (let 
+                            ((input-double (* input 1.0))) 
+                            (hash-set! *var-table* x input-double)
+                        )
+                        (/ 0.0 0.0)
+                    )
+                )
+                (else 
+                    (begin (printf "Invalid Input... Try Again~nFactorial of: ") (read-input x))
+                )
+             )
+        )
+    )
+    (for-each read-input args)
+    (interp-program continuation)
+)
 
 (for-each (lambda (fn) (hash-set! *stmt-table* (car fn) (cadr fn)))
    `(
@@ -114,7 +283,8 @@
         (if    ,interp-if)
         (print ,interp-print)
         (input ,interp-input)
-    ))
+    )
+)
 
 (define (interp-program program)
     (when (not (null? program))
@@ -125,8 +295,23 @@
                         (func (cdr line) continuation))
                    (interp-program continuation)))))
 
+;; NEED TO IMPLEMENT
+;; go thru each line
+;; get the car and cdr of each line
+;; store the line in the lable-table in format of (car, program) <-- of the line respectivley
+;; very similar to interp-program
 (define (scan-for-labels program)
-    (not-implemented 'scan-for-labels '() 'nl))
+    ;; (not-implemented 'scan-for-labels '() 'nl)
+    (when (not (null? program))                         ;; if(program != null)
+        (let 
+            ((label (line-label(car program))))         ;; label = line-label(program[0])
+            (when (symbol? label)                       ;; if(label.type == symbol)
+                (hash-set! *label-table* label program) ;; (label, program) pair added to label-table
+            ) 
+            (scan-for-labels(cdr program))              ;; scan-for-labels(program[1:len(program)-1])
+        )
+    )
+)
 
 (define (readlist filename)
     (let ((inputfile (open-input-file filename)))
@@ -160,3 +345,4 @@
 
 (main *ARG-LIST*)
 
+;; (display *label-table*)
