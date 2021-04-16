@@ -1,5 +1,6 @@
-# Authored by: Manishankar Bhaskaran   (mbhaska1)
-#              Baladithya  Balamurugan (bbalamur)
+AUTHORS
+    Manishankar Bhaskaran   (mbhaska1)
+    Baladithya  Balamurugan (bbalamur)
 
 We are working together doing pair programming.
 All of the work submitted here is code written by us,
@@ -16,3 +17,15 @@ together. Both of us know the format of the PARTNER file.
 
 -- Manishankar Bhaskaran   (mbhaska1@ucsc.edu)
 -- Baladithya  Balamurugan (bbalamur@ucsc.edu)
+
+REQUIRED FUNCTIONS
+    eval-expr
+    interp-dim
+    interp-let
+    interp-goto
+    interp-if
+    interp-input
+    scan-for-labels
+
+HELPER FUNCTIONS
+    print-err
