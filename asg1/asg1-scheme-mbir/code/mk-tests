@@ -4,5 +4,5 @@
 for i in *.mbir
 do
    echo mbir.scm $i
-   racket -f mbir.scm $i >tmp/$i.out 2>tmp/$i.err
+   mbir.scm $i >tmp/$i.out 2>tmp/$i.err
 done
