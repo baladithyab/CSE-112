@@ -18,6 +18,15 @@ together. Both of us know the format of the PARTNER file.
 -- Manishankar Bhaskaran   (mbhaska1@ucsc.edu)
 -- Baladithya  Balamurugan (bbalamur@ucsc.edu)
 
+<----------------------------------------------------------->
+We apologize for the awkward spacing and inconsistetly-spaced
+documentation that occurs in the mbir.scm. We initially wrote 
+and documented mbir.scm without the 72 character/line limit,
+resulting in some messy code. We will keep the character limit
+in mind during future assignments in order to make the code 
+more legible. Again, we apologize for the inconvenience and 
+very much appreciate your understanding. Thank you! 
+
 REQUIRED FUNCTIONS
     eval-expr
     interp-dim
@@ -29,3 +38,4 @@ REQUIRED FUNCTIONS
 
 HELPER FUNCTIONS
     print-err
+
