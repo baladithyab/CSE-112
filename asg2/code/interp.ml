@@ -6,7 +6,8 @@ let want_dump = ref false
 let source_filename = ref ""
 
 (*IMPLEMENTED, NEED TO TEST*)
-let rec eval_expr (expr : Absyn.expr) : float = match expr with
+let rec eval_expr (expr : Absyn.expr) : float = 
+    match expr with
     | Number number -> number
     | Memref memref -> eval_memref memref
     | Unary (oper, expr) ->
@@ -18,7 +19,8 @@ let rec eval_expr (expr : Absyn.expr) : float = match expr with
         Hashtbl.find Tables.binary_fn_table oper res1 res2
 
 (*IMPLEMENTED, NEED TO TEST*)
-and eval_memref (memref : Absyn.memref) : float = match memref with
+and eval_memref (memref : Absyn.memref) : float = 
+    match memref with
     | Arrayref (ident, expr) -> 
         let res = (int_of_float (eval_expr expr)) in
         let arr = Hashtbl.find Tables.array_table ident in
@@ -41,15 +43,15 @@ let rec interpret (program : Absyn.program) = match program with
        | _, _, None -> interpret continue
        | _, _, Some stmt -> (interp_stmt stmt continue)
 
-(*NEED TO IMPLEMENT*)
+(*IMPLEMENTED, NEED TO TEST*)
 and interp_stmt (stmt : Absyn.stmt) (continue : Absyn.program) =
     match stmt with
-    | Dim (ident, expr) -> interp_STUB "Dim (ident, expr)" continue
-    | Let (memref, expr) -> interp_STUB "Let (memref, expr)" continue
-    | Goto label -> interp_GOTO label continue
-    | If (expr, label) -> interp_STUB "If (expr, label)" continue
-    | Print print_list -> interp_print print_list continue
-    | Input memref_list -> interp_input memref_list continue
+    | Dim (ident, expr)  -> interp_DIM (ident, expr) continue
+    | Let (memref, expr) -> interp_LET (memref, expr) continue
+    | Goto label         -> interp_GOTO label continue
+    | If (expr, label)   -> interp_IF (expr, label) continue
+    | Print print_list   -> interp_print print_list continue
+    | Input memref_list  -> interp_input memref_list continue
 
 and interp_print (print_list : Absyn.printable list)
                  (continue : Absyn.program) =
@@ -62,54 +64,67 @@ and interp_print (print_list : Absyn.printable list)
     in (List.iter print_item print_list; print_newline ());
     interpret continue
 
-(* NEED TO IMPLEMENT *)
+(*IMPLEMENTED, NEED TO TEST*)
 and interp_LET (memref, expr) (continue : Absyn.program) = 
     match memref with
-    | Arrayref (ident , expr2) -> 
+    | Arrayref (ident , expr2) ->
+        (*Hastbhl.find tbl val--> tbl[val]*)
+        (*let val = ident in*)
+        (*Array.set a n x --> a[n]=x*)
         let arr = (Hashtbl.find Tables.array_table ident) in
         let idx = (int_of_float (eval_expr expr2)) in
         let num = (eval_expr expr) in
-        (*Array.set a n x --> a[n]=x*)
         Array.set arr idx num;
     interpret continue
-    | Variable (ident) -> (print_not_found "LET")
-
-(* and interp_let (memref, expr) (continue : Absyn.program) = 
-match memref with
-  (* Array.set array index number_to_set*)
-  (* ---- (let a[5] 3) OR (let a[5] b[6]) ---- *)
-  | Arrayref (ident, expr1) -> 
-        let x1 = (int_of_float (eval_expr expr1)) in
-        let x2 = (eval_expr expr) in
-        (Array.set (Hashtbl.find Tables.array_table ident) x1 x2);
-        interpret continue
-  | Variable ident -> (* ---- (let x 5) OR (let g a[4]) *)
-        let x = (eval_expr expr) in
-        (Hashtbl.replace Tables.variable_table ident x);
-        interpret continue *)
+    | Variable (ident) -> 
+        (*Hastbl.replace tbl key data --> tbl(key) = (key,data)*)
+        (*let key = ident in*)
+        let data = (eval_expr expr) in
+        (Hashtbl.replace Tables.variable_table ident data);
+    interpret continue
 
 (*IMPLEMENTED, NEED TO TEST*)
 and interp_GOTO (label) (continue : Absyn.program) = 
     try
-        let flag = Hashtbl.find Tables.label_table label 
-        in interpret flag
+        let flag = Hashtbl.find Tables.label_table label in 
+        interpret flag
     with
         Not_found -> print_not_found "GOTO"
 
-(*NEED TO IMPLEMENT*)
-and interp_IF (expr, label) (continue : Absyn.program) = (print_not_found "IF")
+(*IMPLMENTED, NEED TO TEST*)
+and interp_IF (expr, label) (continue : Absyn.program) = 
+    match expr with
+    | Relexpr (op, expr2, expr3) -> 
+        let oper = Hashtbl.find Tables.bool_table op in
+        let res2 = (eval_expr expr2) in
+        let res3 = (eval_expr expr3) in
+        if (oper res2 res3) then
+            (interp_GOTO label continue)
+        else
+            (interpret continue)
 
-(*NEED TO IMPLEMENT*)
-and interp_DIM (ident, expr) (continue : Absyn.program) = (print_not_found "DIM")
+(*IMPLEMENTED, NEED TO TEST*)
+and interp_DIM (ident, expr) (continue : Absyn.program) = 
+    (*Hashtbl.add tbl key data --> tbl[key] = data*)
+    let tbl = (Tables.array_table) in 
+    (*let key = ident*)
+    let size = (int_of_float (eval_expr expr)) in
+    let data = (Array.make size 0.0) in
+    Hashtbl.add tbl ident data;
+    interpret continue
 
 
 and interp_input (memref_list : Absyn.memref list)
                  (continue : Absyn.program)  =
     let input_number memref =
-        try  let number = Etc.read_number ()
-             in (print_float number; print_newline ())
-        with End_of_file -> 
-             (print_string "End_of_file"; print_newline ())
+        match memref with
+        | Variable (ident) ->
+            try
+                let number = Etc.read_number () in 
+                (Hashtbl.add Tables.variable_table ident number)
+            with End_of_file -> 
+                (Hashtbl.replace Tables.variable_table "eof" 1.0)
+        | _ -> (exit 0)
     in List.iter input_number memref_list;
     interpret continue
 
