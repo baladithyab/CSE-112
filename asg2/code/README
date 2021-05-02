@@ -1,0 +1,40 @@
+AUTHORS
+    Manishankar Bhaskaran   (mbhaska1)
+    Baladithya  Balamurugan (bbalamur)
+
+We are working together doing pair programming.
+All of the work submitted here is code written by us,
+except for code copied from the instructor's directories.
+
+We both have read and understood the UC Santa Cruz
+Academic Misconduct Policy for Undergraduates.
+https://ue.ucsc.edu/academic-misconduct.html
+
+We acknowledge that each parter in a programming pair is
+responsible for the work performed by the other partner,
+and all work has been reviewed by both partners working
+together. Both of us know the format of the PARTNER file.
+
+-- Manishankar Bhaskaran   (mbhaska1@ucsc.edu)
+-- Baladithya  Balamurugan (bbalamur@ucsc.edu)
+
+<----------------------------------------------------------->
+We apologize for the awkward spacing and inconsistetly-spaced
+documentation that occurs in the mbir.scm. We initially wrote 
+and documented mbir.scm without the 72 character/line limit,
+resulting in some messy code. We will keep the character limit
+in mind during future assignments in order to make the code 
+more legible. Again, we apologize for the inconvenience and 
+very much appreciate your understanding. Thank you! 
+
+REQUIRED FUNCTIONS
+    eval_expr
+    eval_memref
+    interp_dim
+    interp_let
+    interp_goto
+    interp_if
+    interp_input
+
+HELPER FUNCTIONS
+    print_not_found

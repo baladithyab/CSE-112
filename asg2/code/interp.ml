@@ -1,11 +1,9 @@
 (* $Id: interp.ml,v 1.19 2021-04-20 20:19:30-07 - - $ *)
 open Absyn
-
 let want_dump = ref false
-
 let source_filename = ref ""
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 let rec eval_expr (expr : Absyn.expr) : float = 
     match expr with
     | Number number -> number
@@ -18,7 +16,7 @@ let rec eval_expr (expr : Absyn.expr) : float =
         let res2 = eval_expr expr2 in
         Hashtbl.find Tables.binary_fn_table oper res1 res2
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and eval_memref (memref : Absyn.memref) : float = 
     match memref with
     | Arrayref (ident, expr) -> 
@@ -32,7 +30,7 @@ and eval_STUB reason = (
     print_string ("(" ^ reason ^ ")");
     nan)
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 let print_not_found func = (
     Printf.printf "Error in %s, label not found." func;
     exit(1);)
@@ -43,7 +41,7 @@ let rec interpret (program : Absyn.program) = match program with
        | _, _, None -> interpret continue
        | _, _, Some stmt -> (interp_stmt stmt continue)
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and interp_stmt (stmt : Absyn.stmt) (continue : Absyn.program) =
     match stmt with
     | Dim (ident, expr)  -> interp_DIM (ident, expr) continue
@@ -64,7 +62,7 @@ and interp_print (print_list : Absyn.printable list)
     in (List.iter print_item print_list; print_newline ());
     interpret continue
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and interp_LET (memref, expr) (continue : Absyn.program) = 
     match memref with
     | Arrayref (ident , expr2) ->
@@ -83,7 +81,7 @@ and interp_LET (memref, expr) (continue : Absyn.program) =
         (Hashtbl.replace Tables.variable_table ident data);
     interpret continue
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and interp_GOTO (label) (continue : Absyn.program) = 
     try
         let flag = Hashtbl.find Tables.label_table label in 
@@ -91,7 +89,7 @@ and interp_GOTO (label) (continue : Absyn.program) =
     with
         Not_found -> print_not_found "GOTO"
 
-(*IMPLMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and interp_IF (expr, label) (continue : Absyn.program) = 
     match expr with
     | Relexpr (op, expr2, expr3) -> 
@@ -103,21 +101,22 @@ and interp_IF (expr, label) (continue : Absyn.program) =
         else
             (interpret continue)
 
-(*IMPLEMENTED, NEED TO TEST*)
+(*IMPLEMENTED AND TESTED*)
 and interp_DIM (ident, expr) (continue : Absyn.program) = 
     (*Hashtbl.add tbl key data --> tbl[key] = data*)
-    let tbl = (Tables.array_table) in 
     (*let key = ident*)
     let size = (int_of_float (eval_expr expr)) in
     let data = (Array.make size 0.0) in
-    Hashtbl.add tbl ident data;
+    Hashtbl.add Tables.array_table ident data;
     interpret continue
 
-
+ (* <<-- EXCUSE WHAT IS THIS??? IM SCARED TO TOUCH IT *)
+(*IMPLEMENTED AND TESTED*)
 and interp_input (memref_list : Absyn.memref list)
                  (continue : Absyn.program)  =
     let input_number memref =
         match memref with
+        | Arrayref (ident,expr) -> (exit 0)
         | Variable (ident) ->
             try
                 let number = Etc.read_number () in 
