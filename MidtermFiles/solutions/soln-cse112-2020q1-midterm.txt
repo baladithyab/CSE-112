@@ -1,0 +1,183 @@
+$Id: soln-cse112-2020q1-midterm.txt,v 1.16 2020-02-12 16:06:29-08 - - $
+Solution to cse112-2020q1-midterm, page 1
+
+______________________________________________________________________
+Question 1(a). [2]
+
+(define (sum list)            ... deduct 1 point if no tail recursion
+    (define (summ list n)
+        (if (null? list) n
+            (summ (cdr list) (+ n (car list)))))
+    (summ list 0))
+
+______________________________________________________________________
+Question 1(b). [2]
+
+let sum list =                ... deduct 1 point if no tail recursion
+    let rec sum' list' n = match list' with
+        | [] -> n
+        | x::xs -> sum' xs (x + n)
+    int sum' list 0
+
+______________________________________________________________________
+Question 2(a). [2]
+
+(define (foldl f z list)
+    (if (null? list) z
+        (foldl f (f z (car list)) (cdr list))))
+
+______________________________________________________________________
+Question 2(b). [2]
+
+let rec fold_left f z list = match list with
+    | [] -> z
+    | x::xs -> fold_left f (f z x) xs
+
+______________________________________________________________________
+Question 3(a). [1]
+
+(define (sum list) (foldl + 0 list))
+
+______________________________________________________________________
+Question 3(b). [1]
+
+let sum list = fold_left (+) 0 list
+let sum = fold_left (+) 0                      ... either answer is OK
+
+
+Solution to cse112-2020q1-midterm, page 2
+______________________________________________________________________
+Question 4. [2]
+(define (evalexpr expr)
+        (if (number? expr) (+ expr 0.0)
+            (apply (car expr)
+                   (map evalexpr (cdr expr)))))
+______________________________________________________________________
+Question 5. [2]
+Array extend [
+   find: value [
+      1 to: self size do: [:i |
+         (self at: i) = value ifTrue: [^i].
+      ].
+      ^nil
+   ]
+].
+______________________________________________________________________
+Question 6. [2]
+gcd := [:x :y |
+   |a b|
+   a := x.  b := y.
+   [a ~= b] whileTrue: [
+      a > b ifTrue: [a := a - b] ifFalse: [b := b - a]
+   ].
+   ^a
+].
+______________________________________________________________________
+Question 7. [2]
+Array extend [
+   fold: block unit: id [
+      |result|
+      result := id.
+      self do: [:item | result := block value: result value: item.].
+      ^ result.
+   ]
+].
+______________________________________________________________________
+Question 8. [2]
+Array extend [
+   innerprod: other [
+      self size = other size
+      ifFalse: [ ^ self error: 'innerprod different sizes' ]
+      ifTrue: [
+         |sum|  sum := 0.
+         1 to: self size do: [:i|
+            sum := sum + (self at: i) * (other at: i)
+         ].
+         ^ sum
+      ]
+   ]
+]
+
+Solution to cse112-2020q1-midterm, page 3
+
+______________________________________________________________________
+Question 9. [2]
+
+let rec eval expr = match expr with
+    | Num value -> value
+    | Expr (binfn, e1, e2) -> binfn (eval e1) (eval e2);;
+
+______________________________________________________________________
+Question 10(a). [2]
+
+(define (reverse list)        ... deduct 1 point if no tail recursion
+        (define (rev in out)
+                (if (null? in) out
+                    (rev (cdr in) (cons (car in) out))))
+        (rev list '()))
+
+______________________________________________________________________
+Question 10(b). [2]
+
+let reverse list =            ... deduct 1 point if no tail recursion
+    let rec rev inl outl = match inl with
+        | [] -> outl
+        | x::xs -> rev xs (x::outl)
+    in rev list []
+
+______________________________________________________________________
+Question 10(c). [2]
+
+struct node* reverse (struct node* head) {
+   node* list = NULL;
+   while (head != NULL) {
+      struct node* t = head;
+      head = head->link;
+      t->link = list;
+      list = t;
+   }
+   return list;
+}
+
+______________________________________________________________________
+Question 11. [2]
+
+Be sure to view this diagram using a fixed-width font.
+[.|.]---------->[.|.]------------------>[.|*]
+ |               |                       |
+ V               V                       V
+[a|.]-->[.|*]   [c|.]-->[d|.]-->[e|*]   [.|.]-->[f|*]
+         |                               |
+         V                               V
+        [b|*]                           [e|*]
+
+
+Solution to cse112-2020q1-midterm, page 4
+
+Multiple choice.
+
+ 1.   (D) tail recursive
+
+ 2.   (C) List.map
+
+ 3.   (A) List.fold_left
+
+ 4.   (D) Scheme and Smalltalk.
+
+ 5.   (C) $PATH
+
+ 6.   (D) Verifying tokens are in correct syntactic order and
+          assembling the abstract syntax.
+
+ 7.   (B) (cadr '(1 2 3))
+
+ 8.   (C) int -> int -> int
+
+ 9.   (C) The message + 4 is sent to the object 3.
+
+10.   (B) (f + 3)
+
+11.   (B) $ O ( n ) $
+
+12.   (D) ||
+

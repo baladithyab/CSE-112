@@ -1,0 +1,99 @@
+CSE-112 · Programming Languages · Fall 2020 · Midterm Exam      1 of 1
+$Id: cse112-2020q4-midterm.mm,v 1.23 2020-11-11 19:13:17-08 - - $
+.PS
+examboxes(4)
+.PE
+
+.EQ
+delim $$
+.EN
+
+ 1. <PRE> Ocaml.  Using pattern matching on lists,
+    define the functions List.hd and List.tl [4pt]
+    # List.hd;;
+    - : 'a list -> 'a = <fun>
+    # List.tl;;
+    - : 'a list -> 'a list = <fun>
+
+ 2. <PRE> Define sum using the fold_left function.
+    [2pt]
+    # List.fold_left;;
+    - : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a = <fun>
+    # let sum = List.fold_left (+) 0;;
+    val sum : int list -> int = <fun>
+
+ 3. <PRE> Ocaml.  Without using a higher order
+    function, define length of a list.  [3pt]
+    - : 'a list -> int = <fun>
+
+ 4. <PRE> Scheme.  Without using a higher order
+    function, define length of a list.  [3pt]
+    (length '(1 2 3 4))
+    4
+
+ 5. <PRE> Smalltalk.  Parenthesize the following
+    expression, showing the exact order in which
+    messsages are sent.  For each message, draw exactly
+    one pair of parentheses.  [1pt]
+       3 + 4 * 5 sqrt to: 8 do: 'abc'.
+
+ 6. <PRE> Scheme.  Code the maximum function.  Return
+    #f for an empty list, otherwise return the largest
+    number.  [3pt]
+
+ 7. <PRE> Ocaml.  code the maximum function.  Return a
+    float option indicating the largest number.  That
+    is, use Some for a non-empty list, and None for an
+    empty list.  [3pt]
+
+ 8. <PRE> Ocaml.  Define the function reverse which
+    reverses a list.  [3pt]
+     # reverse [1;2;3;4;5];;
+     - : int list = [5; 4; 3; 2; 1]
+
+ 9. <PRE> Scheme.  Define the function reverse which
+    reverses a list.  [3pt]
+     > (reverse '(1 2 3 4 5))
+     (5 4 3 2 1)
+
+10. <PRE> Smalltalk.  Define a class Counter which
+    maintains an instance variable.  Members are add:
+    which increments the counter;  value, which
+    retrieves the value;  init, which resets it to
+    zero;  and new.  [4pt]
+     st> a := Counter new.
+     a Counter
+     st> a value.
+     0
+     st> a add: 3.
+     a Counter
+     st> a add: 9.
+     a Counter
+     st> a value.
+     12
+     st> a init.
+     a Counter
+     st> a value.
+     0
+
+11. <PRE> During lecture, four kinds of polymorphism
+    were mentioned.  Name each of them and give an
+    example for each one For each kind, give an example
+    taken from one of the following languages:  C, C++,
+    Java, Scheme, Ocaml, Smalltalk.  The example should
+    be extremely brief and trivial.  [8pt]
+
+12. <PRE> Ocaml.  Define a function zip which takes two
+    lists as arguments and returns a list of tuples
+    containing the corresponding elements.  If the
+    lists are of different lengths, ignore excess
+    elements of the longer list.  [3pt]
+     # zip;;
+     - : 'a list -> 'b list -> ('a * 'b) list = <fun>
+     # zip [1;2;3] [4;5;6];;
+     - : (int * int) list = [(1, 4); (2, 5); (3, 6)]
+     # zip [1;2;3;4;5;6;7;8] [3;6;9];;
+     - : (int * int) list = [(1, 3); (2, 6); (3, 9)]
+
+SCORE-TOTAL=40
+

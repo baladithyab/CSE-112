@@ -1,0 +1,157 @@
+$Id: soln-cse112-2020q4-midterm.txt,v 1.14 2020-11-17 20:44:17-08 - - $
+Solution to cse112-2020q4-midterm, page 1
+
+Assign points to each question in 0.5 increments from 0 to
+the max possible points for any given question.
+
+For Scheme questions don't bother manually matching parentheses.
+Instead, rely on proper indentation to show structure of answer.
+
+For Ocaml, it does not matter whether the answer ends with ;;
+or not.
+
+______________________________________________________________________
+Question 1. [4]
+
+let hd list = match list with
+    | [] -> raise (Failure "hd")
+    | x::_ -> x
+
+let tl list = match list with
+    | [] -> raise (Failure "tl")
+    | _::xs -> xs
+
+Instead of raise:
+    | invalid_arg "hd" ...or... | failwith ...
+
+
+
+or anything that looks like a reasonable guess at raising an error.
+2 points for each function, even a C++-ism like throw.
+
+______________________________________________________________________
+Question 3. [3]
+
+let length list =
+    let rec len lst acc = match lst with
+        | [] -> acc
+        | _::xs -> len xs (acc + 1)
+    in len list 0
+
+Deduct 1 point if without a nested tail recursive function
+or if the top level call is not a tail call.
+
+______________________________________________________________________
+Question 4. [3]
+
+(define (length list)
+    (define (len lst acc)
+        (if (null? lst) acc
+            (len (cdr lst) (+ acc 1))))
+    (len list 0))
+
+Deduct 1 point if without a nested tail recursive function
+or if the top level call is not a tail call.
+
+______________________________________________________________________
+Question 6. [5]
+
+(define (maximum list)
+    (define (max lst mx)
+        (cond ((null? lst) mx)
+              ((< mx (car lst)) (max (cdr lst) (car lst)))
+              (else (max (cdr lst) mx))))
+    (if (null? list) #f
+        (max (cdr list) (car list))))
+
+Deduct 1 point if internal function is not tail recursive.
+
+______________________________________________________________________
+Question 7. [5]
+
+let maximum list =
+    let rec max lst mx = match lst with
+        | []-> mx
+        | x::xs -> max xs (if mx < x then x else mx)
+    in match list with
+        | [] -> None
+        | x::xs -> Some (max xs x)
+
+Deduct 1 point if internal function is not tail recursive.
+Be generous about deciding on what student writes for None
+and Some.
+
+______________________________________________________________________
+Question 8. [3]
+
+let reverse list =
+    let rec rev lst out = match lst with
+        | [] -> out
+        | x::xs -> rev xs (x::out)
+    in rev list []
+
+Deduct 1 point if internal function is not tail recursive.
+
+______________________________________________________________________
+Question 9. [3]
+
+(define (reverse list)
+    (define (rev lst out)
+        (if (null? lst) out
+            (rev (cdr lst) (cons (car lst) out))))
+    (rev list '()))
+
+Deduct 1 point if internal function is not tail recursive.
+
+______________________________________________________________________
+Question 10. [4]
+
+Object subclass: Counter [
+   |count|
+   Counter class >> new [ ^ super new init ]
+   init [ count := 0 ]
+   add: amt [ count := count + amt ]
+   value [ ^ count ]
+]
+
+______________________________________________________________________
+Question 11. [8]
+
+parametric or template or generic  ........ 2 POINTS
+    template <typename T> class stack {.......}
+    'a list -> 'b list -> 'c list
+    class stack<T> {.......}
+
+inclusion or inheritance or virtual functions  ........ 2 POINTS
+    Object subclass: Expr [.....]
+    class foo: public bar {....}
+
+conversion or coercion  ........ 2 POINTS
+    void f(double); ... f(3);
+    void f(const string&); ... f("abc");
+
+overloading  ........ 2 POINTS
+    void f(double); //C++
+    foid f(int); //C++
+    or:  3+4 vs 3.0+4.0, which overloading in C.
+    Some students might know Java.
+    no overloading is possible in Scheme, Ocaml, or Smalltalk.
+
+Examples may come from any language.
+but must be appropriate to the kind of polymorphism.
+The "or" above indicates alternate possible answers, only one of which
+necessarily must be named.  Accept any reasonable synonum.
+Only one example is needed per category.
+Assign 1 points for each classification
+and 1 point for each example.
+
+______________________________________________________________________
+Question 12. [3]
+
+let rec zip list1 list2 = match list1, list2 with
+    | [], _ -> []
+    | _, [] -> []
+    | x::xs, y::ys -> (x,y) :: zip xs ys
+
+This function can not use tail recursion.
+

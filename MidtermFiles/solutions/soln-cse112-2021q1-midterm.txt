@@ -1,0 +1,162 @@
+SE-111 * Programming Languages * Winter 2021 * Midterm Exam SOLUTION
+$Id: soln-cse112-2021q1-midterm.txt,v 1.3 2021-02-19 19:41:30-08 - - $
+
+Grade each question in increments of 0.5 points and assign a
+score between 0 and the max, inclusive.
+
+For ocaml, no points off for lack of ;; at end.  For scheme,
+look at indentation and don't bother with mismatched
+parentheses.
+
+Any correct answer that shows good style is acceptable.  Answers
+EXACTLY the same as mine are not the only possible answers.
+
+_______________________________________________________
+Question 1.  [[2pt]] <PRE>
+
+(define (every-other list)
+    (if (or (null? list) (null? (cdr list))) list
+        (cons (car list) (every-other (cddr list)))))
+
+--or--
+
+(define (every-other2 list)
+    (cond ((null? list) '())
+          ((null? (cdr list)) list)
+          (else (cons (car list) (every-other2 (cddr list))))))
+
+_______________________________________________________
+Question 2.  [[2pt]] <PRE>
+
+let rec every_other list = match list with
+    | [] -> []
+    | [_] -> list
+    | x::_::xs -> x::every_other xs;;
+
+... _::[] means the same as [_]
+... OK to use a variable instead of _
+
+_______________________________________________________
+Question 3.  [[3pt]] <PRE>
+
+let ip list1 list2 =
+    List.fold_left (+.) 0. (List.map2 ( *.) list1 list2);;
+
+... 1.5 pt for fold_left, 1.5 pt for map2.
+
+_______________________________________________________
+Question 4.  [[2pt]] <PRE>
+
+(a)
+let sum = List.fold_left (+) 0;;
+or
+let sum list = List.fold_left (+) 0 list;;
+
+(b)
+(define (sum list) (foldl + 0 list))
+
+_______________________________________________________
+Question 5.  [[4pt]] <PRE>
+
+(a)
+
+(define (even x) (= 0 (remainder x 2)))  //// 1 point
+
+(map even '(1 2 3 4))                    //// 1 point
+
+(b)
+
+let even x = x mod 2 = 0;;               //// 1 point
+
+List.map even [1;2;3;4];;                //// 1 point
+
+_______________________________________________________
+Question 6.  [[7pt]] <PRE>
+
+(a) ... 4 points
+
+(define (filter p? list)
+        (if (null? list) '()
+            (let ((a (car list))
+                  (d (cdr list)))
+                 (if (p? a) (cons a (filter p? d))
+                            (filter p? d)))))
+
+(b) ... 3 points
+
+let rec filter p list = match list with
+    | [] -> []
+    | x::xs -> if p x then x::filter p xs else filter p xs;;
+
+--or--
+
+let rec filter p list = match list with
+    | [] -> []
+    | x::xs when p x -> x :: filter p xs
+    | _::xs -> filter p xs
+
+_______________________________________________________
+Question 7.  [[5pt]] <PRE>
+
+let collatz n =
+    let rec collatz' n rest =
+        if n <= 1
+           then 1::rest
+           else if n mod 2 = 0
+                   then collatz' (n / 2) (n::rest)
+                   else collatz' (n * 3 + 1) (n::rest)
+    in  List.rev (collatz' n [])
+
+_______________________________________________________
+Question 8.  [[8pt]] <PRE>
+
+(a) ... 2 points
+
+(define (key tree) (car tree))
+(define (value tree) (cadr tree))
+(define (left tree) (caddr tree))
+(define (right tree) (cadddr tree))
+
+(b) ... 6 points
+
+(define (binsearch less wantkey tree)
+    (cond ((null? tree) #f)
+          ((less (key (key tree)))
+                (binsearch less wantkey (left tree)))
+          ((less ((key tree) wantkey))
+                (binsearch less wantkey (right tree)))
+          (else (value tree))))
+
+_______________________________________________________
+Question 9.  [[6pt]] <PRE>
+
+(a) ... 3 points
+
+let rec find equ? key list = match list with
+    | [] -> None
+    | (k,v)::xs -> if equ? key k then Some v
+                   else find equ? key xs;;
+
+--or--
+
+let rec find equ? key list = match list with
+    | [] -> None
+    | (k,v)::_ when equ? key k -> Some v
+    | _::xs -> find equ? key xs;;
+
+(b) ... 3 points
+
+ 
+(define (find equ? key list)
+    (cond ((null? list) #f)
+          ((equ? key (caar list)) (cadar list))
+          (else (find equ? key (cdr list)))))
+
+_______________________________________________________
+Question 10.  [[1pt]] <PRE>
+
+1 to: 1000 do: [:i | stdout << i << Character nl].
+
+_______________________________________________________
+SCORE-TOTAL=40
+

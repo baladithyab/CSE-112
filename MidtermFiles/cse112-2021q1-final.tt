@@ -1,0 +1,357 @@
+CSE-112 * Programming Languages * Fall 2020 * Final Exam        1 of 1
+$Id: cse112-2021q1-final.mm,v 1.118 2021-03-06 17:55:21-08 - - $
+
+Answer each question in the specific language
+given in the question.  Do not use pseudo-code.
+Your answers should compile and run if copied
+verbatim into the appropriate language processor.
+
+Use proper indentation.  Points will be deducted
+for messy or unreadable answers.
+
+__________________________________________________
+
+<PRE>
+Question 1.  [[6 pt]] -- Smalltalk.
+
+Stack, part 1.
+
+Write code to implement class Stack.  It has no
+error checking, so stack overflow and underflow
+will just cause the code to crash.
+
+Stack is implemented with an instance field called
+array, which is of class Array;  and an integer
+instance field called top, which indicates which
+element is at the top of the stack.
+
+Top is 0 for an empty stack.
+Push increments top, and pop decrements top.
+
+Answer this question in two parts, showing here
+the answer to the first few parts described.
+Continue the answer in the next question showing
+the other methods.  Both answers combined must be
+exact Smalltalk code for stack.
+
+If the following uses this Stack:
+s := Stack new: 10.
+1 to: 3 do: [:x| s push: x].
+[s empty not] whileTrue: [stdout << ' ' << s pop].
+
+then the output will be:  3 2 1
+
+In this part show the following:
+
+ (a) [1 pt] Show that Stack is a subclass of
+     Object.
+ (b) [1 pt] Declare the instance fields array and
+     top.
+ (c) [1 pt] new
+     sends the class message to Stack
+     new: 16
+ (d) [1 pt] new:
+     has a size argument which specifies the size
+     of the array.
+ (e) [2 pt] init:
+     is used by new:
+
+continued in part 2...
+
+__________________________________________________
+
+<PRE>
+Question 2.  [[6 pt]] -- Smalltalk.
+
+Stack, part 2.
+... Continued from part 1.
+Show the following methods:
+
+ (a) [2 pt] pop
+     removes the element at the top of the stack
+     and returns it as the value.
+ (b) [1 pt] push:
+     pushes a new element onto the top of the
+     stack.
+ (c) [1 pt] empty
+     returns true if and only if the stack is
+     empty.
+ (d) [1 pt] full
+     returns true if and only if the stack is full
+     with no space for any further push:
+     operations.
+     Hint:  Array has a size instance method.
+ (e) [1 pt] count
+     returns the number of elements on the stack.
+
+__________________________________________________
+
+<PRE>
+Question 3.  [[4 pt]] -- Ocaml.
+
+Define unzip, which takes a list of two-tuples and
+returns a tuple of lists, where the first list
+contains the first part of each tuple, and the
+second list contains the second part of each
+tuple.
+
+Do not use reverse.  Do not use a nested helper
+function.  The answer will not be tail recursive.
+
+# unzip;;
+- : ('a * 'b) list -> 'a list * 'b list
+# unzip [1,1.; 2,4.; 3,9.];;
+- : int list * float list = ([1; 2; 3], [1.; 4.;
+9.])
+
+__________________________________________________
+
+<PRE>
+Question 4.  [[6 pt]] -- Scheme.
+
+Define the function reverse, which reverses a
+list.  Score will be 0 if all calls are not tail
+calls (tail recursion).
+
+> (reverse '(1 2 3 4 5))
+(5 4 3 2 1)
+> (reverse '(1))
+(1)
+> (reverse '())
+()
+
+ (a) [3 pt] Define reverse without using any
+     higher-order function.  Use proper recursion.
+
+ (b) [3 pt] Define the function reverse using
+     foldl and a lambda as the first argument to
+     foldl.
+
+__________________________________________________
+
+<PRE>
+Question 5.  [[6 pt]] -- Perl.
+
+Write the program wc.perl, which counts the number
+of character, words, and lines in a file, and then
+prints those numbers.  A word is any sequence of
+characters none of which is white space.
+
+Hint:  The pattern /\S+/ matches any sequence of
+one or more non white space characters.  This
+statement will remove one word from $line:
+$line =~ s/\S+//;
+After that, the variable $& will contain the word
+thus removed.
+
+Make your program compatible with the statements:
+use strict;
+use warnings;
+
+Input should be done via the loop:
+while (defined (my $line = <>)) {
+
+If the input file contains:
+
+This is some test data.
+Second line of data.
+More test data.
+And yet more test data.
+
+Then the results will be generated qith:
+
+4 17 85
+
+__________________________________________________
+
+<PRE>
+Question 6.  [[5 pt]] -- Ocaml.
+
+Define zipwith whose arguments are a function and
+two lists.  The lists are merged by combining
+paired elements with the function.  The first
+argument to the function comes from the first
+list.
+
+Use the expression:
+failwith "zipwith"
+
+if the two lists are not of the same length.  Do
+not use the length function to find the length of
+the lists.  Make exactly one pass over the input
+lists when constructing the result list.
+
+# zipwith;;
+- : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c
+list
+# zipwith (-) [9;8;7;6] [1;2;3;4];;
+- : int list = [8; 6; 4; 2]
+# zipwith (-) [9;8;7;6] [1;2];;
+Exception: Failure zipwith .
+
+__________________________________________________
+
+<PRE>
+Question 7.  [[4 pt]] -- Ocaml.
+
+Define the function drop whose arguments are an
+int and a list.
+If n <= 0, return the list.
+If n > 0, return the list with n elements skipped.
+If n > length of the list, return the empty list.
+
+Do not compute the length of the list.  The
+function may only traverse down the first n
+elements of the list.  Do not copy the list.
+Return a reference to the nth item in the list
+(counting from 0).  Do not use an interal helper
+function.
+
+A score of 0 will be assigned if the function is
+not tail recursive.
+
+# drop;;
+- : int -> 'a list -> 'a list
+# drop 3 [1;2;3;4;5;6;7];;
+- : int list = [4; 5; 6; 7]
+# drop 10 [1;2;3;4];;
+- : int list = []
+# drop (-5) [1;2;3;4];;
+- : int list = [1; 2; 3; 4]
+# drop 5 [];;
+- : 'a list = []
+
+__________________________________________________
+
+<PRE>
+Question 8.  [[3 pt]] -- Scheme.
+
+Define the function drop whose arguments are an
+int and a list.
+If n <= 0, return the list.
+If n > 0, return the list with n elements skipped.
+If n > length of the list, return the empty list.
+
+Do not compute the length of the list.  The
+function may only traverse down the first n
+elements of the list.  Do not copy the list.
+Return a reference to the nth item in the list
+(counting from 0).  Do not use an interal helper
+function.
+
+A score of 0 will be assigned if the function is
+not tail recursive.
+
+> (drop1 3 '(1 2 3 4 5 6 7))
+(4 5 6 7)
+> (drop1 10 '(1 2 3 4 5))
+()
+> (drop1 -5 '(1 2 3 4 5))
+(1 2 3 4 5)
+> (drop1 5 '())
+()
+
+__________________________________________________
+
+<PRE>
+Question 9.  [[2 pt]] -- make.
+
+Write two Makefile rules as described here.  This
+is not a complete Makefile, just these two
+fragments.
+
+ (a) [1 pt] Show a Makefile rule that will use gcc
+     to compile any C program into an object file.
+     For example, compile foo.c into foo.o,
+     or compile bar.c into bar.o,
+     or any other C file into an object file.
+
+     Remember that gcc in this case requires the
+     -c option.  That means use gcc -c.  Write one
+     rule that uses wildcards.
+
+ (b) [1 pt] Write a rule called clean, which has
+     no dependencies.  It removes all object (.o)
+     files using a shell wildcard.  Write the
+     command so that it does not error out if
+     there are no object files.
+
+__________________________________________________
+
+<PRE>
+Question 10.  [[6 pt]] -- Perl.
+
+Write a program that reads files mentioned on the
+command line, and reads STDIN if none.  Do not
+explicitly open files ... use the <> operator.  At
+the end of the last file, print each word followed
+by the number of times it appears.  Print the
+words lexicographically.  A word is any sequence
+of characters that matches /\w+/.
+
+Hint:  The pattern /\w+/ matches any sequence of
+one or more alphanumeric characters.  This
+statement will remove one word from $line ans
+succeed if the substitute worked.  If there is no
+word on the line, the loop stops.
+
+while ($line =~ s/\w+//) { ......... }
+
+After that, the variable $& will contain the word
+thus removed.
+
+Make your program compatible with the statements:
+use strict;
+use warnings;
+
+Read input with:
+while (my $line = <>) {
+
+For example, if the input file is:
+
+this is a test.
+test is a this.
+is this a test?
+testing this.
+
+Then the output is:
+
+a 3
+is 3
+test 3
+testing 1
+this 4
+
+__________________________________________________
+
+<PRE>
+Question 11.  [[2 pt]] -- polymorphism.
+
+Each of the parts of this question indicates one
+kind of polymorphism.  In your answer, for each
+part, choose one general and one specific
+classification, for each example.
+
+General classification:
+Classify each by one of the words:
+universal, ad-hoc.
+
+Specific classification:
+Classify each by one of the words:
+parametric, inclusion, overloading, conversion
+
+ (a) Object subclass: Expr
+
+ (b) ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
+
+ (c) int f (int);
+     double f (double);
+     string f (string);
+
+ (d) void f (double);
+     int x;
+     f(x);
+
+__________________________________________________
+SCORE-TOTAL=50
+

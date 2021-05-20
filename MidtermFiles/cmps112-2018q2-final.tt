@@ -1,0 +1,417 @@
+CMPS-112 · Programming Languages · Spring 2018 · Final Exam     1 of 1
+$Id: cmps112-2018q2-final.mm,v 1.148 2018-06-15 12:34:04-07 - - $
+
+.PS
+examboxes(5)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Do your scratch work elsewhere and enter only your
+final answer into the spaces provided.  Points will be deducted for
+messy answers.  Unreadable answers will be presumed incorrect.
+
+.EQ
+delim $$
+.EN
+
+1. Define the function factorial.  Note:  $ 0 ^ ! = 1 , ~ n ^ ! = n
+   times ( n - 1 ) ^ ! , $ and is undefined for negative numbers.
+
+    (a) Scheme.  Return #f for a negative number.  Deduct 1 point if
+        not tail recursive.  [2pt]
+
+        > (fac 15)      > (fac 0)
+        1307674368000   1
+        > (fac 10)      > (fac -1)
+        3628800         #f
+        > (fac 5)
+        120
+
+    (b) Ocaml.  Fail for a negative number.  Deduct 1 point if not
+        tail recursive.  [2pt]
+
+        # fac;;                   # fac 5;;
+        - : int -> int = <fun>    - : int = 120
+        # fac 15;;                # fac 0;;
+        - : int = 1307674368000   - : int = 1
+        # fac 10;;                # fac (-1);;
+        - : int = 3628800         Exception: Failure
+                                  "fac n | n < 0".
+
+    (c) Smalltalk.  Extend class Number to add a unary message fac.
+        Return nil if negative.  [2pt]
+
+        st> 15 fac.     st> 0 fac.
+        1307674368000   1
+        st> 10 fac.     st> -1 fac.
+        3628800         nil
+        st> 5 fac.
+        120
+
+    (d) Prolog.  Fail if negative.  [2pt]
+
+        | ?- fac(15,M).        | ?- fac(5,M).
+        M = 1307674368000 ?    M = 120 ?
+        yes                    yes
+        | ?- fac(10,M).        | ?- fac(0,M).
+        M = 3628800 ?          M = 1 ?
+        yes                    yes
+                               | ?- fac(-1,M).
+                               no
+
+2. Prolog.
+
+   (a) Define sum.  [1pt]           (b) Define length.  [1pt]
+      | ?- sum([1,2,3,4,5],N).         | ?- length([1,2,3,4,5],N).
+      N = 15                           N = 5
+      | ?- sum([],N).                  | ?- length([],N).
+      N = 0                            N = 0
+
+3. Write a function that performs differentiation of a polynomial.
+   For each term of the form $ k x sup n $, replace the term with the
+   value $ k n x sup { n - 1 } $.  Any term with an exponent of 0 is
+   lost.  Assume all input exponents are non-negative integers.  Exam-
+   ples:  $ size 8 { d over dx } ~ 4 x sup 4 + 6 x sup 3 + 7 x sup 2 +
+   5 x + 8 ~ = ~ 16 x sup 3 + 18 x sup 2 + 14 x + 5 $  and  $ size 8 {
+   d over dx } ~ 4 x sup 6 + 8 x sup 3 ~ = ~ 24 x sup 5 + 24 x sup 2 $
+
+    (a) Ocaml.  Represent a polynomial as a (float*int) list, where
+        each float is the coefficient and each int is the correspond-
+        ing exponent.  [2pt]
+
+        # differentiate;;
+        - : (float*int) list ->
+        (float*int) list = <fun>
+        # differentiate
+        [(4.,4);(6.,3);(7.,2);(5.,1);(8.,0)];;
+        - : (float*int) list =
+        [(16.,3);(18.,2);(14.,1);(5.,0)]
+        # differentiate [(4.,6);(8.,3)];;
+        - : (float*int) list = [(24.,5);(24.,2)]
+
+    (b) Scheme.  Represent a polynomial as a list of lists of length
+        2.  (See the examples.)  The car of each sublist is the coef-
+        ficient and the cdr is the exponent.  Use a let to give mean-
+        ingful names to the caar, cadar, and cdr of the input list.
+        [3pt]
+
+        > (differentiate '((4 4)(6 3)(7 2)(5 1)(8 0)))
+        ((16 3)(18 2)(14 1)(5 0))
+        > (differentiate '((4 6)(8 3)))
+        ((24 5)(24 2))
+
+4. Java.  Write a class counter such that might be used in the ob-
+   servers and reporters problem.  It has a private long field to rep-
+   resent a count, which has an initial value of 0.  The method click
+   increments the count.  The method reset returns the current count
+   and resets it to 0.  Be sure that race conditions are not possible
+   when its methods are called from multiple concurrent threads.
+   [3pt]
+
+5. Ocaml.  Define merge that takes a comparison function and two sort-
+   ed lists and returns a list merged into sorted order.  [2pt]
+   # merge;;
+   - : ('a -> 'a -> bool) -> 'a list -> 'a list -> 'a list = <fun>
+   # merge (<) [1;3;5;7;9] [2;4;6;8];;
+   - : int list = [1; 2; 3; 4; 5; 6; 7; 8; 9]
+   # merge (>) [99;88;77] [95;85;76];;
+   - : int list = [99; 95; 88; 85; 77; 76]
+   # merge (<) [1;2;3;4] [1;2;3;4];;
+   - : int list = [1; 1; 2; 2; 3; 3; 4; 4]
+
+6. Prolog.
+
+    (a) Write a set of facts called arrow which describe this graph,
+        where arrow(a,b) means that a->b.  [2pt]
+
+.PS 1i
+arrowht = circlerad
+arrowwid = circlerad/2
+A: circle "a"
+B: circle "b" at A+(5*circlerad,0)
+arrow from A to B chop
+C: circle "c" at A+(0,-5*circlerad)
+arrow from B to C chop
+arrow from A to C chop
+D: circle "d" at B+(5*circlerad,0)
+arrow from B to D chop
+E: circle "e" at D+(0,-5*circlerad)
+arrow from D to E chop
+arrow from E to C chop
+.PE
+
+    (b) Given ispath as defined here, write the relation ispath(A,Vis-
+        ited,B) which succeeds if there is a path from A to B and
+        avoids infinite traversals around a loop.  Use Visited to keep
+        track of the nodes visited.  [2pt]
+        Assume these relations:
+           not(X) :- X,!,fail.
+           not(_).
+           ispath(A,A).
+           ispath(A,B) :- ispath(A,[],B).
+        Results:
+        | ?- ispath(a,e).   yes
+        | ?- ispath(c,e).   no
+        | ?- ispath(a,c).   yes
+        | ?- ispath(d,c).   yes
+
+7. Define the function contains which returns true or succeeds if the
+   first argument is in the list which is passed as its second argu-
+   ment.  Returns false or fails otherwise.  See the examples.  In all
+   cases, just use the equals (=) operator for comparison.
+
+    (a) Scheme.--[1pt]-------------+----+
+        |(contains 3 '(1 2 3 4 5)) | #t |
+        +--------------------------+----+
+        |(contains 3 '(4 5 6))     | #f |
+        +--------------------------+----+
+        |(contains 3 '())          | #f |
+        +--------------------------+----+
+    (b) Prolog.--[1pt]------------+-----+
+        |contains(3,[1,2,3,4,5]). | yes |
+        +-------------------------+-----+
+        |contains(3,[4,5,6]).     | no  |
+        +-------------------------+-----+
+        |contains(3,[]).          | no  |
+        +-------------------------+-----+
+    (c) Ocaml.--[1pt]-------------+------------------+
+        |contains 3 [1;2;3;4;5];; | - : bool = true  |
+        +-------------------------+------------------+
+        |contains 3 [4;5;6];;     | - : bool = false |
+        +-------------------------+------------------+
+        |contains 3 [];;          | - : bool = false |
+        +-------------------------+------------------+
+8. Smalltalk.  Finish the following definition of class Stack.  Write
+   the methods push, pop, and isempty.  [3pt]
+
+   Object subclass: Stack [
+      |array top|
+      Stack class >> new: size [
+         ^ super new init: size
+      ]
+      init: size [
+         top := 0.
+         array := Array new: size.
+      ]
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong an-
+swer.  Wrong answers are worth negative points.  [12pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   12 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. What Java keyword is used to ensure that a method does not allow
+    race conditions?
+    (A) mutex
+    (B) protected
+    (C) runnable
+    (D) synchronized
+
+ 2. What interface should be implemented by a class object that should
+    support multiple threads?
+    (A) Iterable
+    (B) Runnable
+    (C) Synchronable
+    (D) Thread
+
+ 3. How many times will the following for-loop be executed?  for (i =
+    1; i <= 100; i <<= 1);
+    (A)   1
+    (B)   7
+    (C)   8
+    (D) 100
+
+ 4. (caddr '((1 2 3) (4 5 6) (7 8 9)))
+    (A) ()
+    (B) (1 2 3)
+    (C) (4 5 6)
+    (D) (7 8 9)
+
+ 5. Type of [(1,"a");(2,"b");(3,"c")]
+    (A) (int * int * int) list
+        * (string * string * string) list
+    (B) (int * string) list list
+    (C) (int * string) list
+    (D) int list * string list
+
+ 6. What will cause a list with no elements to be passed to the
+    function f?
+    (A) (f '())
+    (B) (f ())
+    (C) (f null)
+    (D) (f null?)
+
+ 7. Perl, Scheme, and Prolog are languages whose type checking is:
+    (A) strong and dynamic
+    (B) strong and static
+    (C) weak and dynamic
+    (D) weak and static
+
+ 8. Ocaml.  Type of (+)
+    (A) int * int * int
+    (B) int * int -> int
+    (C) int -> int * int
+    (D) int -> int -> int
+
+ 9. If guess will search a database for a possible answer and verify
+    checks to see if it is acceptable, how would this be coded in
+    Prolog?
+    (A) find(X) :- guess(X), verify(X).
+    (B) find(X) :- guess(X).
+        find(X) :- verify(X).
+    (C) find(X) :- verify(X), guess(X).
+    (D) verify(X) :- find(X), guess(X).
+
+10. If M = memory leak, and D = dangling references, which is possible
+    in Java?
+    (A) D but not M
+    (B) M but not D
+    (C) both of them
+    (D) neither
+
+11. Scheme.  What will return 2?
+    (A) (if "" 1 2)
+    (B) (if #\0 1 2)
+    (C) (if #f 1 2)
+    (D) (if 0 1 2)
+
+12. Ocaml.  What is 7?
+    (A) (+) (3, 4);;
+    (B) (+) 3 4;;
+    (C) (+) 3, 4;;
+    (D) 3 (+) 4;;
+
+                      +-----------------------+
+                      |                       |
+                      |                       |
+                      |                       |
+                      |                       |
+                      |                       |
+                      |jpgs/bug-zero.ps       |
+                      |                       |
+                      |                       |
+                      |                       |
+                      |                       |
+                      |                       |
+                      +-----------------------+
+Virginia.ehNaval9SurfaceuWarfaretCentermComputerlMuseumgatgDahlgren,,r
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong an-
+swer.  Wrong answers are worth negative points.  [12pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   12 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. Which is generally considered to be a scripting language?
+    (A) Algol 60
+    (B) Haskell
+    (C) OpenGL
+    (D) Perl
+
+ 2. Which function must be written using tail recursion?
+    (A) filter
+    (B) fold_left
+    (C) fold_right
+    (D) map
+
+ 3. A garbage collector finds heap objects by finding all objects:
+    (A) in the closure of the root set
+    (B) in the static data area
+    (C) that are dead
+    (D) that are live
+
+ 4. Which C, C++, and Java operator uses applicative order evaluation?
+    (A) &&
+    (B) ==
+    (C) ? :
+    (D) ||
+
+ 5. Given this Smalltalk definition, what returns 4?  a := [:x| x +
+    1].
+    (A) 3 a.
+    (B) a 3.
+    (C) a at: 3.
+    (D) a value: 3.
+
+ 6. Which can be a fact in a Prolog database?
+    (A) foo(BAR,BAZ).
+    (B) foo(BAR,baz).
+    (C) foo(bar,BAZ).
+    (D) foo(bar,baz).
+
+ 7. What is used to pass an unevaluated expression in Haskell?
+    (A) block
+    (B) closure
+    (C) monad
+    (D) thunk
+
+ 8. A closure is:
+    (A) A special field of a structure or class used to point at a
+        base class when implementing shared multiple inheritance.
+    (B) A special type declaration in Ocaml used to distinguish sum
+        types from product types.
+    (C) A structure on the heap, used to hold variables of an outer
+        function when referenced by an inner function.
+    (D) A table used to dynamically dispatch virtual functions in an
+        object-oriented environment.
+
+ 9. Ocaml.  let f x = x /. 2.;;
+    (A) val f : float -> float = <fun>
+    (B) val f : float -> int = <fun>
+    (C) val f : int -> float = <fun>
+    (D) val f : int -> int = <fun>
+
+10. Which languages uses unification to determine the values of
+    variables?
+    (A) Ocaml
+    (B) Prolog
+    (C) Scheme
+    (D) Smalltalk
+
+11. In C++, the statement p->f(x,y);  will be translated into C as:
+    (A) p->f(p,x,y);
+    (B) p->f(x,y);
+    (C) p->vft->f(p,x,y);
+    (D) p->vft->f(x,y);
+
+12. Is half of two plus two equal to two or three?
+    (A) two
+    (B) three
+    (C) yes
+    (D) no
+
+                           +-------------+
+                           |             |
+                           |             |
+                           |             |
+                           |jpgs/haskellwiki-logo-big.ps
+                           |             |
+                           |             |
+                           |             |
+                           |             |
+                           +-------------+
+

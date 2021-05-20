@@ -1,0 +1,202 @@
+$Id: soln-cmps112-2019q1-final.txt,v 1.11 2019-03-14 16:52:50-07 - - $
+Solution to cmps112-2019q1-final, page 1
+
+_________________________________________________________________
+Question 1(a). [2]
+
+let rec map f list = match list with
+    | [] -> []
+    | x::xs -> f x :: map f xs
+
+_________________________________________________________________
+Question 1(b). [2]
+
+let rec filter f list = match list with
+    | [] -> []
+    | x::xs -> if f x then x :: filter f xs
+                      else filter f xs
+
+let rec filter f list = match list with
+    | [] -> []
+    | x::xs when f x -> x :: filter f xs
+    | _::xs -> filter f xs
+
+_________________________________________________________________
+Question 1(c). [2]
+
+let rec fold_left f unit list = match list with
+    | [] -> unit
+    | x::xs -> fold_left f (f unit x) xs
+
+_________________________________________________________________
+Question 2(a). [2]
+
+(define (map f list)
+        (if (null? list) '()
+            (cons (f (car list)) (map f (cdr list)))))
+
+_________________________________________________________________
+Question 2(b). [2]
+
+(define (filter p? list)
+        (if (null? list) '()
+            (let ((a (car list))
+                  (d (cdr list)))
+                 (if (p? a) (cons a (filter p? d))
+                            (filter p? d)))))
+..... OK if car cdr repeated instead of let a d
+
+Solution to cmps112-2019q1-final, page 2
+
+_________________________________________________________________
+Question 3(a). [2]
+
+Array extend [
+   findpred: pred [
+      self do: [:a|
+         (pred value: (a at: 1)) ifTrue: [^ a at: 2].
+      ].
+      ^ nil.
+   ]
+].
+
+_________________________________________________________________
+Question 3(b). [2]
+
+sub findpred ($@) {
+   my ($pred, @array) = @_;
+   for my $pair (@array) {
+      return $pair->[1] if $pred->($pair->[0]);
+   }
+   return undef;
+}
+
+_________________________________________________________________
+Question 3(c). [2]
+
+findpred(P, [pair(K,V)|_], V) :- call(P,K).
+findpred(P, [_|L], V) :- findpred(P, L, V).
+
+_________________________________________________________________
+Question 3(d). [2]
+
+let rec findpred p list = match list with
+    | [] -> None
+    | (x,y)::zs -> if p x then Some y
+                   else findpred p zs
+
+_________________________________________________________________
+Question 3(e). [2]
+
+(define (findpred none p list)
+    (cond ((null? list) none)
+          ((p (caar list)) (cadar list))
+          (else (findpred none p (cdr list)))))
+
+Solution to cmps112-2019q1-final, page 3
+
+_________________________________________________________________
+Question 4. [1]
+
+%.class : %.java
+        javac $<
+
+_________________________________________________________________
+Question 5(a). [2]
+
+let rec oddlen list = match list with
+    | [] -> false
+    | [_] -> true
+    | _::_::xs -> oddlen xs
+
+_________________________________________________________________
+Question 5(b). [2]
+
+(define (oddlen list)
+        (cond ((null? list) #f)
+              ((null? (cdr list)) #t)
+              (else (oddlen (cddr list)))))
+
+_________________________________________________________________
+Question 5(c). [2]
+
+oddlen([_]).
+oddlen([_,_|T]) :- oddlen(T).
+
+_________________________________________________________________
+Question 6(a). [3] ..... do not deduct points for extra or missing dots
+
+Object subclass: Animal [
+   |name|
+   Animal class >> new: name_ [ ^ super new setName: name_ ]
+   setName: name_ [ name := name_ ]
+   name [ ^ name ]
+].
+
+_________________________________________________________________
+Question 6(b). [1]
+
+Animal subclass: Cat [
+   noise [ ^ 'meow' ]
+].
+Animal subclass: Dog [
+   noise [ ^ 'woof' ]
+].
+
+Solution to cmps112-2019q1-final, page 4
+
+Multiple choice.
+
+ 1.    (B) %.o: %.c
+
+ 2.    (B) print "foo" if FALSE;
+
+ 3.    (D) parametric
+
+ 4.    (A) curried
+
+ 5.    (A) #!/usr/bin/perl
+
+ 6.    (C) lazy evaluation
+
+ 7.    (E) unary then binary then keyword
+
+ 8.    (A) nil
+
+ 9.    (C) overloading
+
+10.    (D) foo >bar 2>&1
+
+11.    (B) PATH
+
+12.    (D) throw
+
+
+Solution to cmps112-2019q1-final, page 5
+
+Multiple choice.
+
+ 1.    (A) $? & 127
+
+ 2.    (C) $? >> 8
+
+ 3.    (A) $ O ( 1 ) $
+
+ 4.    (C) $ O ( n ) $
+
+ 5.    (C) ('a -> 'b) -> 'a list -> 'b list
+
+ 6.    (F) Smalltalk
+
+ 7.    (B) Haskell
+
+ 8.    (D) $hash{$key}
+
+ 9.    (C) (apply * '(1 2 3 4))
+
+10.    (D) [1;2;3;4]
+
+11.    (C) 1./.0.
+
+12.    (C) german
+
