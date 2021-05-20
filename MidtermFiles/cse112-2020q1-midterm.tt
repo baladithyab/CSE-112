@@ -1,0 +1,313 @@
+CSE-112 · Programming Languages · Winter 2020 · Midterm Exam    1 of 1
+$Id: cse112-2020q1-midterm.mm,v 1.163 2020-02-10 15:03:22-08 - -
+$
+.PS
+examboxes(4)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Points will be deducted for messy or unreadable
+answers.  Do your scratch work elsewhere and enter only your final
+answer into the spaces provided.
+
+.EQ
+delim $$
+.EN
+
+OCaml.  For all questions asking for code in OCaml, you need not
+explicitly specify the type of a function's argument or the type of
+its result.  Obviously, OCaml uses type inference.
+
+ 1. Define the function sum which will find the sum of all numbers in
+    a list.  Use as little function call stack space as possible.  Do
+    not use a higher order function.
+
+     (a) Scheme.  [2pt]
+
+     (b) OCaml.  [2pt]
+         # sum;;
+         - : int list -> int = <fun>
+
+ 2. Define the fold left function.  Use as little function call stack
+    space as possible.
+
+     (a) Scheme.  The order of arguments are the same as in OCaml.
+         [2pt]
+         > foldl
+         #<procedure:foldl>
+
+     (b) OCaml.  [2pt]
+         # List.fold_left;;
+         - : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a = <fun>
+
+ 3. Define the function sum using the fold left higher order function.
+
+     (a) Scheme.  Use foldl.  [1pt]
+
+     (b) OCaml.  Use List.fold_left.  [1pt]
+
+ 4. Scheme.  Define the function evalexpr which takes as an argument
+    either a number or an expression.  A number is always returned as
+    real.  An expression is a list of length 3, where the car is a
+    binary function, and the cdr is a list of two expressions.  See
+    the Scheme interaction at the left.  Note that there is no hash
+    table for functions.  The actual function's value is in the list
+    in the function position.  Note the quasiquote and unquote.  [2pt]
+
+    +--------------------------------------------+
+    |> (evalexpr `(,+ (,* 2 3) (,* 4 5)))        |
+    |26.0                                        |
+    |> (evalexpr 3)                              |
+    |3.0                                         |
+    |> (evalexpr `(,* (,+ 8 3) (,+ (,* 2 9) 6))) |
+    |264.0                                       |
+    +--------------------------------------------+
+
+ 5. Smalltalk.  Extend class Array with a method find, which has a
+    single argument.  It returns the position (index) of the first
+    occurrence of that argument in the array.  It returns nil if not
+    found.  [2pt]
+                                  |
+    st> a := #( 3 1 4 1 5 9 2 6). | Array extend [
+    (3 1 4 1 5 9 2 6 )            |    find: value [
+    st> a find: 9.                |
+    6                             |
+    st> a find: 10.               |
+    nil                           |
+
+ 6. Smalltalk.  Define a block closure gcd with two arguments that
+    uses Euclid's algorithm to find the greatest common divisor of two
+    integers..  It might be called with the expression (gcd value: 20
+    value: 5).  The equivalent function in C is shown here.  Your
+    algorithm may assume that both $x > 0$ and $y > 0$.  [2pt]
+                                |
+    int gcd (int x, int y) {    | gcd := [:x :y |
+       while (x != y) {         |
+          if (x > y) x = x - y; |
+                else y = y - x; |
+       }                        |
+       return x;                |
+    }                           |
+
+ 7. Smalltalk.  Extend class Array with a method fold:unit:, which
+    takes as arguments a block which combines two elements into a
+    single element, and a unit which is the identity operation for the
+    the block.  The result is the array folded into a single element
+    using the unit as a starter element.  Hint:  Think about fold left
+    in a functional language.  [2pt]
+                                   |
+    st> a := #(1 2 3 4 5).         | Array extend [
+    (1 2 3 4 5 )                   |    fold: block unit: id [
+    st> sum := [:x :y | x + y].    |       |result|
+    a BlockClosure                 |       result := id.
+    st> s := a fold: sum unit: 0.  |
+    15                             |
+    st> prod := [:x :y | x * y].   |
+    a BlockClosure                 |
+    st> p := a fold: prod unit: 1. |
+    120                            |
+
+ 8. Smalltalk.  Extend class Array with the keyword method innerprod
+    which computes the inner product of itself with its argument.
+    Note that an error is thrown if the sizes of the arrays are
+    different.  The formula for an inner product is shown at the left.
+    Finish the method.  [2pt]
+                                           |
+    $ p = sum from i {a sub i} {b sub i} $ | Array extend [
+                                           |    innerprod: other [
+                                           |       self size = other size
+                                           |       ifFalse: [^ self error: 'innerprod different sizes']
+                                           |       ifTrue: [
+
+ 9. OCaml.  Assume the declarations in the top of the table at the
+    left.  Define the function eval which takes an expr as an argument
+    and returns the float value.  Output should match the bottom of
+    the table.  Note that there are no hash tables in this question.
+    The functions are actually present as arguments to the Expr
+    constructor.  [2pt]
+
+    +----------------------------------------+
+    |type binfn = float -> float -> float;;  |
+    |type expr = Expr of binfn * expr * expr |
+    |          | Num of float;;              |
+    +----------------------------------------+
+    |# eval;;                                |
+    |- : expr -> float = <fun>               |
+    |# eval (Expr ((+.),                     |
+    |        Expr ((/.), Num 3., Num 4.),    |
+    |        Expr ((/.), Num 7., Num 8.)));; |
+    |- : float = 1.625                       |
+    +----------------------------------------+
+
+10. Write a function to reverse a list.
+
+     (a) Scheme.  [2pt]
+         > reverse
+         #<procedure:reverse>
+         > (reverse '(1 2 3 4 5))
+         (5 4 3 2 1)
+         > (reverse '())
+         ()
+
+     (b) OCaml.  [2pt]
+         # reverse;;
+         - : 'a list -> 'a list = <fun>
+         # reverse [1;2;3;4;5];;
+         - : int list = [5; 4; 3; 2; 1]
+         # reverse [];;
+         - : 'a list = []
+
+     (c) C/C++.  Do not use malloc(3) or free(3).  Do not change any
+         value field.  Manipulate the pointer fields.  After modifying
+         the list, return a pointer to the new head of the list.  Use
+         a loop, not recursion.  [2pt]
+                               |
+         struct node {         | struct node* reverse (struct node* head) {
+            int value;         |
+            struct node* link; |
+         };                    |
+
+11. Scheme.  Draw a picture of the following expression.  For each
+    cell, draw a small box with two parts.  The first few cells are
+    drawn for you.  Fill it in as appropriate and draw more boxes.
+    Write the Greek letter phi (\phi) in each part of a cons cell that
+    has a null pointer.  Hint:  Since this is a proper list, only some
+    cdrs have null pointers.  For each part of a cell containing a
+    symbol, write the appropriate letter inside that part of the cell.
+    If a part of a cell contains a pointer, draw an arrow from that
+    cell to the one it points at.  If the arrow is in the cdr part of
+    the cell draw it horizontally to the right.  If it is in the car
+    part of the cell, draw it pointing downward.  [2pt]
+
+    '((a (b)) (c d e) ((e) f))
+.PS 3i
+line from (0,0) to (2,0)
+line from (0,1) to (2,1)
+line from (0,0) to (0,1)
+line from (1,0) to (1,1)
+line from (2,0) to (2,1)
+arrowht = .5
+arrowwid = .25
+circle fill 1 rad .125 at (1.5,.5)
+arrow from (1.5,.5) to (10,.5)
+line from (10,0) to (12,0)
+line from (10,1) to (12,1)
+line from (10,0) to (10,1)
+line from (11,0) to (11,1)
+line from (12,0) to (12,1)
+circle fill 1 rad .125 at (.5,.5)
+arrow from (.5,.5) to (.5,-1)
+line from (0,-1) to (2,-1)
+line from (0,-2) to (2,-2)
+line from (0,-1) to (0,-2)
+line from (1,-1) to (1,-2)
+line from (2,-1) to (2,-2)
+.PE
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [12pt]
+
++--------------------------+-----+-------+------------+
+|number of                 |     |× 1 =  |      $= a$ |
+|correct answers           |     |       |            |
++--------------------------+-----+-------+------------+
+|number of                 |     |× ½ =  |      $= b$ |
+|wrong answers             |     |       |            |
++--------------------------+-----+-------+------------+
+|number of                 |     |× 0 =  |  0         |
+|missing answers           |     |       |            |
++--------------------------+-----+-------+------------+
+|column total              |  12 |       |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |     |       |            |
++--------------------------+-----+-------+------------+
+
+1. What kind of function is equivalent to a loop in an imperative
+   language?
+   (A) head recursive
+   (B) mutually recursive
+   (C) self recursive
+   (D) tail recursive
+
+2. OCaml.  Fill in the blank.
+   # ____ ((+)1) [1;2;3];;
+   - : int list = [2; 3; 4]
+   (A) List.fold_left
+   (B) List.fold_right
+   (C) List.map
+   (D) List.tl
+
+3. OCaml.  Fill in the blank.  Use as little function call stack space
+   as possible.
+   # ____ (+) 0 [1;2;3];;
+   - : int = 6
+   (A) List.fold_left
+   (B) List.fold_right
+   (C) List.map
+   (D) List.tl
+
+4. Which of the following languages has a strong and dynamic type
+   checking system?
+   (A) C and OCaml.
+   (B) OCaml and Scheme.
+   (C) Scheme and C/C++.
+   (D) Scheme and Smalltalk.
+
+5. Bash.  Which environment variable must be adjusted in your .bash_
+   profile so that programs in a non-standard location may be used?
+   (A) $HOME
+   (B) $LANG
+   (C) $PATH
+   (D) $USER
+
+6. Parsing refers to:
+   (A) Executing a sequence of statements in the proper order,
+       poasibly altered by interpreting gotos.
+   (B) Inserting labels into the label table.
+   (C) Reading characters from the input and assembling them into
+       tokens.
+   (D) Verifying tokens are in correct syntactic order and assembling
+       the abstract syntax.
+
+7. Scheme.  What is 2?
+   (A) (caar '(1 2 3))
+   (B) (cadr '(1 2 3))
+   (C) (cdar '(1 2 3))
+   (D) (cddr '(1 2 3))
+
+8. OCaml.  What is the type of ( * )?
+   (A) int * int -> int
+   (B) int * int <- int
+   (C) int -> int -> int
+   (D) int <- int <- int
+
+9. Smalltalk.  What does 3 + 4 mean?
+   (A) 3 and + are messages that are sent to the object 4.
+   (B) The function + takes 3 and 4 as arguments and returns a value.
+   (C) The message + 4 is sent to the object 3.
+   (D) The message + is sent to the object 3, which results in a
+       curried function that accepts 4 as an argument.
+
+10. Scheme.  Given (define (f x y) (x y y)), what will return 6?
+   (A) (f * 2)
+   (B) (f + 3)
+   (C) (f 3 +)
+   (D) (f 3 3)
+
+11. OCaml.  How much function call stack space is occupied by the
+   following function?
+   let f n = if n <= 1 then n
+             else f (n - 1) + f (n - 2);;
+   (A) $ O ( 1 ) $
+   (B) $ O ( n ) $
+   (C) $ O ( n sup 2 ) $
+   (D) $ O ( 2 sup n ) $
+
+12. C/C++/Java.  Which of the following binary operators is evaluated
+   in a normal (meaning lazy) order?  That means that sometimes the
+   right operand is not evaluated.
+   (A) ++
+   (B) ==
+   (C) []
+   (D) ||
+

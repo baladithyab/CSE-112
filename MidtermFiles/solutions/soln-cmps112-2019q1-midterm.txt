@@ -1,0 +1,174 @@
+$Id: soln-cmps112-2019q1-midterm.txt,v 1.2 2019-02-14 15:58:05-08 - - $
+Solution to cmps112-2019q1-midterm, page 1
+
+_________________________________________________________________
+Question 1. [4] ... 1/2 point for each correct answer.
+
+# (+);;                |- : int -> int -> int = <fun>
+
+# List.map;;           |- : ('a -> 'b) -> 'a list -> 'b list = <fun>
+
+# (<);;                |- : 'a -> 'a -> bool = <fun>
+
+# (+.) 3.;;            |- : float -> float = <fun>
+
+> (apply * '(1 2 3))                    |6
+
+> (map (lambda (x) (* 3 x)) '(1 2 3))   |(3 6 9)
+
+> ((lambda (x y) (cons x y)) 3 '(4))    |(3 4)
+
+> (let ((x 3) (y 4)) (* x y))           |12
+
+_________________________________________________________________
+Question 2(a). [3] ... deduct 1 point if not tail recursive
+
+let maximum gt list = match list with
+    | [] -> None
+    | x::xs -> let rec max x xs = match xs with
+                   | [] -> x
+                   | y::ys -> max (if gt x y then x else y) ys
+                 in Some (max x xs)
+
+_________________________________________________________________
+Question 2(b). [3] ... deduct 1 point if not tail recursive
+
+(define (maximum gt list)
+    (define (max big listt)
+        (if (null? listt) big
+            (let ((a (car listt))
+                  (d (cdr listt)))
+                 (if (gt big a) (max big d)
+                                (max a d)))))
+    (if (null? list) #f 
+        (max (car list) (cdr list))))
+
+
+Solution to cmps112-2019q1-midterm, page 2
+
+_________________________________________________________________
+Question 3(a). [2] ... deduct 1 point if not tail recursive
+                   ... deduct 1/2 point if not float type
+
+let sum list =
+    let rec sum' lst acc = match lst with
+        | [] -> acc
+        | x::xs -> sum' xs (acc +. x)
+    in sum' list 0.
+
+_________________________________________________________________
+Question 3(b). [2] ... deduct 1 point if not tail recursive
+
+(define (sum list)
+        (define (summ list acc)
+                (if (null? list) acc
+                    (summ (cdr list) (+ (car list) acc))))
+        (summ list 0))
+
+_________________________________________________________________
+Question 4(a). [2] ... deduct 1 point if not tail recursive
+
+let rec fold_left fn unit list = match list with
+    | [] -> unit
+    | x::xs -> fold_left fn (fn unit x) xs
+
+_________________________________________________________________
+Question 4(b). [2] ... deduct 1 point if not tail recursive
+
+(define (fold_left fn unit list)
+    (if (null? list) unit
+        (fold_left fn (fn unit (car list)) (cdr list))))
+
+_________________________________________________________________
+Question 5(a). [1] ... since +. is assoc, either a+.b or b+.a OK
+
+let sum = fold_left (fun a b -> a +. b) 0.
+
+_________________________________________________________________
+Question 5(b). [1]
+
+(define (sum list) (fold_left (lambda (a b) (+ a b)) 0 list))
+
+
+Solution to cmps112-2019q1-midterm, page 3
+
+_________________________________________________________________
+Question 6. [2] ... either answer is OK
+
+Array extend [
+   sum [
+      |sum|
+      sum := 0.
+      self do: [:n| sum := sum + n].
+      ^ sum.
+   ]
+].
+Array extend [
+   sum [
+      |sum|
+      sum := 0.
+      1 to: self size do: [:i| sum := sum + (self at: i)].
+      ^ sum.
+   ]
+].
+
+_________________________________________________________________
+Question 7. [3]
+
+Array extend [
+   reverse [
+      1 to: self size // 2 do: [:i|
+         |j t|
+         j := self size - i + 1.
+         t := self at: i.
+         self at: i put: (self at: j).
+         self at: j put: t.
+      ]
+   ]
+].
+
+_________________________________________________________________
+Question 8. [2]
+
+let rec eval expr = match expr with
+    | Num value -> value
+    | Expr (fn, e1, e2) -> fn (eval e1) (eval e2)
+
+_________________________________________________________________
+Question 9. [3]
+
+(define (evalexpr expr)
+        (if (number? expr) (+ expr 0.0)
+            (apply (hash-ref fnhash (car expr))
+                   (map evalexpr (cdr expr)))))
+
+
+Solution to cmps112-2019q1-midterm, page 4
+
+Multiple choice.
+
+ 1.    (B) strong and static
+
+ 2.    (A) strong and dynamic
+
+ 3.    (C) (+) 3 4
+
+ 4.    (D) int -> int -> int
+
+ 5.    (D) map
+
+ 6.    (E) (cons (car x) (cdr x))
+
+ 7.    (C) (3 4)
+
+ 8.    (B) $ O ( n ) $
+
+ 9.    (A) ()
+
+10.    (B) (cons 1 (cons 2 '()))
+
+11.    (B) Lisp
+
+12.    (A) ((a*b)+c)*d
+
+

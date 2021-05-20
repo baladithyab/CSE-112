@@ -1,0 +1,283 @@
+CSE-112 * Programming Languages * Winter 2021 * Midterm Exam    1 of 1
+$Id: cse112-2021q1-midterm.tt,v 1.1 2021-02-19 19:42:20-08 - - $
+
+Answer each question in the specific language given in
+the question.  Do not use pseudo-code.  Your answers
+should compile and run if copied verbatim into the
+appropriate language processor.
+
+Use proper indentation.  Points will be deducted for
+messy or unreadable answers.
+
+For quesions that have parts (a) and (b), clearly
+separaate your answers into two parts, with the (a)
+part entered above the (b) part, with some blank lines
+in between.
+
+_______________________________________________________
+
+
+<PRE>
+Question 1.  [[2pt]]
+
+Scheme.  Write the function every-other which takes a
+list as an argument, and returns every other element as
+a list.  That is, return the 1st, 3rd, 5th, etc.,
+elements.
+
+Example:
+> (every-other1 '())
+()
+> (every-other1 '(1 2 3 4 5 6 7 8))
+(1 3 5 7)
+
+_______________________________________________________
+
+
+<PRE>
+Question 2.  [[2pt]]
+
+Ocaml.  Write the function every-other which takes a
+list as an argument, and returns every other element as
+a list.  That is, return the 1st, 3rd, 5th, etc.,
+elements.
+
+Example:
+# every-other;;
+- : 'a list -> 'a list
+# every-other [];;
+- : 'a list = []
+# every-other [1;2;3;4;5;6;7;8];;
+- : int list = [1; 3; 5; 7]
+
+_______________________________________________________
+
+
+<PRE>
+Question 3.  [[3pt]]
+
+Ocaml.  Define the inner product function ip.  It takes
+two lists of floats and does a pairwise multiplication
+of each element in the lists, then adds up (sums) all
+of the elements of the resulting list.  Use List.fold_
+left and List.map2.
+
+Use only the higher order functions.  Do not write a
+recursive function.
+
+List.fold_left takes an operator, an identity element,
+and a list.  List.map2 takes an operator and two lists.
+Do not bother to consider the case where the lists
+might be of different lengths.  It is acceptable for
+the function to crash if the lists are of different
+lengths.
+
+# List.fold_left;;
+- : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
+# List.map2;;
+- : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+# ip;;
+- : float list -> float list -> float
+# ip [1.;2.;3.] [4.;5.;6.];;
+- : float = 32.
+
+_______________________________________________________
+
+
+<PRE>
+Question 4.  [[2pt]]
+
+Define the function sum by using the fold left
+function, not using recursion.
+
+(a) Ocaml.  1 point.
+    Your answer must work for a list of ints.
+    Your answer is not polymorphic.
+    # List.fold_left;;
+    - : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
+    # sum;;
+    - : int list -> int
+    # sum [1;2;3];;
+    - : int = 6
+
+(b) Scheme.  1 point.
+    > foldl
+    #<procedure:foldl>
+    > (sum '(1 2 3))
+    6
+
+_______________________________________________________
+
+
+<PRE>
+Question 5.  [[4pt]]
+
+Two parts:
+ i. Define the function even, which takes a single
+    integer argument and which returns true if the int
+    is even, and false if not.
+ii. Write an expression that, given a list of integers,
+    returns a list of booleans indicting their even
+    status.  Use one of the fullowing functions:
+    apply, filter, fold left, fold right, map.
+    Your expression must use a list of the numbers
+    1,2,3,4, in that order.
+Answer in each of these languages.
+
+(a) Scheme.  2 points
+
+     i. Hint:  Use the function remainder.
+
+    ii. Output:  (#f #t #f #t)
+
+(b) Ocaml.  2 points
+
+     i. Hint:  Use the operator mod, as in x mod y.
+
+    ii. Output:  bool list = [false; true; false; true]
+
+_______________________________________________________
+
+
+<PRE>
+Question 6.  [[7pt]]
+
+Define the function filter whose first argument is a
+predicate and whose second argument is a list.  It
+returns a list consisting of all elements of the
+argument list which satisfy the predicate.  Do not use
+a higher-order function.
+
+(a) Scheme.  4 points
+    Do not use the functions car and cdr more than once
+    in the function.  Use a let-expression to avoid
+    this.
+    > (filter (lambda (x) (> x 0)) '(1 -1 2 -3 5 -99
+    8))
+    (1 2 5 8)
+    > (filter even '(1 2 3 4 5 6 7 8 9))
+    (2 4 6 8)
+
+(b) Ocaml.  3 points
+    # filter;;
+    - : ('a -> bool) -> 'a list -> 'a list = <fun>
+    # filter (fun x -> x > 0) [1;-1;2;-3;5;-99;8];;
+    - : int list = [1; 2; 5; 8]
+    # filter even [1;2;3;4;5;6;7;8;9];;
+    - : int list = [2; 4; 6; 8]
+
+_______________________________________________________
+
+
+<PRE>
+Question 7.  [[5pt]]
+
+Ocaml.  The Collatz conjecture states that for any
+positive integer n:
+ * If n is even:  n = n / 2
+ * If n is odd:  n = 3 * n + 1
+The process terminates when n == 1.
+
+Write a function that uses a tail-recursive inner
+function to return a list of all integers starting from
+the argument and ending with 1.  The outer function
+reverses the list.
+
+let collatz n =
+    ....
+in List.rev (collatz' n [])
+
+# collatz 10;;
+- : int list = [10; 5; 16; 8; 4; 2; 1]
+# collatz 17;;
+- : int list = [17; 52; 26; 13; 40; 20; 10; 5; 16; 8;
+4; 2; 1]
+
+_______________________________________________________
+
+
+<PRE>
+Question 8.  [[8pt]]
+
+Scheme.  Write a binary search function on a tree.
+each node in the tree is a list of length 4 and behaves
+like a struct with the following fields:
+(car tree) - key in node
+(cadr tree) - value associated with that key
+(caddr tree) - null or pointer to left subtree
+(cadddr tree) - null or pointer to right subtree
+
+the binsearch function takes three arguments:
+less - a function which compares two keys
+wantkey - the key to search for
+tree - a pointer to the root of a tree.
+
+Return #f to indicate that the key is not found.
+Return the associated value if the key is found.  the
+smaller keys are always in the left subtree and the
+larger keys in the right subtree, if they exist.
+
+There is no equal function.  use only the less function
+argument for comparisons.  Hint:  if (less a b) and
+(less b a) are both false, that implies that a and b
+are eaual.  Use the less function exactly twice for
+each node comparison.
+
+(a) 2 points.
+    Define the functions key, value, left, and right as
+    given above in the preamble so that they may be
+    used in the binsearch function.  the binsearch
+    function should not use car, cadr, etc.
+
+(b) 6 points.
+    Define binsearch using the functions from the
+    previous part.
+
+    (define (binsearch less? wantkey tree) ..........
+
+_______________________________________________________
+
+
+<PRE>
+Question 9.  [[6pt]]
+
+Linear search.  Without using any higher-order
+functions, code the function find, which will return a
+value associated with a given key.  Use the sample
+interactions to figure out the structure and arguments
+to this function.
+
+(a) Ocaml.  3 points.
+    Return an 'a option as a result.
+    # find;;
+    - : ('a -> 'b -> bool) -> 'a -> ('b * 'c) list ->
+    'c option = <fun>
+    # find (=) 3 [1,2;3,4;5,6];;
+    - : int option = Some 4
+    # find (=) 9 [0,1;2,3;4,5];;
+    - : int option = None
+    # find (<) 8 [9,2;7,3;5,9];;
+    - : int option = Some 2
+
+(b) Scheme.  3 points.
+    Use cond.  Do not use if.  Return #f if not found.
+    > (find = 3 '((1 2)(3 4)(5 6)))
+    4
+    > (find = 9 '((0 1)(2 3)(4 5)))
+    #f
+    > (find < 8 '((2 2)(9 3)(9 9)))
+    3
+
+_______________________________________________________
+
+
+<PRE>
+Question 10.  [[1pt]]
+
+Smalltalk.  Write one line of code which will print all
+of the integers from 1 to 1000 inclusive, one number
+per line.
+
+_______________________________________________________
+SCORE-TOTAL=40
+

@@ -1,0 +1,313 @@
+CSE-111 * Programming Languages * Winter 2021 * Midterm Exam SOLUTION
+$Id: soln-cse112-2021q1-final.txt,v 1.4 2021-03-15 23:28:13-07 - - $
+
+Grade each question in increments of 0.5 points and assign a
+score between 0 and the max, inclusive.
+
+For )caml, no points off for lack of ;; at end.  For scheme,
+look at indentation and don't bother with mismatched
+parentheses.
+
+Any correct answer that shows good style is acceptable.  Answers
+EXACTLY the same as mine are not the only possible answers.
+
+_______________________________________________________
+Question 1.  [[6 pt]] -- Smalltalk.
+
+1 pt |Object subclass: Stack [
+1 pt |   |array top|
+1 pt |   Stack class >> new [ ^ Stack new: 16 ]
+1 pt |   Stack class >> new: size [ ^ super new init: size ]
+2 pt |   init: size [
+     |      top := 0.
+     |      array := Array new: size.
+     |   ] 
+
+OK if new [ ^ super new init: 16 ] instead of above.
+Note the difference between new and new:
+
+_______________________________________________________
+Question 2.  [[6 pt]] -- Smalltalk.
+
+2pt |pop [   
+    |   |result|
+    |   result := array at: top.
+    |   top := top - 1.
+    |   ^ result. 
+    |] 
+1pt |push: item [
+    |   top := top + 1.
+    |   array at: top put: item
+    |] 
+1pt |empty [ ^ top = 0.  ] 
+1pt |full [ ^ top = array size ]
+1pt |count [ ^ top ] 
+
+Alternative to pop:
+
+pop [
+   top := top - 1.
+   ^ array at: top + 1.
+]
+Note:   periods before ] are optional.
+Do not deduct points for missing periods.
+
+_______________________________________________________
+Question 3.  [[4 pt]] -- Ocaml.
+
+let rec unzip list = match list with
+    | [] -> ([],[])
+    | (a,b)::rest -> let (al,bl) = unzip rest
+                     in (a::al, b::bl);;
+
+1 pt first line match and properly handles [] case
+1 pt pattern for rest of match
+1 pt recursive call
+1 pt correct return result
+
+_______________________________________________________
+Question 4.  [[6 pt]] -- Scheme.
+
+(a)  3 points
+
+(define (reverse list)
+        (define (rev in out)
+                (if (null? in) out
+                    (rev (cdr in) (cons (car in) out))))
+        (rev list '()))
+
+1 pt uses nested inner function
+1 pt checks for accumulator and null? check
+1 pt proper recursive call
+ASSIGN ZERO (0) if all calls are not tail calls.
+
+(b)  3 points
+
+(define (foldl_rev list)
+        (foldl (lambda (a d) (cons a d)) '() list))
+
+1 pt general structure
+2 pt inner lambda is correct
+... but 1 pt if inner lambda is there but not correct.
+
+_______________________________________________________
+Question 5.  [[6 pt]] -- Perl.
+
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $lines = 0;
+my $words = 0;
+my $chars = 0;
+
+while (defined (my $line = <>)) {
+   ++$lines;
+   $chars += length $line;
+   while ($line =~ s/\S+//) { ++$words }
+}
+
+print "$lines $words $chars\n";
+
+OK if they forgot the #!
+OK if the omitted the strict/warnings declarations
+OK to use postfix ++ or prefix ++, either way
+OK to use +=1 instead of ++
+- don't deduct for wrong {} or () or missing semicolons
+1 pt declaration of lines, words, chars
+1 pt loop, ++lines
+1 pt correctly incr chars
+2 pt counting words in the line (note alternatives)
+1 pt prints results...  use printf instead is OK
+
+Alternates to word loop:
+
+$words++ while $line =~ s/\S+/;
+my @words = $line =~ m/(\S+)/g; $words += @words;
+
+_______________________________________________________
+Question 6.  [[5 pt]] -- Ocaml.
+
+let rec zipwith fn list1 list2 = match list1, list2 with
+    | [], [] -> []
+    | _, [] -> failwith "zipwith"
+    | [], _ -> failwith "zipwith"
+    | x::xs, y::ys -> fn x y :: zipwith fn xs ys;;
+
+1 pt correct match
+1 pt [],[] is correct and ahead of failwith
+1 pt correctly matched failwith
+1 pt correct recursive call
+1 pt correct :: in last -> result
+
+_______________________________________________________
+Question 7.  [[4 pt]] -- Ocaml.
+
+Many possible answers and styles here.
+Accept any correct answer.
+But DEDUCT points if:
+-1 called a length function
+-1 if not tail recursive
+Score 0 if the entire list was copied
+
+DOES NOT matter if they call it drop, drop1, drop2,
+or drop3.  There is a typo in the exam calling
+it drop in one place and drop1 in another.
+
+(i)
+
+let rec drop1 n list = match list with
+    | [] -> []
+    | _::xs when n > 0 -> drop (n - 1) xs
+    | _ -> list ;;
+
+1 pt []
+1 pt _::cs
+1 pt uses when (if they choose this version)
+1 pt _ -> provided it is the LAST alternative
+
+(ii)
+
+let rec drop2 n list = 
+    if n <= 0 then list
+    else match list with
+         | [] -> []
+         | _::xs -> drop (n - 1) xs;;
+
+1 pt for <= 0 test
+1 pt |[]
+1 pt _::xs here order of matches does not matter
+1 pt proper tail recursion
+
+(iii)
+
+let rec drop3 n list = match list ith
+    | [] -> []
+    | _::xs -> if n <= 0 then list
+               else drop3 (n - 1) xs;;
+
+1 pt for |[]
+1 pt _::xs match
+1 pt correct if then else
+1 pt proper tail recursion
+
+_______________________________________________________
+Question 8.  [[3 pt]] -- Scheme.
+
+Many possible answers and styles here.
+Accept any correct answer.
+But DEDUCT points if:
+-1 called a length function
+-1 if not tail recursive
+Score 0 if the entire list was copied
+
+(i)
+
+(define (drop1 n list)
+    (cond ((null? list) '())
+          ((<= n 0) list)
+          (else (drop1 (- n 1) (cdr list)))))
+
+..... obviously  also (null? list) list......
+1 pt (define line is correct
+1 pt check for null?
+1 pt check for n<= 0
+Also see above for catchall penalties
+OK if they used nested ifs instead of cond.
+OK to reverse order of null and <= tests
+
+(ii)
+
+(define (drop2 n list)
+    (if (or (null? list) (<= n 0)) list
+        (drop2 (- n 1) (cdr list))))
+
+1 pt (define line is correct
+1 pt or test is correct
+1 pt for tail call
+Also see above for catchall.
+
+_______________________________________________________
+Question 9.  [[2 pt]] -- make.
+
+For each of the below,
+0.5 points for the target:prereq
+0.5 points for the command
+
+(a)  1 pt
+
+%.o : %.c
+	gcc -c $<
+
+(b)  1 pt
+
+clean :
+	- rm *.o
+
+_______________________________________________________
+Question 10.  [[6 pt]] -- Perl.
+
+
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my %hash;
+while (my $line = <>) {
+   while ($line =~ s/\w+//) {
+      ++$hash{$&}
+   }
+}
+
+for my $key (sort keys %hash) {
+   print "$key $hash{$key}\n";
+}
+
+
+OK if they forgot the #!
+OK if they did not use strict/warnings
+OK if they did not declare %hash
+OK for prefix or postfix ++ or +=1
+OK if they have strange () {} or missing semicolons
+OK if print statement uses separate arguments
+      print $key, $hash{$key}, "\n";
+OK if extra or missing semicolons
+
+alt 1st inner loop:  ++$hssh{$&} while $line =~ s/\w+//;
+
+alt print loop: print "$_ $hash{$_}\n" for sort keys %hash;
+
+
+1 pt outer while loop
+1 pt inner while loop
+1 pt incr hash element using $&
+1 pt for loop
+1 pt keys of hash are sorted
+1 pt print statement (OK to use printf instead)
+
+_______________________________________________________
+Question 11.  [[2 pt]] -- polymorphism.
+
+
+ (a) Object subclass: Expr
+********** universal inclusion
+
+ (b) ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a
+********** universal parametric
+
+ (c) int f (int);
+     double f (double);
+     string f (string);
+********** ad-hoc overloading
+
+ (d) void f (double);
+     int x;
+     f(x);
+********** ad-hoc conversion
+
+0.5 points for each correct answer but only if
+    BOTH terms are correct.
+
+_______________________________________________________
+SCORE-TOTAL=50
+
