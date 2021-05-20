@@ -85,7 +85,7 @@ Expr subclass: VarExpr [
    VarExpr class >> endInput [varDict at: #eof put: 1.0]
 ].
 
-"IMPLEMENTED AND TESTED"
+"IMPLEMENTED, NEED TO TEST"
 Expr subclass: UnopExpr [
    |oper opnd|
    UnopExpr class >> new: op with: opn [
@@ -100,12 +100,12 @@ Expr subclass: UnopExpr [
 
    "perform keyword"
    value [
-      "result := (opnd perform: oper)."
-      ^(opnd value perform:oper) asFloatD
+      result := opnd perform: oper.
+      ^result asFloatD
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"IMPLEMENTED, NEED TO TEST"
 Expr subclass: BinopExpr [
    |oper opnd1 opnd2|
    BinopExpr class >> new: op with: opn1 with: opn2 [
@@ -123,39 +123,37 @@ Expr subclass: BinopExpr [
       ^opnd1
    ]
    getIndex [
-      ^opnd2
+      ^opnd1
    ]
    value [
       " result := opnd1 opnd2 perform: oper. "
       opnd1 class = ArrayExpr
       ifTrue: [
-         |val result|
-         val := (opnd2 value rounded) + 1.
-         result := opnd1 getItem: val.
+         val := (opnd2 value asInteger) + 1
+         result := opnd1 getItem: val
          ^result
       ]
       ifFalse: [
-         |val1 val2 result|
-         val1 := opnd1 value.
-         val2 := opnd2 value.
-         result := val1 perform: oper with: val2.
+         val1 := opnd1 value
+         val2 := opnd2 value
+         result := val1 perform: oper with: val2
          ^result
       ].
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"IMPLEMENTED, NEED TO TEST"
 Array extend [
    Array class >> new: size with: value [
       |array|
-      array := self new: size rounded.
+      array := self new: size asInteger.
       "loop from 1 to size"
       1 to: size do: [:i| array at: i put: value].
       ^array
    ]
 ]
 
-"IMPLEMENTED AND TESTED"
+"IMPLEMENTED, NEED TO TEST"
 Expr subclass: ArrayExpr [
    |arrayName|
    arrayDict := Dictionary new.
@@ -163,15 +161,17 @@ Expr subclass: ArrayExpr [
    init: var [arrayName := var]
    printOn: file [^ file << self prefix << arrayName << ')']
    getItem: index [
-      |val|
-      val := (arrayDict at: arrayName) at:index.
-     ^val
+      currArray := arrayDict at: arrayName
+      item := currArray at:index
+      ^item
    ]
    setItem: index with: value [
-      (arrayDict at: arrayName) at: index put: value
+      currArray := arrayDict at: arrayName
+      currArray at: index put: value
    ]
    addToTable: array [
-      arrayDict at: arrayName put: array
+      currArray := arrayDict at: arrayName
+      currArray put: array
    ]
 ].
 
@@ -209,17 +209,13 @@ MiniBasic subclass: Stmt [ "abstract base class"
    Stmt class >> getStmtNr [^ stmtNr]
    Stmt class >> incrStmtNr [stmtNr := stmtNr + 1]
    labelDict := Dictionary new.
-   Stmt class >> putStmtLabel: label with: num [
-      labelDict at: label put: num
-   ]
-   Stmt class >> setStmtLabel: label [
-      stmtNr := (labelDict at: label)
-   ]        
+   Stmt class >> putStmtLabel: label with: num [labelDict at: label put: num]
+   Stmt class >> setStmtLabel: label [stmtNr := (labelDict at: label)]        
    printOn: file [^ file << self prefix << ')']
    interp [MiniBasic unimplemented: self.]
 ].
 
-"IMPLEMENTED AND TESTED"
+"NEED TO IMPLEMENT"
 Stmt subclass: DimStmt [
    |name size|
    DimStmt class >> new: stmt [^ super new init: stmt]
@@ -232,12 +228,12 @@ Stmt subclass: DimStmt [
    interp [
       |array|
       "intSize := (size value) asInteger"
-      array := Array new: (size value rounded) withAll: 0.0d0.
+      array := Array new: (size value asInteger) withAll: 0.0d.
       name addToTable: array.
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"NEED TO IMPLEMENT"
 Stmt subclass: LetStmt [
    |name expr|
    LetStmt class >> new: stmt [^ super new init: stmt]
@@ -253,7 +249,7 @@ Stmt subclass: LetStmt [
          |arrayName arrayIndex|
          arrayName := name getName.
          arrayIndex := name getIndex.
-         arrayName setItem: ((arrayIndex value rounded)+1) with:
+         arrayName setItem: ((arrayIndex value asInteger)+1) with:
           ((expr value) + 0.0)
       ]
       ifFalse: [
@@ -262,7 +258,7 @@ Stmt subclass: LetStmt [
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"NEED TO IMPLEMENT"
 Stmt subclass: GotoStmt [
    |label|
    GotoStmt class >> new: stmt [^ super new init: stmt]
@@ -273,7 +269,7 @@ Stmt subclass: GotoStmt [
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"NEED TO IMPLEMENT"
 Stmt subclass: IfStmt [
    |expr label|
    IfStmt class >> new: stmt [^ super new init: stmt]
@@ -291,7 +287,7 @@ Stmt subclass: IfStmt [
    ]
 ].
 
-"IMPLEMENTED AND TESTED"
+"NEED TO IMPLEMENT"
 Stmt subclass: InputStmt [
    |inputVars|
    stdinNumbers := NumberStream new.
@@ -308,7 +304,7 @@ Stmt subclass: InputStmt [
    
    interp [
       inputVars do: [:var|
-         |val|
+         |value|
          val := stdinNumbers nextNumber.
          " stdout << thisContext method << ' '
                 << var << ': ' << value << nl. "
@@ -380,7 +376,7 @@ MiniBasic subclass: Interpreter [
    init: program [
       statements := Array new: program size.
       1 to: program size do: [:index|
-         |stmt parsed label|
+         |stmt parsed|
          stmt := (program at: index) at: 3.
          statements at: index put: (Stmt parse: stmt).
          label := (program at: index) at: 2.
