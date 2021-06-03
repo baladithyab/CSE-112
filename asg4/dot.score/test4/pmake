@@ -342,3 +342,4 @@ dump_hash ("GRAPH", %GRAPH) if $OPTIONS{'g'};
 dump_graph if $OPTIONS{'d'};
 
 make_goal ($MAKECMDGOALS);
+

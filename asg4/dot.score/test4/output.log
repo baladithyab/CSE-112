@@ -1,0 +1,115 @@
+%MACROS: {
+  'CHECKIN' => {
+    'LINE' => 7,
+    'VALUE' => '${MKFILE} ${SOURCES} ${HEADERS}'
+  },
+  'EXECBIN' => {
+    'LINE' => 8,
+    'VALUE' => 'hello'
+  },
+  'HEADERS' => {
+    'LINE' => 5,
+    'VALUE' => 'hello.h'
+  },
+  'MKFILE' => {
+    'LINE' => 3,
+    'VALUE' => 'Makefile'
+  },
+  'OBJECTS' => {
+    'LINE' => 6,
+    'VALUE' => 'main.o hello.o'
+  },
+  'SOURCES' => {
+    'LINE' => 4,
+    'VALUE' => 'main.c hello.c'
+  }
+}
+%GRAPH: {
+  '${EXECBIN}' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g ${OBJECTS} -o ${EXECBIN}',
+        'LINE' => 13
+      }
+    ],
+    'LINE' => 12,
+    'PREREQS' => [
+      '${OBJECTS}'
+    ]
+  },
+  '%.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g -c $<',
+        'LINE' => 16
+      }
+    ],
+    'LINE' => 15,
+    'PREREQS' => [
+      '%.c'
+    ]
+  },
+  'all' => {
+    'LINE' => 10,
+    'PREREQS' => [
+      '${EXECBIN}'
+    ]
+  },
+  'clean' => {
+    'COMMANDS' => [
+      {
+        'CMD' => '- rm ${OBJECTS} ${EXECBIN}',
+        'LINE' => 22
+      }
+    ],
+    'LINE' => 21,
+    'PREREQS' => []
+  },
+  'hello.o' => {
+    'LINE' => 24,
+    'PREREQS' => [
+      'hello.c',
+      'hello.h'
+    ]
+  },
+  'main.o' => {
+    'LINE' => 25,
+    'PREREQS' => [
+      'main.c',
+      'hello.h'
+    ]
+  },
+  'test' => {
+    'COMMANDS' => [
+      {
+        'CMD' => './${EXECBIN} ; echo status = $$?',
+        'LINE' => 19
+      }
+    ],
+    'LINE' => 18,
+    'PREREQS' => [
+      '${EXECBIN}'
+    ]
+  }
+}
+%MACROS:
+      7 [CHECKIN] = [${MKFILE} ${SOURCES} ${HEADERS}]
+      8 [EXECBIN] = [hello]
+      5 [HEADERS] = [hello.h]
+      3 [MKFILE] = [Makefile]
+      6 [OBJECTS] = [main.o hello.o]
+      4 [SOURCES] = [main.c hello.c]
+MAKECMDGOALS = [all]
+%GRAPH:
+     12 [${EXECBIN}] : [${OBJECTS}]
+     13.	[gcc -g ${OBJECTS} -o ${EXECBIN}]
+     15 [%.o] : [%.c]
+     16.	[gcc -g -c $<]
+     10 [all] : [${EXECBIN}]
+     21 [clean] :
+     22.	[- rm ${OBJECTS} ${EXECBIN}]
+     24 [hello.o] : [hello.c] [hello.h]
+     25 [main.o] : [main.c] [hello.h]
+     18 [test] : [${EXECBIN}]
+     19.	[./${EXECBIN} ; echo status = $$?]
+No rule to make...

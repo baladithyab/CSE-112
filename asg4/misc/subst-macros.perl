@@ -30,7 +30,7 @@ my @commands = (
 
 for my $command (@commands) {
    print "Before: $command\n";
-   $command =~ s/\${(.*?)}/$MACROS{$1}{VALUE}||""/ge;
+   $command =~ s/\$\{(.*?)\}/$MACROS{$1}{VALUE}||""/ge;
    $command =~ s/\$</$prereq/;
    $command =~ s/\$\$/\$/;
    print "After: $command\n";

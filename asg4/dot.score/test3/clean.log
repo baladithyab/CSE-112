@@ -1,0 +1,2 @@
+pmake: - rm main.o hello.o hello
+pmake: *** '-' included. results ignored.

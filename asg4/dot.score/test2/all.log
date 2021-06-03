@@ -1,0 +1,5 @@
+pmake: gcc main.o hello.o -o hello
+Use of uninitialized value $command in substr at ./pmake line 209.
+Use of uninitialized value $command in concatenation (.) or string at ./pmake line 211.
+pmake: 
+pmake: Error 255

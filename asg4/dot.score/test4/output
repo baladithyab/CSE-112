@@ -1,0 +1,135 @@
+%MACROS: {
+  'CHECKIN' => {
+    'LINE' => 7,
+    'VALUE' => 'Makefile  main.c hello.c  hello.h'
+  },
+  'EXECBIN' => {
+    'LINE' => 8,
+    'VALUE' => 'hello'
+  },
+  'HEADERS' => {
+    'LINE' => 5,
+    'VALUE' => ' hello.h'
+  },
+  'MKFILE' => {
+    'LINE' => 3,
+    'VALUE' => 'Makefile'
+  },
+  'OBJECTS' => {
+    'LINE' => 6,
+    'VALUE' => 'main.o hello.o'
+  },
+  'SOURCES' => {
+    'LINE' => 4,
+    'VALUE' => 'main.c hello.c'
+  }
+}
+%GRAPH: {
+  '%.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g -c %.c',
+        'LINE' => 16
+      }
+    ],
+    'LINE' => 15,
+    'PREREQS' => [
+      '%.c'
+    ]
+  },
+  'all' => {
+    'COMMANDS' => [
+      {}
+    ],
+    'LINE' => 10,
+    'PREREQS' => [
+      'hello'
+    ]
+  },
+  'clean' => {
+    'COMMANDS' => [
+      {
+        'CMD' => '- rm main.o hello.o hello',
+        'LINE' => 22
+      }
+    ],
+    'LINE' => 21,
+    'PREREQS' => []
+  },
+  'hello' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g main.o hello.o -o hello',
+        'LINE' => 13
+      }
+    ],
+    'LINE' => 12,
+    'PREREQS' => [
+      'main.o',
+      'hello.o'
+    ]
+  },
+  'hello.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g -c hello.c',
+        'LINE' => 16
+      }
+    ],
+    'LINE' => 24,
+    'PREREQS' => [
+      'hello.c',
+      'hello.h'
+    ]
+  },
+  'main.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -g -c main.c',
+        'LINE' => 16
+      }
+    ],
+    'LINE' => 25,
+    'PREREQS' => [
+      'main.c',
+      'hello.h'
+    ]
+  },
+  'test' => {
+    'COMMANDS' => [
+      {
+        'CMD' => './hello ; echo status = $?',
+        'LINE' => 19
+      }
+    ],
+    'LINE' => 18,
+    'PREREQS' => [
+      'hello'
+    ]
+  }
+}
+%MACROS:
+      7 [CHECKIN] = [Makefile  main.c hello.c  hello.h]
+      8 [EXECBIN] = [hello]
+      5 [HEADERS] = [ hello.h]
+      3 [MKFILE] = [Makefile]
+      6 [OBJECTS] = [main.o hello.o]
+      4 [SOURCES] = [main.c hello.c]
+MAKECMDGOALS = [all]
+%GRAPH:
+     15 [%.o] : [%.c]
+     16.	[gcc -g -c %.c]
+     10 [all] : [hello]
+Use of uninitialized value in printf at ./pmake line 105.
+Use of uninitialized value in printf at ./pmake line 105.
+      0.	[]
+     21 [clean] :
+     22.	[- rm main.o hello.o hello]
+     12 [hello] : [main.o] [hello.o]
+     13.	[gcc -g main.o hello.o -o hello]
+     24 [hello.o] : [hello.c] [hello.h]
+     16.	[gcc -g -c hello.c]
+     25 [main.o] : [main.c] [hello.h]
+     16.	[gcc -g -c main.c]
+     18 [test] : [hello]
+     19.	[./hello ; echo status = $?]

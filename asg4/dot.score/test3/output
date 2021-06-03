@@ -1,0 +1,72 @@
+%GRAPH: {
+  'all' => {
+    'COMMANDS' => [
+      {}
+    ],
+    'LINE' => 9,
+    'PREREQS' => [
+      'hello'
+    ]
+  },
+  'clean' => {
+    'COMMANDS' => [
+      {
+        'CMD' => '- rm main.o hello.o hello',
+        'LINE' => 24
+      }
+    ],
+    'LINE' => 23,
+    'PREREQS' => []
+  },
+  'hello' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc main.o hello.o -o hello',
+        'LINE' => 12
+      }
+    ],
+    'LINE' => 11,
+    'PREREQS' => [
+      'main.o hello.o'
+    ]
+  },
+  'hello.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -c hello.c',
+        'LINE' => 18
+      }
+    ],
+    'LINE' => 17,
+    'PREREQS' => [
+      'hello.c',
+      'hello.h'
+    ]
+  },
+  'main.o' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'gcc -c main.c',
+        'LINE' => 15
+      }
+    ],
+    'LINE' => 14,
+    'PREREQS' => [
+      'main.c',
+      'hello.h'
+    ]
+  },
+  'test' => {
+    'COMMANDS' => [
+      {
+        'CMD' => './hello; echo status=$?',
+        'LINE' => 21
+      }
+    ],
+    'LINE' => 20,
+    'PREREQS' => [
+      'hello'
+    ]
+  }
+}
+No rule to make target 'main.o hello.o'. Stop.

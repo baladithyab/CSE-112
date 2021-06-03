@@ -1,0 +1,1 @@
+pmake: gcc -g main.o hello.o -o hello

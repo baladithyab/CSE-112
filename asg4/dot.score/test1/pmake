@@ -140,101 +140,8 @@ sub modtime ($) {
    return @stat ? $stat[9] : undef;
 }
 
-# Recursive sub macro vals for other macro vals
-sub mac_sub_helper($);
-sub mac_sub_helper($){
-    my ($v) = @_;
-    ($v) = ($v =~ /\$\{(.*)\}/);
-    my $val = $MACROS{$v}{VALUE};
-    my @vals = split ' ', $val;
-    my $new_vals='';
-    foreach my $v (@vals){
-        if($v =~ m/(?<=\$\{)(.*)(?=\})/){
-            print "$v is macro...\n";
-            $new_vals = $new_vals . " " . mac_sub_helper($v);
-        }else{
-            $new_vals = $new_vals . " " . $v;
-        }
-    }
-    $MACROS{$v}{VALUE} = $new_vals;
-}
+sub subst_macros ($) {
 
-sub subst_macros{
-    # sub macro vals for other macro vals
-    my @macs = keys %MACROS;
-    for (@macs){
-        my $val = $MACROS{$_}{VALUE};
-        my @vals = split ' ', $val;
-        my $new_vals='';
-        foreach my $v (@vals){
-            if($v =~ m/(?<=\$\{)(.*)(?=\})/){
-                $new_vals = $new_vals . " " . mac_sub_helper($v);
-            }else{
-                $new_vals = $new_vals . " " . $v;
-            }
-        }
-        $new_vals =~ s/^\s+//;
-        $MACROS{$_}{VALUE} = $new_vals;        
-    }
-    # print Dumper(%MACROS);
-
-    # copy wildcard cmd to other targets
-    my @targets = keys %GRAPH;
-    for (@targets){
-        if ($_ =~ m/\%.+/){
-            my $tempCMD = $GRAPH{$_}{'COMMANDS'}[0]{'CMD'};
-            my $tempLINE = $GRAPH{$_}{'COMMANDS'}[0]{'LINE'};
-            for (@targets){
-                if($_ =~ m/\.o$/ && not($_ =~ m/\%.+/)){
-                    $GRAPH{$_}{'COMMANDS'}[0]{'CMD'} = $tempCMD;
-                    $GRAPH{$_}{'COMMANDS'}[0]{'LINE'} = $tempLINE;
-                }
-            }
-        }
-    }
-    # sub prereqs for respective macro vals
-    @targets = keys %GRAPH;
-    for (@targets){
-        if (defined ($GRAPH{$_}{'PREREQS'})){
-            my @PRQ_new;
-            for my $prq (@{$GRAPH{$_}{'PREREQS'}}){
-                $prq =~ s/\$\{(.*?)\}/$MACROS{$1}{VALUE}||""/ge;
-                my @prq_split = (split ' ',$prq);
-                push @PRQ_new, @prq_split;
-            }
-            # print join(' | ',@PRQ_new);
-            # print "\n";
-            my $idx =0;
-            for my $prq (@PRQ_new){
-                $GRAPH{$_}{'PREREQS'}[$idx] = $prq;
-                $idx+=1;
-            }
-            
-        }
-    }
-
-    # sub cmds for respective macro vals
-    @targets = keys %GRAPH;
-    for (@targets){
-        if (defined ($GRAPH{$_}{'COMMANDS'}[0]{'CMD'})){
-            my $cmd = $GRAPH{$_}{'COMMANDS'}[0]{'CMD'};
-            $cmd =~ s/\$\{(.*?)\}/$MACROS{$1}{VALUE}||""/ge;
-            $cmd =~ s/\$</$GRAPH{$_}{'PREREQS'}[0]/;
-            $cmd =~ s/\$\$/\$/;
-            $GRAPH{$_}{'COMMANDS'}[0]{'CMD'} = $cmd;
-        }
-    }
-
-    # sub targets for respective macro vals
-    @targets = keys %GRAPH;
-    for (@targets){
-        if($_ =~ m/(?<=\$\{)(.*)(?=\})/){
-            my $temp1 = $GRAPH{$_};
-            delete $GRAPH{$_};
-            $_ =~ s/\$\{(.*?)\}/$MACROS{$1}{VALUE}||""/ge;
-            $GRAPH{$_} = $temp1;
-        }
-    }
 }
 
 my %VISITED;
@@ -269,7 +176,7 @@ sub make_goal($) {
       }
    }
 
-   # (c) If it is a target (even if a file of the same name exists)
+   # (c) If it is a target (even if a file of the same name exists), continue. 
    #   For each prerequisite :
    #   (1)  Call make_goal recursively for the prerequisite.
    #   (2)  Remember the newest prerequisite modtime of all of them.
@@ -298,28 +205,21 @@ sub make_goal($) {
    if ((defined $goal_modtime && $newest_mtime >= $goal_modtime)
          || not -e $goal) { 
       my $command = $GRAPH{$goal}{'COMMANDS'}[0]{'CMD'};
-      my $line    = $GRAPH{$goal}{'COMMANDS'}[1]{'LINE'};
-      if(defined $command) {
-         my $first_char = substr $command, 0, 1;
-         if(($first_char eq "-") || ($first_char eq "@")) {
-            $command  = substr $command, 1;  
-            $command =~ s/^\s+//;
-         }
-
-         if ($first_char ne "@") {
-            print "pmake: $command\n";
-         }
-         my $result = run_command $command;
-         if(not defined $result) {
-            return;
-         }
-         elsif($result && ($first_char eq "-")) {
-            print "pmake: *** '-' included. results ignored.\n";
-            return;
-         }
-         else {
-            print "pmake: $result\n";
-         }
+      my $line    = $GRAPH{$goal}{'COMMANDS'}[0]{'LINE'};
+      my $first_char = substr $command, 0, 1;
+      if ($first_char ne "@") {
+         print "pmake: $command\n";
+      }
+      my $result = run_command $command;
+      if(not defined $result) {
+         return;
+      }
+      elsif($result && ($first_char eq "-")) {
+         print "pmake: *** '-' included. results ignored.";
+         return;
+      }
+      else {
+         print "pmake: $result\n";
       }
    }
 
@@ -335,10 +235,10 @@ sub make_goal($) {
 
 scan_cmdline;
 load_Makefile;
-subst_macros;
 
 dump_hash ("MACROS", %MACROS) if $OPTIONS{'m'};
 dump_hash ("GRAPH", %GRAPH) if $OPTIONS{'g'};
 dump_graph if $OPTIONS{'d'};
 
 make_goal ($MAKECMDGOALS);
+

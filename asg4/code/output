@@ -1,0 +1,123 @@
+%MACROS: {
+  'ABC' => {
+    'LINE' => 12,
+    'VALUE' => 'DEF'
+  },
+  'THERE' => {
+    'LINE' => 14,
+    'VALUE' => 'there is a thing'
+  },
+  'THING' => {
+    'LINE' => 13,
+    'VALUE' => 'echo what do we want'
+  }
+}
+%GRAPH: {
+  'all' => {
+    'COMMANDS' => [
+      {
+        'CMD' => '@ echo "MAKECMDGOALS=\'${MAKECMDGOALS}\'"',
+        'LINE' => 17
+      },
+      {
+        'CMD' => '@ echo "Hello World"',
+        'LINE' => 18
+      },
+      {
+        'CMD' => 'echo NOMACRO=${NOMACRO}',
+        'LINE' => 19
+      }
+    ],
+    'LINE' => 16,
+    'PREREQS' => []
+  },
+  'baz' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'echo ABC = ${ABC}',
+        'LINE' => 27
+      },
+      {
+        'CMD' => 'echo ${DEF} = GHI',
+        'LINE' => 28
+      },
+      {
+        'CMD' => 'echo ${DEF}${GHI}',
+        'LINE' => 29
+      },
+      {
+        'CMD' => 'error with arguments',
+        'LINE' => 30
+      }
+    ],
+    'LINE' => 26,
+    'PREREQS' => [
+      'qux'
+    ]
+  },
+  'error' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'this is not a command',
+        'LINE' => 36
+      }
+    ],
+    'LINE' => 35,
+    'PREREQS' => []
+  },
+  'foo' => {
+    'COMMANDS' => [
+      {
+        'CMD' => 'this is junk',
+        'LINE' => 22
+      },
+      {
+        'CMD' => 'echo another command',
+        'LINE' => 23
+      },
+      {
+        'CMD' => '${THING} ${THERE}',
+        'LINE' => 24
+      }
+    ],
+    'LINE' => 21,
+    'PREREQS' => [
+      'bar',
+      'baz',
+      'qux'
+    ]
+  },
+  'qux' => {
+    'COMMANDS' => [
+      {
+        'CMD' => '../misc/error 25',
+        'LINE' => 33
+      }
+    ],
+    'LINE' => 32,
+    'PREREQS' => []
+  }
+}
+%MACROS:
+     12 [ABC] = [DEF]
+     14 [THERE] = [there is a thing]
+     13 [THING] = [echo what do we want]
+MAKECMDGOALS = [Makefile]
+%GRAPH:
+     16 [all] :
+     17.	[@ echo "MAKECMDGOALS='${MAKECMDGOALS}'"]
+     18.	[@ echo "Hello World"]
+     19.	[echo NOMACRO=${NOMACRO}]
+     26 [baz] : [qux]
+     27.	[echo ABC = ${ABC}]
+     28.	[echo ${DEF} = GHI]
+     29.	[echo ${DEF}${GHI}]
+     30.	[error with arguments]
+     35 [error] :
+     36.	[this is not a command]
+     21 [foo] : [bar] [baz] [qux]
+     22.	[this is junk]
+     23.	[echo another command]
+     24.	[${THING} ${THERE}]
+     32 [qux] :
+     33.	[../misc/error 25]
