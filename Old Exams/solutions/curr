@@ -1,0 +1,174 @@
+CSE-112 * Programming Languages * Winter 2021 * Midterm Exam    1 of 1
+$Id: soln-cse112-2021q2-midterm.txt,v 1.3 2021-05-12 15:34:06-07 - - $
+
+__________________________________________________
+Question 1.  [[6 pt]] -- Scheme Ocaml
+
+(a) Scheme.  3 points.
+
+(define (adjacent eqv list)
+    (cond ((or (null? list) (null? (cdr list))) #f)
+          ((eqv (car list) (cadr list)) #t)
+          (else (adjacent eqv (cdr list)))))
+
+.... (car (cdr x)) is of course same as (cadr x) ....
+
+(b) Ocaml.  3 points.
+
+let rec adjacent eqv list = match list with
+    | [] -> false
+    | [_] -> false
+    | x::y::_ when eqv x y -> true
+    | _::xs -> adjacent eqv xs;;
+
+.... alt 2nd pat ...
+    | _::[] ->
+.... alt 3rd & 4th pats ...
+    | x::(y::_ as tail) ->
+          if eqv x y then true
+          else adjacent eqv tail
+.... alt 3rd & 4th pats ... not good ...
+    | x::y::z ->
+          if eqv x y then true
+          else adjacent eqv (y::z)
+
+__________________________________________________
+Question 2.  [[2 pt]] -- Scheme Ocaml
+
+(a) Scheme.  1 point.
+
+(define (length lst)
+    (foldl (lambda (_ n) (+ n 1)) 0 lst))
+
+(b) Ocaml.  1 point.
+
+let length = List.fold_left (fun n _ -> n + 1) 0;;
+... or ...
+let length lst = List.fold_left (fun n _ -> n + 1) 0 lst;;
+
+__________________________________________________
+Question 3.  [[6 pt]] -- Ocaml
+
+let rec find less root want = match root with
+    | Nulltree -> None
+    | Node (key, value, left, right) ->
+        if less want key then find less left want
+        else if less key want then find less right want
+        else Some value;;
+
+let rec find2 less root want = match root with
+    | Nulltree -> None
+    | Node (key,_,left,_) when less want key -> find2 less left want
+    | Node (key,_,_,right) when less key want -> find2 less right want
+    | Node (_,value,_,_) -> Some value;;
+
+__________________________________________________
+Question 4.  [[8 pt]] -- Scheme Ocaml
+
+(a) Scheme.  4 points.
+
+(define (insert less? item lst)
+    (cond ((null? lst) (cons item '()))
+          ((less? item (car lst)) (cons item lst))
+          (else (cons (car lst)
+                      (insert less? item (cdr lst))))))
+
+(b) Ocaml.  4 points.
+
+let rec insert less item list = match list with
+    | [] -> [item]
+    | x::_ when less item x -> item :: list
+    | x::xs -> x :: insert less item xs;;
+
+__________________________________________________
+Question 5.  [[6 pt]] -- Scheme
+
+(a) Define the function compose.  1 point.
+
+(define (compose f g)
+    (lambda (x) (f (g x))))
+
+(b) Define the function filter.  3 points.
+
+(define (filter ok? lst)
+    (if (null? lst) '()
+        (let ((a (car lst))
+              (d (cdr lst)))
+             (if (ok? a) (cons a (filter ok? d))
+                         (filter ok? d)))))
+
+(define (filter ok? lst)
+    (foldr (lambda (h t) (if (ok? h) (cons h t) t))
+           '() lst))
+
+(c) Define the function split.  2 points.
+
+(define (split ok? lst)
+    (let ((ok (filter ok? lst))
+          (not-ok (filter (compose not ok?) lst)))
+         (cons ok (cons not-ok '()))))
+
+.... alt last line ....
+         (list ok not-ok)
+
+__________________________________________________
+Question 6.  [[2 pt]] -- Smalltalk
+
+1 to: a size do: [:i|
+   stdout << i << ': ' << (a at: i) << Character nl.
+].
+
+__________________________________________________
+Question 7.  [[3 pt]] -- Scheme Ocaml Smalltalk
+
+(a) Scheme.
+
+(define parity (if (= (remainder n 2) 0) "even" "odd"))
+
+(b) Ocaml.
+
+let parity = if n mod 2 = 0 then "even" else "odd";;
+
+(c) Smalltalk.
+
+n \\ 2 = 0 ifTrue: [parity := 'even']
+           ifFalse: [parity := 'odd'].
+
+__________________________________________________
+Question 8.  [[6 pt]] -- Scheme Ocaml
+
+(a) Scheme.  3 points.
+
+(define (removedups same? list)
+    (if (or (null? list) (null? (cdr list))) list
+        (let ((head (car list))
+              (tail (removedups same? (cdr list))))
+             (if (same? head (cadr list))
+                 (removedups same? tail)
+                 (cons head (removedups same? tail))))))
+
+(b) Ocaml.  3 points.
+
+let rec removedups equiv list = match list with
+    | [] -> []
+    | [_] -> list
+    | x::y::zs when equiv x y -> removedups equiv (y::zs)
+    | x::y::zs -> x:: removedups equiv (y::zs);;
+
+.... alt last 2 lines ....
+    | x::(y::_ as tail) when equiv x y -> removedups equiv tail
+    | x::tail -> x:: removedups equiv tail;;
+
+
+__________________________________________________
+Question 9.  [[1 pt]] -- Bash
+
+#!/bin/bash
+echo Hello, World.
+
+Alternate:  #!/usr/bin/bash
+Both /bin/bash and /usr/bin/bash are correct.
+
+__________________________________________________
+SCORE-TOTAL=40
+

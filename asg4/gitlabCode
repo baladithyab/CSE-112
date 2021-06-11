@@ -1,0 +1,194 @@
+#!/usr/bin/perl
+# $Id: pmake,v 1.33 2020-12-01 19:17:54-08 - - $
+
+$0 =~ s|.*/||;		# strip off everything but the base script
+use Getopt::Std;
+use Data::Dumper;
+use strict;
+use warnings;
+
+$Data::Dumper::Indent = 1;
+$Data::Dumper::Sortkeys = 1;
+$Data::Dumper::Terse = 1;
+sub dump_hash ($\%) {		# Prototype (parameters: scalar & reference to hash)
+   my ($label, $hashptr) = @_;	# All parameters in Perl are passed in through @_
+   print STDERR "%$label: ", Data::Dumper->Dump ([$hashptr]);
+}
+
+my $STATUS = 0;			# Returned at the end of the program (set =1 if ERROR)
+END { exit $STATUS; }
+$SIG{'__WARN__'} = sub { print STDERR @_; $STATUS = 1; };
+$SIG{'__DIE__'} = sub { print STDERR @_; $STATUS = 1; exit; };
+
+# sigtoperl: x86_64 Linux unix1.lt.ucsc.edu
+# sigtoperl: Sun Nov 22 17:33:55 2020
+my %strsignal = (
+    0 => "Unknown signal 0",
+    1 => "Hangup",
+    2 => "Interrupt",			# ctrl + c
+    3 => "Quit",
+    4 => "Illegal instruction",
+    5 => "Trace/breakpoint trap",
+    6 => "Aborted",
+    7 => "Bus error",
+    8 => "Floating point exception",
+    9 => "Killed",
+   10 => "User defined signal 1",
+   11 => "Segmentation fault",
+   12 => "User defined signal 2",
+   13 => "Broken pipe",
+   14 => "Alarm clock",
+   15 => "Terminated",
+   16 => "Stack fault",
+   17 => "Child exited",
+   18 => "Continued",
+   19 => "Stopped (signal)",
+   20 => "Stopped",
+   21 => "Stopped (tty input)",
+   22 => "Stopped (tty output)",
+   23 => "Urgent I/O condition",
+   24 => "CPU time limit exceeded",
+   25 => "File size limit exceeded",
+   26 => "Virtual timer expired",
+   27 => "Profiling timer expired",
+   28 => "Window changed",
+   29 => "I/O possible",
+   30 => "Power failure",
+   31 => "Bad system call",
+);
+
+sub run_command (@) {							# takes array as argument
+   my (@command) = @_;							# @command is the array argument
+   print "@command\n";
+   my $status = eval {no warnings; system @command};			# status = system output of command w/ no warnings
+   return undef unless $status;						# return undef if status is zero
+   return "$!" if $status == -1;					# else if status == -1, return the exception/error at $!
+   my $signal = $status & 0x7F;
+   my $core = $status & 0x80;
+   my $exit = ($status >> 8) & 0xFF;
+   return "Error $exit" unless $signal || $core;
+   return ($strsignal{$signal} || "Invalid Signal Number $signal")
+        . ($core ? " (core dumped)" : "");
+}
+
+my $MAKECMDGOALS;							# First command line arguments
+my $Makefile = "Makefile";
+my %OPTIONS;								# Options hash, graph hash, macros hash
+my %GRAPH;
+my %MACROS;
+
+sub usage() { die "Usage: $0 [-d] [target]\n" }				# usage output message
+sub stop($) { die "$Makefile:@_. Stop.\n" }				# stop output message
+
+sub scan_cmdline() {
+   getopts "dg", \%OPTIONS;						# if -d or -g is specified, store them in %OPTIONS ('\' indicates passing the address into getopts?)
+   usage unless @ARGV <= 1;						# print usage unless size of array <= 1
+   $MAKECMDGOALS = $ARGV[0] if @ARGV == 1;
+}
+
+sub dump_graph() {
+   print STDERR "%MACROS:\n";
+   for my $macro (sort keys %MACROS) {					# let $macro be each an individual keys from sorted %MACROS keys
+      printf STDERR "%7d [%s] = [%s]\n",				# print line number ($MACROS{$macro}{LINE}), the macro, and the value ($MACROS{$macro}{VALUE}) 
+             $MACROS{$macro}{LINE}, $macro, $MACROS{$macro}{VALUE};
+   }
+   print STDERR "MAKECMDGOALS = [$MAKECMDGOALS]\n";			# print the command line arguments 
+   print STDERR "%GRAPH:\n";						# and the graph
+   for my $target (sort keys %GRAPH) {					# sort graph keys, and for each:
+      my $prereqs = $GRAPH{$target}{PREREQS};					# $prereqs = prereqs for graph key
+      printf STDERR "%7d [%s] :", $GRAPH{$target}{LINE}, $target;		# prints line and target
+      print STDERR " [$_]" for @$prereqs;					# dumps out the prereqs
+      print STDERR "\n";
+      for my $cmd (@{$GRAPH{$target}{COMMANDS}}) {				# for each command in COMMANDS (turned to array for indexing)
+         printf STDERR "%7d \t[%s]\n", $cmd->{LINE}, $cmd->{CMD};;			# print line where cmd occurs, and the cmd itself
+      }
+   }
+}
+
+sub load_Makefile() {
+   open my $mkfile, "<$Makefile" or die "$0: $Makefile: $!";		# open makefile for reading (<), or spit out the name of the script ($0) and error reason ($!)
+   my $target;								# target begins undefined
+   while (defined (my $line = <$mkfile>)) {				# while $line is defined by <$mkfile> (readline function)
+      next if $line =~ m/^\s*(#|$)/;					# if line starts w/ or w/o whitespace, followed by '#' or '$', get next line ('$' is special char for end of a line)
+      #print "line\t\t$line\n";
+									# THE FOLLOWING IS FOR:    { macro = value }
+      if (!$target && $line =~ m/^\s*(\S+)\s*=\s*(.*?)\s*$/) {		# if target undef AND
+									# if line starts w/ or w/o whitespace, followed by 1 or more nonspace character ($1), followed by 0 or more whitespace AND
+	 								# if line ends w/ or w/o whitespace, followed by as little as possible of any characters ($2), followed by 0 or more whitespace
+									# where line beginning and end is separated by '='
+ 
+         $MACROS{$1} = {LINE=> $., VALUE=> $2};					# lookup ($1) in MACROS hashtable, let LINE = line ($.), and VALUE = ($2)
+
+									# THE FOLLOWING IS FOR:    { target ... : value ... }
+      }elsif ($line =~ m/^(\S+)\s*:\s*(.*)/) {				# else if line starts with 1 or more nonspace character ($1), followed by 0 or more whitespace AND
+									# separated by ':', 0 or more whitespace, followed by 0 or more of any character ($2)
+
+         $target = $1;								# let target = ($1)
+         $GRAPH{$target}{PREREQS} = [split ' ', $2];				# insert PREREQS ($2 split by ' ') into GRAPH hashtable at $target
+         $GRAPH{$target}{LINE} = $.;						# insert LINE ($.) into GRAPH hashtable at $target
+         $MAKECMDGOALS = $target unless $MAKECMDGOALS;				# $MakeCmdGoals = $target unless $MakeCmdGoals = True
+
+	 my $targetTime = modtime($target);					# collect the modtime of the target
+	 my $nextCommand = <$mkfile>;						# collect the command following the prereqs, in the next line
+	 if (! defined $targetTime) {						# if $targetTime is undefined, $target should also be undefined
+	    run_command($nextCommand);							# so run the following command
+	 }
+	 elsif (defined $targetTime) {						# else, if $targetTime is defined,
+	    print "targetTime '$targetTime' is defined!\n";
+	    for my $prereq ($GRAPH{$target}{PREREQS}) {					# for each prereq following the target,
+	       print "prereq = '$prereq'\n";
+	       my $prereqTime = modtime($prereq);						# collect the modtime of the prereq
+	       print "prereqTime = '$prereqTime'\n";
+	       if (defined $prereqTime && $prereqTime > $targetTime) {					# if any prereqTime is defined and greater than targetTime,
+		  print "prereqTime > targetTime";
+		  print "following command: '$nextCommand'\n";
+		  run_command($nextCommand);									# run the following command
+	       }
+	    }
+	 }
+
+									# THE FOLLOWING IS FOR:    { command }
+      }elsif ($line =~ m/^\t(.*)/) {					# else if line starts with \t, then 0 or more of any character ($1)
+
+         if (defined $target) {							# if $target is defined,
+
+            push @{$GRAPH{$target}{COMMANDS}},						# insert COMMANDS into GRAPH at $target
+
+                 {LINE=> $., CMD=> $1};								# let LINE = line ($.), and CMD = ($1)
+
+	    # if ($line =~ m/^@/) {					# if command begins with '@'
+	    #    print "$1 contains '@'"					# run_command, dont print the system output (control with global? different function?)
+	    # }
+	    # if ($line =~ m/^-/) {					# if command begins with '-'
+	    #    print "$1 contains '-'"					# run_command, dont exit upon error (control with global? different function?)
+	    # }
+	    # if ($line =~ m/$/) {					# if command contains '$'
+	    #    if ($line =~ m/${\S+}/) {					# if command contains '$' followed by a bracket set contain 1 or more nonspace character ($1),
+	    #       my $line =~ s/${(\S+)}/$1/						# replace the occurance of ${val} with val
+	    #    }
+	    #    my $line =~ s/$(\S+)/$MACROS{$1}{VALUE}/		# replace occurences of macros with their value
+	    # }
+	    # run_command($line)					# run the command
+
+         }else {
+            stop "$.: Command before first target";
+         }
+      }else {
+         stop "$.: Missing separator";
+      }
+   }
+   close $mkfile;
+}
+
+sub modtime ($) {
+   my ($filename) = @_;
+   my @stat = stat $filename;
+   return @stat ? $stat[9] : undef;					# return stat[9] = atime for file
+}
+
+scan_cmdline;
+load_Makefile;
+
+dump_hash ("MACROS", %MACROS) if $OPTIONS{'d'};
+dump_hash ("GRAPH", %GRAPH) if $OPTIONS{'d'};
+dump_graph if $OPTIONS{'g'};

@@ -1,0 +1,271 @@
+head	1.11;
+access;
+symbols;
+locks;
+comment	@# @;
+
+
+1.11
+date	2020.08.30.22.40.17;	author -;	state -;
+branches;
+next	1.10;
+
+1.10
+date	2020.07.28.07.44.26;	author -;	state -;
+branches;
+next	1.9;
+
+1.9
+date	2020.07.25.03.26.59;	author -;	state -;
+branches;
+next	1.8;
+
+1.8
+date	2020.07.24.23.23.08;	author -;	state -;
+branches;
+next	1.7;
+
+1.7
+date	2020.07.24.22.39.50;	author -;	state -;
+branches;
+next	1.6;
+
+1.6
+date	2020.07.23.23.02.01;	author -;	state -;
+branches;
+next	1.5;
+
+1.5
+date	2020.07.23.22.52.04;	author -;	state -;
+branches;
+next	1.4;
+
+1.4
+date	2020.07.23.22.51.49;	author -;	state -;
+branches;
+next	1.3;
+
+1.3
+date	2020.07.23.22.51.13;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2020.07.23.22.50.57;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2020.07.23.22.50.22;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.11
+log
+@-
+@
+text
+@
+<P>
+<KBD>phd042216s.is-this-on-the-test.gif</KBD>
+<P>
+<A HREF=
+https://www2.ucsc.edu/courses/cse110a-wm/:/etc/www.phdcomics.com/>
+<IMG
+SRC="phd042216s.is-this-on-the-test.gif"
+ALT="phd042216s.is-this-on-the-test.gif"
+>
+</A>
+
+<P>
+<KBD>phd041816s.study-for-life.gif</KBD>
+<P>
+<A HREF=
+https://www2.ucsc.edu/courses/cse110a-wm/:/etc/www.phdcomics.com/>
+<IMG
+SRC="phd041816s.study-for-life.gif"
+ALT="phd041816s.study-for-life.gif"
+>
+</A>
+
+<P>
+<KBD>$Id: README.html,v 1.10 2020-07-28 00:44:26-07 - - $</KBD>
+
+@
+
+
+1.10
+log
+@-
+@
+text
+@d7 1
+a7 1
+<IMG style="width: 75%;"
+d18 1
+a18 1
+<IMG style="width: 75%;"
+d25 1
+a25 1
+<KBD>$Id: README.html,v 1.6 2020-07-28 00:43:01-07 - - $</KBD>
+@
+
+
+1.9
+log
+@-
+@
+text
+@a1 1
+<!--
+d3 1
+a3 1
+<KBD>phd041816s.study-for-life.gif</KBD>
+d5 2
+a6 1
+<A HREF=phd041816s.study-for-life.gif>
+d8 2
+a9 2
+SRC="phd041816s.study-for-life.gif"
+ALT="phd041816s.study-for-life.gif"
+a11 1
+-->
+d14 1
+a14 1
+<KBD>phd042216s.is-this-on-the-test.gif</KBD>
+d19 2
+a20 2
+SRC="phd042216s.is-this-on-the-test.gif"
+ALT="phd042216s.is-this-on-the-test.gif"
+d25 1
+a25 1
+<KBD>$Id: README.html,v 1.8 2020-07-24 16:23:08-07 - - $</KBD>
+@
+
+
+1.8
+log
+@-
+@
+text
+@d4 1
+a4 1
+<KBD>phd041816s.study-for-life.gif<KBDTT>
+d15 1
+a15 1
+<KBD>phd042216s.is-this-on-the-test.gif<KBDTT>
+d26 1
+a26 1
+<KBD>$Id: README.html,v 1.7 2020-07-24 15:39:50-07 - - $</KBD>
+@
+
+
+1.7
+log
+@-
+@
+text
+@d17 2
+a18 1
+<A HREF=phd042216s.is-this-on-the-test.gif>
+d26 1
+a26 1
+<KBD>$Id: README.html,v 1.6 2020-07-23 16:02:01-07 - - $</KBD>
+@
+
+
+1.6
+log
+@-
+@
+text
+@d2 1
+d12 1
+d25 1
+a25 1
+<KBD>$Id: README.html,v 1.2 2020-07-23 15:59:57-07 - - $</KBD>
+@
+
+
+1.5
+log
+@-
+@
+text
+@d1 1
+d3 1
+a3 1
+<KBD> is-this-on-the-test.phd042216s.gif<KBDTT>
+d5 1
+a5 1
+<A HREF= is-this-on-the-test.phd042216s.gif>
+d7 2
+a8 2
+SRC=" is-this-on-the-test.phd042216s.gif"
+ALT=" is-this-on-the-test.phd042216s.gif"
+d11 1
+d13 12
+a24 1
+<TT>$Id: README.html,v 1.4 2020-07-23 15:51:49-07 - - $</TT>
+@
+
+
+1.4
+log
+@-
+@
+text
+@d5 1
+a5 1
+<IMG style="width: 70%;"
+d11 1
+a11 1
+<TT>$Id: README.html,v 1.3 2020-07-23 15:51:13-07 - - $</TT>
+@
+
+
+1.3
+log
+@-
+@
+text
+@d5 1
+a5 1
+<IMG style="width: 90%;"
+d11 1
+a11 1
+<TT>$Id: README.html,v 1.2 2020-07-23 15:50:57-07 - - $</TT>
+@
+
+
+1.2
+log
+@-
+@
+text
+@d5 1
+a5 1
+<IMG stule="width: 90%;"
+d11 1
+a11 1
+<TT>$Id: README.html,v 1.1 2020-07-23 15:50:22-07 - - $</TT>
+@
+
+
+1.1
+log
+@-
+@
+text
+@d2 2
+d11 1
+a11 3
+<TT> is-this-on-the-test.phd042216s.gif</TT>
+<P>
+<TT>$Id: README.html,v 1.1 2020-06-25 10:21:44-07 - - $</TT>
+@

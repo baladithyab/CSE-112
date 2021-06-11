@@ -1,0 +1,294 @@
+CSE-112 * Programming Languages * Spring 2021 * Midterm Exam    1 of 1
+$Id: cse112-2021q2-midterm.mm,v 1.48 2021-05-04 16:13:28-07 - - $
+
+Answer each question in the specific language
+given in the question.  Do not use pseudo-code.
+Your answers should compile and run if copied
+verbatim into the appropriate language processor.
+
+Use proper indentation.  Points will be deducted
+for messy or unreadable answers.
+
+For questions that have several parts, clearly
+separate your answers into these parts, label each
+part, e.g., (a), (b), ..., with some blank lines
+in between.
+
+__________________________________________________
+
+<PRE>
+Question 1.  [[6 pt]] -- Scheme Ocaml
+
+Write the function adjacent which returns true if
+any two adjacent elements are equivalent according
+to a comparison function.
+
+The result for an empty list or a list with one
+element is false.
+
+Do not use any higher-order functions.
+
+Its first argument is a binary function which
+returns true if it arguments are equivalent, and
+its second argument is a list.
+
+(a) Scheme.  3 points.
+
+    Use cond to distinguish the cases.  You may
+    use and to combine the first two cases if
+    appropriate.
+
+    Examples:
+    > (adjacent = '(1 2 3 4 4 5 6))
+    #t
+    > (adjacent = '(1 2 3))
+    #f
+    > (adjacent < '(3 2 1))
+    #f
+    > (adjacent > '(3 2 1))
+    #t
+
+(b) Ocaml.  3 points.
+
+    Examples:
+    # adjacent (=) [1;2;3;4;4;5;6];;
+    - : bool = true
+    # adjacent (=) [1;2;3];;
+    - : bool = false
+    # adjacent (<) [3;2;1];;
+    - : bool = false
+    # adjacent (>) [3;2;1];;
+    - : bool = true
+
+__________________________________________________
+
+<PRE>
+Question 2.  [[2 pt]] -- Scheme Ocaml
+
+Write a function called length which returns the
+length of a list.
+
+(a) Scheme.  1 point.
+
+    Use foldl and a lambda.  Do not use define or
+    let.
+
+(b) Ocaml.  1 point.
+
+    Use List.fold_left and an inline fun
+    expression.  Do not define an internel helper
+    function.  Use the (fun ....) construct as one
+    of the arguments to List.fold_left.
+
+__________________________________________________
+
+<PRE>
+Question 3.  [[6 pt]] -- Ocaml
+
+Write a function find which given a comparison
+function and a key returns the associated value,
+if it exists, as an 'a option (Some).  Return None
+if not.
+
+The definition of tree is:
+type tree = Nulltree
+   | Node of string * string * tree * tree
+
+1. The first string is the key.
+2. The second string is the associated value.
+3. The first tree is the left subtree.
+4. The second tree is the right subtree.
+
+You may only use the less function for comparison.
+The tree is ordered by the less function from left
+to right.  That is, a depth-first left to right
+inorder traversal would visit the keys in sorted
+order.
+
+The arguments to find are:
+1. the less comparison function.
+2. The root of the binary search tree.
+3. The key to search for.
+
+The function is to be defined as:
+
+let rec find less root wantkey = match root with
+
+fill in the rest.
+
+__________________________________________________
+
+<PRE>
+Question 4.  [[8 pt]] -- Scheme Ocaml
+
+Write the function insert whose arguments are:
+1. a binary predicate that determines sort order.
+2. an item to be inserted into a list.
+3. a list already sorted according to the
+   predicate.
+Return a new list with the new item inserted into
+the list in the appropriate position.
+
+(a) Scheme.  4 points.
+
+    Use cond to distinguish the cases.
+
+    Examples:
+    > (insert < 5 '(1 3 6 8 9))
+    (1 3 5 6 8 9)
+    > (insert < 0 '(1 3 5 7))
+    (0 1 3 5 7)
+    > (insert < 8 '())
+    (8)
+    > (insert > 1 '(9 7 5))
+    (9 7 5 1)
+
+(b) Ocaml.  4 points.
+
+    Examples:
+    # insert (<) 5 [1;3;6;8;9];;
+    - : int list = [1; 3; 5; 6; 8; 9]
+    # insert (<) 0 [1;3;5;7];;
+    - : int list = [0; 1; 3; 5; 7]
+    # insert (<) 8 [];;
+    - : int list = [8]
+    # insert (>) 1 [9;7;5];;
+    - : int list = [9; 7; 5; 1]
+
+__________________________________________________
+
+<PRE>
+Question 5.  [[6 pt]] -- Scheme
+
+(a) Define the function compose.  1 point.
+
+(b) Define the function filter.  3 points.
+
+    Its first argument is a predicate and its
+    second argument is a list.  It returns a list
+    in the same order as the argument list, but
+    with only those elements for which the
+    predicate is true.  Use a higher-order
+    function or code the recursion explicitly
+    (your choice).
+
+(c) Define the function split.  2 points.
+
+    It has a predicate and a list and returns a
+    list of two elements.  The car is a list of
+    all elements the predicate accepts.  The cadr
+    is a ist of all elements the predicate
+    rejects.
+
+    Hint:  Split is a non-recursive function which
+    uses compose, filter, and cons.  Use compose
+    to negate the predicate to make the reject
+    list.  You may use the function list instead
+    of cons.
+
+    Example:
+    > (split (lambda(x)(> x 0))
+            '(1 2 3 -4 -5 7 9 -11 20 -2))
+    ((1 2 3 7 9 20) (-4 -5 -11 -2))
+
+__________________________________________________
+
+<PRE>
+Question 6.  [[2 pt]] -- Smalltalk
+
+Write a loop to print the indices and contents of
+an array named a to stdout.  For each element,
+print the index, then a colon-space, then the
+array element.
+
+For example if the array a is
+a := #(16rFF #foo 'bar' 3.141592653589793).
+
+Then the output should be:
+1: 255
+2: #foo
+3: bar
+4: 3.141592653589793
+
+__________________________________________________
+
+<PRE>
+Question 7.  [[3 pt]] -- Scheme Ocaml Smalltalk
+
+Given a integer variable n, make an assignment to
+the variable parity as a string, either "even" or
+"odd".  Assume n has already been assigned.  Your
+line of code should be suitable for entering at
+the top level REPL.
+
+Hint:  a number is even if its remainder by 2 is
+0.  In case you have fogotten how to take a
+remainder, a simple expression is given below the
+name of he language.
+
+(a) Scheme.
+    (remainder n 2)
+
+(b) Ocaml.
+    n mod 2
+
+(c) Smalltalk.
+    n \\ 2
+
+__________________________________________________
+
+<PRE>
+Question 8.  [[6 pt]] -- Scheme Ocaml
+
+Write the function removedups which accepts a list
+and returns a new list with adjacent duplicates
+removed.  Its arguments are:
+1. A binary predicate which indicates equivalence.
+2. The list from which duplicates are to be
+   removed.
+
+(a) Scheme.  3 points.
+
+    Examples:
+    > (removedups = '(1 2 3 4))
+    (1 2 3 4)
+    > (removedups = '(1 1 1 1 2 2 7 8 8 3 4 4 4))
+    (1 2 7 8 3 4)
+    > (removedups = '())
+    ()
+    > (removedups = '(1))
+    (1)
+
+(b) Ocaml.  3 points.
+
+    Examples:
+    # removedups (=) [1;2;3;4];;
+    - : int list = [1; 2; 3; 4]
+    # removedups (=) [1;1;1;1;2;2;7;8;8;3;4;4;4];;
+    - : int list = [1; 2; 7; 8; 3; 4]
+    # removedups (=) [];;
+    - : 'a list = []
+    # removedups (=) [1];;
+    - : int list = [1]
+
+__________________________________________________
+
+<PRE>
+Question 9.  [[1 pt]] -- Bash
+
+Write a complete shell script named hello.sh in
+the bash language which prints out the message:
+
+Hello, World.
+
+Hints:  Some output from using bash interactively:
+-bash 9$ which bash
+/usr/bin/bash
+-bash 10$ echo Hello, World.
+Hello, World.
+-bash 23$ ./hello.sh
+Hello, World.
+
+__________________________________________________
+SCORE-TOTAL=40
+

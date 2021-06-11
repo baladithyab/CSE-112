@@ -1,0 +1,1373 @@
+head	1.39;
+access;
+symbols;
+locks;
+comment	@.\" @;
+
+
+1.39
+date	2021.03.10.18.37.54;	author -;	state -;
+branches;
+next	1.38;
+
+1.38
+date	2021.03.05.21.38.59;	author -;	state -;
+branches;
+next	1.37;
+
+1.37
+date	2021.03.05.21.38.40;	author -;	state -;
+branches;
+next	1.36;
+
+1.36
+date	2021.03.03.21.20.13;	author -;	state -;
+branches;
+next	1.35;
+
+1.35
+date	2021.03.03.21.19.53;	author -;	state -;
+branches;
+next	1.34;
+
+1.34
+date	2021.02.26.19.50.17;	author -;	state -;
+branches;
+next	1.33;
+
+1.33
+date	2021.02.26.19.48.43;	author -;	state -;
+branches;
+next	1.32;
+
+1.32
+date	2021.02.24.20.36.49;	author -;	state -;
+branches;
+next	1.31;
+
+1.31
+date	2021.02.19.23.12.38;	author -;	state -;
+branches;
+next	1.30;
+
+1.30
+date	2021.02.19.23.11.26;	author -;	state -;
+branches;
+next	1.29;
+
+1.29
+date	2021.02.19.23.09.33;	author -;	state -;
+branches;
+next	1.28;
+
+1.28
+date	2021.02.19.23.08.02;	author -;	state -;
+branches;
+next	1.27;
+
+1.27
+date	2021.02.19.23.07.09;	author -;	state -;
+branches;
+next	1.26;
+
+1.26
+date	2021.02.19.23.06.44;	author -;	state -;
+branches;
+next	1.25;
+
+1.25
+date	2021.02.19.23.02.13;	author -;	state -;
+branches;
+next	1.24;
+
+1.24
+date	2021.02.19.05.27.04;	author -;	state -;
+branches;
+next	1.23;
+
+1.23
+date	2021.02.19.05.25.49;	author -;	state -;
+branches;
+next	1.22;
+
+1.22
+date	2021.02.19.05.24.53;	author -;	state -;
+branches;
+next	1.21;
+
+1.21
+date	2021.02.19.05.24.24;	author -;	state -;
+branches;
+next	1.20;
+
+1.20
+date	2021.02.19.05.23.48;	author -;	state -;
+branches;
+next	1.19;
+
+1.19
+date	2021.02.19.05.21.51;	author -;	state -;
+branches;
+next	1.18;
+
+1.18
+date	2021.02.12.05.15.33;	author -;	state -;
+branches;
+next	1.17;
+
+1.17
+date	2021.02.10.05.45.49;	author -;	state -;
+branches;
+next	1.16;
+
+1.16
+date	2021.02.10.05.44.11;	author -;	state -;
+branches;
+next	1.15;
+
+1.15
+date	2021.02.08.21.19.35;	author -;	state -;
+branches;
+next	1.14;
+
+1.14
+date	2021.02.08.21.18.54;	author -;	state -;
+branches;
+next	1.13;
+
+1.13
+date	2021.02.08.21.18.08;	author -;	state -;
+branches;
+next	1.12;
+
+1.12
+date	2021.02.08.21.17.28;	author -;	state -;
+branches;
+next	1.11;
+
+1.11
+date	2021.02.08.21.16.53;	author -;	state -;
+branches;
+next	1.10;
+
+1.10
+date	2021.02.08.21.14.07;	author -;	state -;
+branches;
+next	1.9;
+
+1.9
+date	2021.02.08.19.53.16;	author -;	state -;
+branches;
+next	1.8;
+
+1.8
+date	2021.02.08.19.52.25;	author -;	state -;
+branches;
+next	1.7;
+
+1.7
+date	2021.02.08.19.44.47;	author -;	state -;
+branches;
+next	1.6;
+
+1.6
+date	2021.02.08.19.44.30;	author -;	state -;
+branches;
+next	1.5;
+
+1.5
+date	2021.02.08.19.43.32;	author -;	state -;
+branches;
+next	1.4;
+
+1.4
+date	2021.02.08.19.42.43;	author -;	state -;
+branches;
+next	1.3;
+
+1.3
+date	2021.02.08.19.36.20;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2021.02.08.19.35.06;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2021.02.08.19.28.57;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.39
+log
+@-
+@
+text
+@.so Tmac.mm-etc
+.if t .Newcentury-fonts
+.INITR* \n[.F]
+.SIZE 12 14
+.ds Quarter Winter\~2021
+.TITLE CSE-112 \*[Quarter] "Study Guide"
+.RCS \
+"$Id: study-guide-2021-q1winter.mm,v 1.38 2021-03-05 13:38:59-08 - - $"
+.PWD
+.URL
+.SA 0
+.na
+.nr Hy 0
+.nh
+.de HHH
+.   DE
+.   DS
+.   fi
+.   H 1 "\\$1"
+..
+.DS
+.HHH "Week 1 \[em] January 5"
+.ALX a ()
+.LI
+Syllabus, pair programming, course overview.
+.LI
+Lab0 intro unix, and review of Data Structures labs.
+.LI
+Lecture notes\(::
+.V= scheme-1-language.pdf
+(p.\~1\[en]4).
+.LI
+.V= Languages/scheme/Examples
+\[em]
+Simple introductory Scheme programs\(::
+.br
+.V= hello.scm ,
+.V= argv.scm ,
+.V= false.scm ,
+.V= hashbang.scm ,
+.V= commandline.scm ,
+.br
+.V= factorial.scm ,
+.V= fibonacci.scm ,
+.V= divmod.scm ,
+.V= complex.scm .
+.LE
+.HHH "Week 1 \[em] January 7"
+.ALX a ()
+.LI
+.V= asg1-scheme-mbir
+\[em]
+Programming project\(::
+interpreter for Minibasic written in scheme.
+Program specifications.
+.LI
+Example 
+.V= mbir
+programs to be interpreted\(::
+syntax and semantics.
+.LI
+.V= misc-cons-lists.d
+\[em]
+pictures and diagrams of Scheme lists with 
+.V= cons .
+.LI
+.V= code/mbir.scm
+\[em]
+starter code for the interpreter,
+begin general dissection and details of the code.
+.LE
+.HHH "Week 2 \[em] January 12"
+.ALX a ()
+.LI
+Continued dissection and examination of starter code
+.V= code/mbir.scm .
+.LI
+Somewhat more complex Scheme programs, showing
+data structures and expression evaluation\(::
+.br
+.V= readnums.scm ,
+.V= simple-eval.scm ,
+.V= evalexpr.scm ,
+.V= hashexample.scm ,
+.br
+.V= labelhash.scm ,
+.V= symbols.scm ,
+.V= mergesort.scm .
+.LE
+.HHH "Week 2 \[em] January 14"
+.ALX a ()
+.LI
+Lecture notes\(::
+.V= scheme-1-language.pdf
+(p.\~5\[en]end).
+.LI
+Mathematical derivation of factorial\(::
+non tail recursive and tail recursive versions,
+showing call stack depth.
+.LI
+Scheme tracing on factorial and Fibonacci functions.
+.LE
+.HHH "Week 3 \[em] January 19"
+.ALX a ()
+.LI
+Lecture notes\(::
+.V= scheme-2-higherorder.pdf
+(p.\~1\[en]12)
+\[em] higher order functions in Scheme.
+.LE
+.HHH "Week 3 \[em] January 21"
+.ALX a ()
+.LI
+Lecture notes\(::
+.V= scheme-2-higherorder.pdf
+(p.\~12\[en]19)
+\[em] higher order functions in Scheme.
+.LI
+.V= testrun.sh
+\[em]
+Testing scripts and test data,
+how the graders will do the grading of submitted programs.
+.LI
+Mention as an example a book that uses Ocaml as a
+Unix Systems programming language.
+.LI
+Lecture notes\(::
+.V= ocaml-1-notes.pdf
+(p.\~1\[en]9)
+\[em] introducing Ocaml, another functional lanuage,
+but one that compiles to native machine code.
+.LE
+.HHH "Week 4 \[em] January 26"
+.ALX a ()
+.LI
+Lecture notes\(::
+.V= ocaml-1-notes.pdf
+(p.\~9\[en]19).
+.LI
+Minibasic language specification\(::
+Language description.
+.br
+Sample programs\(::
+syntax and semantics.
+.LI
+.V= asg2-ocaml-interp
+\[em]
+Programming project\(::
+interpreter for Minibasic written in Ocaml.
+.LI
+Begin dissection of Ocaml starter code, general overview.
+.LE
+.HHH "Week 4 \[em] January 28"
+.ALX a ()
+.LI
+Finish dissection of starter code for Minibasic interpreter in Ocaml.
+.V= \&.mli
+files are interface specifications,
+and
+.V= \&.ml
+files are implementations.
+.ALX 1 () "" 0
+.LI
+.V= absyn.mli 
+\[em]
+abstract syntax definitions for the interpreter.
+.LI
+.V= dumper.mli ,
+.V= dumper.ml
+\[em]
+formatting and printing abstract syntax for debugging.
+.LI
+.V= etc.mli ,
+.V= etc.ml
+\[em]
+miscellaneous functions.
+.LI
+.V= interp.mli ,
+.V= interp.ml
+\[em]
+functions performing the interpretation of statements
+and expressions,
+and supervisory functions calling these.
+.LI
+.V= main.ml
+\[em]
+main program and options analysis.
+.LI
+.V= tables.mli ,
+.V= tables.ml
+\[em]
+dispatch tables for labels, arrays, variables, and functions.
+.LI
+.V= scanner.mll ,
+.V= parser.mly 
+\[em]
+complete scanner and parser provided,
+not student-edited,
+in lex-like and yacc-like format.
+.LI
+.V= Makefile .
+.LE
+.LI
+.V= Languages/ocaml/Examples/a-list
+\[em]
+Simple introductory Scheme programs\(::
+.br
+.V= hello.ml ,
+.V= helloworld.ml ,
+.V= argv.ml ,
+.V= length.ml ,
+.V= factorial.ml ,
+.V= fibonacci.ml .
+.LI
+.V= Languages/ocaml/Examples/b-list
+\[em]
+Ocaml examples specifically relevant to the programming assignment\(::
+.br
+.V= eval1-simple.ml ,
+.V= eval2-symbols.ml ,
+.V= hashexample.ml ,
+.V= readnumber.ml .
+.LE
+.HHH "Week 5 \[em] February 2"
+.ALX a ()
+.LI
+Lecture notes\(::
+.V= ocaml-2-higherorder.pdf
+(p.\~1\[en]9)
+\[em] higher order functions in Ocaml.
+.LI
+Frivolous\(::
+EWD-714\(::
+E.W.Dijkstra, trip report to Santa Cruz (UCSC), 1979.
+.br
+EWD-498\(::
+E.W.Dijkstra,
+How do we tell truths that might hurt\(??
+.LI
+.V= Languages/ocaml/Examples/c-list
+\[em]
+Some more advanced Ocaml examples\(::
+.br
+.V= ackermann.ml ,
+.V= complex-nrs.ml ,
+.V= exponent.ml ,
+.V= mergesort.ml ,
+.V= ncat.ml ,
+.br
+.V= odd-even.ml ,
+.V= qsort.ml .
+.LE
+.HHH "Week 5 \[em] February 4"
+.ALX a ()
+.LI
+.V= Languages/ocaml/Examples/x86-64-code
+\[em]
+Examples of constant propagation optimization and
+tail call elimination in code generated for the x86-64 architecture\(::
+.br
+.V= boolconst.s-opt ,
+.V= boolvar.s-opt ,
+.V= cfacloop.s-opt ,
+.V= cfacrec.s-opt ,
+.br
+.V= tailrectest.s-opt .
+.LI
+Lecture notes\(::
+.V= object-oriented.pdf
+\[em]
+Object-oriented programming.
+Polymorphism\(::
+parametric (universal),
+inclusion (object oriented),
+overloading (ad hoc),
+and conversion (ad hoc).
+.LI
+Lecture notes\(::
+.V= smalltalk-notes.pdf
+\[em] introduction to Smalltalk.
+.LE
+.HHH "Week 6 \[em] February 9"
+.ALX a ()
+.LI
+.V= asg3-smalltalk-mbst
+\[em] programming project\(::
+interpreter for Minibasic written in Smalltalk.
+Overview of intermediate code files to be processed by
+the interpreter.
+.LI
+.V= asg3/Examples/
+\[em] examples of simple Smalltalk programs showing general ideas.
+.ALX 1 () "" 0
+.LI
+.V= a-trivial.d
+\[em] some trivial examples\(::
+.br
+.V= hello.st ,
+.V= echoargs.st ,
+.V= arithmetic.st ,
+.V= cmdline.st ,
+.V= divide.st ,
+.br
+.V= intsort.st ,
+.V= dictionary.st ,
+.V= collatz-block.st ,
+.V= collatz-class.st .
+.LI
+.V= b-simple.d
+\[em] some very simple examples\(::
+.br
+.V= ashex.st ,
+.V= filein.st ,
+.V= isgraph.st ,
+.V= perform.st ,
+.V= priority.st ,
+.V= string.st ,
+.V= terminalecho.st .
+.LE
+.LI
+.V= code/mbint.st
+\[em] dissection of starter code for interpreter.
+.LE
+.HHH "Week 6 \[em] February 11"
+.ALX a ()
+.LI
+.V= code/mbint.st
+\[em] continuation of dissection of starter code for interpreter.
+Most of lecture.
+.LI
+.V= c-involved.d
+\[em] a few more involved examples\(::
+.br
+.V= initarray.st ,
+.V= sorted-names.st .
+.LE
+.HHH "Week 7 \[em] February 16"
+.ALX a ()
+.LI
+Midterm exam.
+No lecture.
+.LE
+.HHH "Week 7 \[em] February 18"
+.ALX a ()
+.LI
+.V= asg3/Examples/c-involved.d
+\[em] more Smalltalk examples\(::
+.br
+.V= binepsilon.st ,
+.V= catfile.st ,
+.V= complexx.st ,
+.V= euler.st ,
+.br
+.V= sorted-names.st ,
+.V= treeleaf.st ,
+.V= wordcount.st .
+.LI
+.V= asg3/misc-evalexpr
+\[em] miscellaneous parallel examples comparing features of
+Scheme, Ocaml, and Smalltalk.
+.ALX 1 ()
+.LI
+.V= perform.ml ,
+.V= perform.scm ,
+.V= perform.st 
+\[em]
+examples comparing performing indirect operators.
+.LI
+.V= evalexpr.ml ,
+.V= evalexpr.scm ,
+.V= evalexpr.st 
+\[em]
+examples comparing symbolic evaluations of expressions.
+.LE
+.LE
+.HHH "Week 8 \[em] February 23"
+.ALX a ()
+.LI
+reviewed midterm exzm questions and answers.
+.LI 
+.V= Perl-notes.d
+(1..156)
+\[em]
+introduction to Perl.
+.LI 
+.V= perl/Examples
+\[em]
+a few example programs\(::
+.V= hello.perl ,
+.V= argv.perl .
+.LI 
+Brief overview of asg5 
+.V= pmake . 
+.LE
+.HHH "Week 8 \[em] February 25"
+.ALX a ()
+.LI
+.V= asg4-perl-pmake
+\[em]
+Perl project to implement a small subset of
+.V= make .
+.LI
+.V= asg4/misc
+subdirectory with relevant example code.
+.ALX 1 () "" 0
+.LI
+.V= graph.perl
+\[em]
+creating a graph using a hash with values
+pointing at arrays.
+.LI
+.V= modtime.perl
+\[em]
+find a file's modification time.
+.LI
+Various C++ programs and a Makefile showing how make
+reacts to various exit status codes and signal crashes.
+.LE
+.LI
+.V= code/pmake
+\[em]
+detailed dissection of starter code for the project.
+.LE
+.HHH "Week 9 \[em] March 2"
+.ALX a ()
+.LI
+.V= Perl-notes.d
+(156..end) \[em]
+includeing regular expressions.
+.LI
+Some Perl examples\(::
+.V= wc.perl ,
+.V= text2html .
+.LE
+.HHH "Week 9 \[em] March 4"
+.ALX a ()
+.LI
+More Perl examples\(::
+.V= subst-macros.perl ,
+.V= nvcat.perl ,
+.V= switch.perl ,
+.br
+.V= wordfreq.perl ,
+.V= xref.perl .
+.LI
+Notes\(::
+delayed evaluation, Haskell.
+.LE
+.HHH "Week 10 \[em] March 9"
+.ALX a ()
+.LI
+.V= Lecture-notes/lambda-calculus
+\[em] Lambda calculus.
+abstraction,
+currying,
+beta conversion,
+alpha conversion,
+eta conversion,
+strict vs non-struct evaluation.
+.LI
+.V= Lecture-notes/data-types
+\[em] static vs dyntamic types,
+primitive vs declared types, type constructors,
+type checking, compatibility.
+Universal and ad-hoc polymorphism.
+.LI
+.V= Lecture-notes/procedures-environments
+\[em] procedure activation,
+parameter passing,
+stack based runtime and local stack frames,
+activation records.
+.LE
+.HHH "Week 10 \[em] March 11"
+.ALX a ()
+.LI
+Review final exams from previous quarters.
+.LE
+.DE
+@
+
+
+1.38
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.37 2021-03-05 13:38:40-08 - - $"
+a447 2
+.LI
+Intro lambda calculus.
+d452 20
+d476 1
+@
+
+
+1.37
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.36 2021-03-03 13:20:13-08 - - $"
+d442 1
+@
+
+
+1.36
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.35 2021-03-03 13:19:53-08 - - $"
+d438 11
+@
+
+
+1.35
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.34 2021-02-26 11:50:17-08 - - $"
+d427 1
+a427 1
+.V= Perl-nodes.d
+@
+
+
+1.34
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.33 2021-02-26 11:48:43-08 - - $"
+d381 1
+a381 1
+.V= Perl-notes
+d427 7
+@
+
+
+1.33
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.32 2021-02-24 12:36:49-08 - - $"
+d409 1
+a409 1
+example of creating a graph using a hash with values
+d412 1
+a412 1
+V= modtime.perl
+d414 1
+a414 7
+showing how Perl can find a file's modification time.
+.Lexample of creating a graph using a hash with values
+pointing at arrays.
+.LI
+V= modtime.perl
+\[em]
+showing how Perl can find a file's modification time.
+@
+
+
+1.32
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.31 2021-02-19 15:12:38-08 - - $"
+d398 31
+@
+
+
+1.31
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.30 2021-02-19 15:11:26-08 - - $"
+d379 15
+@
+
+
+1.30
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.29 2021-02-19 15:09:33-08 - - $"
+d116 1
+a116 1
+(p.\~12\[en]q9)
+@
+
+
+1.29
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.24 2021-02-18 21:27:04-08 - - $"
+d15 8
+a22 1
+.H 1 "Week 1 \[em] January 5"
+d48 1
+a48 1
+.H 1 "Week 1 \[em] January 7"
+d72 1
+a72 1
+.H 1 "Week 2 \[em] January 12"
+d90 1
+a90 1
+.H 1 "Week 2 \[em] January 14"
+d103 1
+a103 1
+.H 1 "Week 3 \[em] January 19"
+d111 1
+a111 1
+.H 1 "Week 3 \[em] January 21"
+d133 1
+a133 1
+.H 1 "Week 4 \[em] January 26"
+d153 1
+a153 1
+.H 1 "Week 4 \[em] January 28"
+d224 1
+a224 1
+.H 1 "Week 5 \[em] February 2"
+d253 1
+a253 1
+.H 1 "Week 5 \[em] February 4"
+d282 1
+a282 1
+.H 1 "Week 6 \[em] February 9"
+d324 1
+a324 1
+.H 1 "Week 6 \[em] February 11"
+d337 1
+a337 1
+.H 1 "Week 7 \[em] February 16"
+d343 1
+a343 1
+.H 1 "Week 7 \[em] February 18"
+d376 1
+a376 1
+.H 1 "Week 8 \[em] February 23"
+d380 1
+a380 1
+.H 1 "Week 8 \[em] February 25"
+d384 1
+a384 1
+.H 1 "Week 9 \[em] March 2"
+d388 1
+a388 1
+.H 1 "Week 9 \[em] March 4"
+d392 1
+a392 1
+.H 1 "Week 10 \[em] March 9"
+d396 1
+a396 1
+.H 1 "Week 10 \[em] March 11"
+d400 1
+@
+
+
+1.28
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.27 2021-02-19 15:07:09-08 - - $"
+d15 1
+a15 9
+.de HHH
+.   DE
+.   br
+.   H 1 "\\$1"
+.   DS
+.   fi
+..
+.DS
+.HHH "Week 1 \[em] January 5"
+d41 1
+a41 1
+.HHH "Week 1 \[em] January 7"
+d65 1
+a65 1
+.HHH "Week 2 \[em] January 12"
+d83 1
+a83 1
+.HHH "Week 2 \[em] January 14"
+d96 1
+a96 1
+.HHH "Week 3 \[em] January 19"
+d104 1
+a104 1
+.HHH "Week 3 \[em] January 21"
+d126 1
+a126 1
+.HHH "Week 4 \[em] January 26"
+d146 1
+a146 1
+.HHH "Week 4 \[em] January 28"
+d217 1
+a217 1
+.HHH "Week 5 \[em] February 2"
+d246 1
+a246 1
+.HHH "Week 5 \[em] February 4"
+d275 1
+a275 1
+.HHH "Week 6 \[em] February 9"
+d317 1
+a317 1
+.HHH "Week 6 \[em] February 11"
+d330 1
+a330 1
+.HHH "Week 7 \[em] February 16"
+d336 1
+a336 1
+.HHH "Week 7 \[em] February 18"
+d369 1
+a369 1
+.HHH "Week 8 \[em] February 23"
+d373 1
+a373 1
+.HHH "Week 8 \[em] February 25"
+d377 1
+a377 1
+.HHH "Week 9 \[em] March 2"
+d381 1
+a381 1
+.HHH "Week 9 \[em] March 4"
+d385 1
+a385 1
+.HHH "Week 10 \[em] March 9"
+d389 1
+a389 1
+.HHH "Week 10 \[em] March 11"
+a392 1
+.DE
+@
+
+
+1.27
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.26 2021-02-19 15:06:44-08 - - $"
+d17 1
+@
+
+
+1.26
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.25 2021-02-19 15:02:13-08 - - $"
+d19 1
+@
+
+
+1.25
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.24 2021-02-18 21:27:04-08 - - $"
+a18 1
+.   fi
+@
+
+
+1.24
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.23 2021-02-18 21:25:49-08 - - $"
+d15 8
+a22 1
+.H 1 "Week 1 \[em] January 5"
+d48 1
+a48 1
+.H 1 "Week 1 \[em] January 7"
+d72 1
+a72 1
+.H 1 "Week 2 \[em] January 12"
+d90 1
+a90 1
+.H 1 "Week 2 \[em] January 14"
+d103 1
+a103 1
+.H 1 "Week 3 \[em] January 19"
+d111 1
+a111 1
+.H 1 "Week 3 \[em] January 21"
+d133 1
+a133 1
+.H 1 "Week 4 \[em] January 26"
+d153 1
+a153 1
+.H 1 "Week 4 \[em] January 28"
+d224 1
+a224 1
+.H 1 "Week 5 \[em] February 2"
+d253 1
+a253 1
+.H 1 "Week 5 \[em] February 4"
+d282 1
+a282 1
+.H 1 "Week 6 \[em] February 9"
+d324 1
+a324 1
+.H 1 "Week 6 \[em] February 11"
+d337 1
+a337 1
+.H 1 "Week 7 \[em] February 16"
+d343 1
+a343 1
+.H 1 "Week 7 \[em] February 18"
+d376 1
+a376 1
+.H 1 "Week 8 \[em] February 23"
+d380 1
+a380 1
+.H 1 "Week 8 \[em] February 25"
+d384 1
+a384 1
+.H 1 "Week 9 \[em] March 2"
+d388 1
+a388 1
+.H 1 "Week 9 \[em] March 4"
+d392 1
+a392 1
+.H 1 "Week 10 \[em] March 9"
+d396 1
+a396 1
+.H 1 "Week 10 \[em] March 11"
+d400 1
+@
+
+
+1.23
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.22 2021-02-18 21:24:53-08 - - $"
+d352 1
+a352 1
+\[em] miscellaneous examples comparing features of
+@
+
+
+1.22
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.21 2021-02-18 21:24:24-08 - - $"
+d346 1
+a347 1
+.br
+@
+
+
+1.21
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.20 2021-02-18 21:23:48-08 - - $"
+d347 1
+@
+
+
+1.20
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.19 2021-02-18 21:21:51-08 - - $"
+d341 1
+@
+
+
+1.19
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.18 2021-02-11 21:15:33-08 - - $"
+d354 11
+@
+
+
+1.18
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.17 2021-02-09 21:45:49-08 - - $"
+d284 1
+a284 1
+.V= Examples/
+d339 16
+@
+
+
+1.17
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.16 2021-02-09 21:44:11-08 - - $"
+d322 1
+d324 5
+@
+
+
+1.16
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.15 2021-02-08 13:19:35-08 - - $"
+d296 1
+d319 3
+@
+
+
+1.15
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.14 2021-02-08 13:18:54-08 - - $"
+d278 37
+@
+
+
+1.14
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.13 2021-02-08 13:18:08-08 - - $"
+d273 1
+@
+
+
+1.13
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.12 2021-02-08 13:17:28-08 - - $"
+d258 1
+@
+
+
+1.12
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.11 2021-02-08 13:16:53-08 - - $"
+d78 1
+@
+
+
+1.11
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.10 2021-02-08 13:14:07-08 - - $"
+d35 1
+@
+
+
+1.10
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.9 2021-02-08 11:53:16-08 - - $"
+d240 1
+@
+
+
+1.9
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.8 2021-02-08 11:52:25-08 - - $"
+d281 2
+@
+
+
+1.8
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.5 2021-02-08 11:43:32-08 - - $"
+d249 1
+a249 1
+tail call elimination in code generated for the x86-64 CPU\(::
+@
+
+
+1.7
+log
+@-
+@
+text
+@d246 23
+@
+
+
+1.6
+log
+@-
+@
+text
+@a229 1
+.LE
+@
+
+
+1.5
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.4 2021-02-08 11:42:43-08 - - $"
+a216 1
+.LI
+@
+
+
+1.4
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.3 2021-02-08 11:36:20-08 - - $"
+d244 1
+@
+
+
+1.3
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.2 2021-02-08 11:35:06-08 - - $"
+d219 5
+d232 12
+@
+
+
+1.2
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.1 2021-02-08 11:28:57-08 - - $"
+d198 1
+d208 2
+a209 1
+Ocaml examples specifically relevant to the program\(::
+@
+
+
+1.1
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: study-guide-2021-q1winter.mm,v 1.23 2021-02-08 07:57:21-08 - - $"
+d195 17
+@

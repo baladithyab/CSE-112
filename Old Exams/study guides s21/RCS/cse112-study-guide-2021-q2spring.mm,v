@@ -1,0 +1,2234 @@
+head	1.79;
+access;
+symbols;
+locks;
+comment	@.\" @;
+
+
+1.79
+date	2021.06.02.06.57.54;	author -;	state -;
+branches;
+next	1.78;
+
+1.78
+date	2021.06.02.06.57.22;	author -;	state -;
+branches;
+next	1.77;
+
+1.77
+date	2021.06.02.06.56.09;	author -;	state -;
+branches;
+next	1.76;
+
+1.76
+date	2021.06.02.06.55.52;	author -;	state -;
+branches;
+next	1.75;
+
+1.75
+date	2021.06.02.06.54.44;	author -;	state -;
+branches;
+next	1.74;
+
+1.74
+date	2021.05.29.00.00.02;	author -;	state -;
+branches;
+next	1.73;
+
+1.73
+date	2021.05.28.23.59.33;	author -;	state -;
+branches;
+next	1.72;
+
+1.72
+date	2021.05.26.05.42.03;	author -;	state -;
+branches;
+next	1.71;
+
+1.71
+date	2021.05.26.05.41.37;	author -;	state -;
+branches;
+next	1.70;
+
+1.70
+date	2021.05.21.22.48.35;	author -;	state -;
+branches;
+next	1.69;
+
+1.69
+date	2021.05.21.22.47.46;	author -;	state -;
+branches;
+next	1.68;
+
+1.68
+date	2021.05.21.20.42.11;	author -;	state -;
+branches;
+next	1.67;
+
+1.67
+date	2021.05.21.20.37.09;	author -;	state -;
+branches;
+next	1.66;
+
+1.66
+date	2021.05.21.20.36.46;	author -;	state -;
+branches;
+next	1.65;
+
+1.65
+date	2021.05.20.01.34.27;	author -;	state -;
+branches;
+next	1.64;
+
+1.64
+date	2021.05.20.01.33.48;	author -;	state -;
+branches;
+next	1.63;
+
+1.63
+date	2021.05.20.01.33.15;	author -;	state -;
+branches;
+next	1.62;
+
+1.62
+date	2021.05.17.22.29.13;	author -;	state -;
+branches;
+next	1.61;
+
+1.61
+date	2021.05.17.22.23.09;	author -;	state -;
+branches;
+next	1.60;
+
+1.60
+date	2021.05.17.22.22.37;	author -;	state -;
+branches;
+next	1.59;
+
+1.59
+date	2021.05.08.04.29.17;	author -;	state -;
+branches;
+next	1.58;
+
+1.58
+date	2021.05.08.04.28.50;	author -;	state -;
+branches;
+next	1.57;
+
+1.57
+date	2021.05.06.05.24.48;	author -;	state -;
+branches;
+next	1.56;
+
+1.56
+date	2021.05.06.05.24.09;	author -;	state -;
+branches;
+next	1.55;
+
+1.55
+date	2021.05.06.05.23.37;	author -;	state -;
+branches;
+next	1.54;
+
+1.54
+date	2021.05.06.05.22.53;	author -;	state -;
+branches;
+next	1.53;
+
+1.53
+date	2021.05.06.05.21.15;	author -;	state -;
+branches;
+next	1.52;
+
+1.52
+date	2021.05.06.05.06.59;	author -;	state -;
+branches;
+next	1.51;
+
+1.51
+date	2021.05.01.01.14.17;	author -;	state -;
+branches;
+next	1.50;
+
+1.50
+date	2021.05.01.01.14.04;	author -;	state -;
+branches;
+next	1.49;
+
+1.49
+date	2021.05.01.01.12.47;	author -;	state -;
+branches;
+next	1.48;
+
+1.48
+date	2021.05.01.01.12.14;	author -;	state -;
+branches;
+next	1.47;
+
+1.47
+date	2021.05.01.01.10.05;	author -;	state -;
+branches;
+next	1.46;
+
+1.46
+date	2021.05.01.01.09.51;	author -;	state -;
+branches;
+next	1.45;
+
+1.45
+date	2021.05.01.01.08.24;	author -;	state -;
+branches;
+next	1.44;
+
+1.44
+date	2021.04.30.23.03.29;	author -;	state -;
+branches;
+next	1.43;
+
+1.43
+date	2021.04.30.23.02.58;	author -;	state -;
+branches;
+next	1.42;
+
+1.42
+date	2021.04.30.23.01.24;	author -;	state -;
+branches;
+next	1.41;
+
+1.41
+date	2021.04.30.23.00.59;	author -;	state -;
+branches;
+next	1.40;
+
+1.40
+date	2021.04.30.22.55.05;	author -;	state -;
+branches;
+next	1.39;
+
+1.39
+date	2021.04.30.22.50.57;	author -;	state -;
+branches;
+next	1.38;
+
+1.38
+date	2021.04.30.22.48.12;	author -;	state -;
+branches;
+next	1.37;
+
+1.37
+date	2021.04.30.22.46.30;	author -;	state -;
+branches;
+next	1.36;
+
+1.36
+date	2021.04.30.22.45.52;	author -;	state -;
+branches;
+next	1.35;
+
+1.35
+date	2021.04.30.22.45.38;	author -;	state -;
+branches;
+next	1.34;
+
+1.34
+date	2021.04.30.22.45.10;	author -;	state -;
+branches;
+next	1.33;
+
+1.33
+date	2021.04.30.22.44.38;	author -;	state -;
+branches;
+next	1.32;
+
+1.32
+date	2021.04.30.16.32.43;	author -;	state -;
+branches;
+next	1.31;
+
+1.31
+date	2021.04.24.03.19.53;	author -;	state -;
+branches;
+next	1.30;
+
+1.30
+date	2021.04.24.03.19.08;	author -;	state -;
+branches;
+next	1.29;
+
+1.29
+date	2021.04.24.03.18.48;	author -;	state -;
+branches;
+next	1.28;
+
+1.28
+date	2021.04.24.03.18.12;	author -;	state -;
+branches;
+next	1.27;
+
+1.27
+date	2021.04.24.03.17.48;	author -;	state -;
+branches;
+next	1.26;
+
+1.26
+date	2021.04.24.03.17.02;	author -;	state -;
+branches;
+next	1.25;
+
+1.25
+date	2021.04.21.19.31.33;	author -;	state -;
+branches;
+next	1.24;
+
+1.24
+date	2021.04.21.19.29.28;	author -;	state -;
+branches;
+next	1.23;
+
+1.23
+date	2021.04.18.20.43.14;	author -;	state -;
+branches;
+next	1.22;
+
+1.22
+date	2021.04.14.17.02.23;	author -;	state -;
+branches;
+next	1.21;
+
+1.21
+date	2021.04.14.17.01.55;	author -;	state -;
+branches;
+next	1.20;
+
+1.20
+date	2021.04.14.17.00.13;	author -;	state -;
+branches;
+next	1.19;
+
+1.19
+date	2021.04.14.15.07.35;	author -;	state -;
+branches;
+next	1.18;
+
+1.18
+date	2021.04.14.15.02.07;	author -;	state -;
+branches;
+next	1.17;
+
+1.17
+date	2021.04.09.16.55.07;	author -;	state -;
+branches;
+next	1.16;
+
+1.16
+date	2021.04.09.16.54.38;	author -;	state -;
+branches;
+next	1.15;
+
+1.15
+date	2021.04.09.16.54.00;	author -;	state -;
+branches;
+next	1.14;
+
+1.14
+date	2021.04.07.22.18.24;	author -;	state -;
+branches;
+next	1.13;
+
+1.13
+date	2021.04.07.20.29.48;	author -;	state -;
+branches;
+next	1.12;
+
+1.12
+date	2021.04.03.02.34.23;	author -;	state -;
+branches;
+next	1.11;
+
+1.11
+date	2021.04.03.02.33.44;	author -;	state -;
+branches;
+next	1.10;
+
+1.10
+date	2021.04.03.02.33.09;	author -;	state -;
+branches;
+next	1.9;
+
+1.9
+date	2021.04.03.02.32.53;	author -;	state -;
+branches;
+next	1.8;
+
+1.8
+date	2021.04.01.05.40.59;	author -;	state -;
+branches;
+next	1.7;
+
+1.7
+date	2021.04.01.03.47.38;	author -;	state -;
+branches;
+next	1.6;
+
+1.6
+date	2021.04.01.03.46.10;	author -;	state -;
+branches;
+next	1.5;
+
+1.5
+date	2021.04.01.03.45.05;	author -;	state -;
+branches;
+next	1.4;
+
+1.4
+date	2021.04.01.03.44.43;	author -;	state -;
+branches;
+next	1.3;
+
+1.3
+date	2021.04.01.03.24.10;	author -;	state -;
+branches;
+next	1.2;
+
+1.2
+date	2021.03.25.00.10.31;	author -;	state -;
+branches;
+next	1.1;
+
+1.1
+date	2021.03.25.00.09.16;	author -;	state -;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.79
+log
+@-
+@
+text
+@.so Tmac.mm-etc
+.if t .Newcentury-fonts
+.INITR* \n[.F]
+.SIZE 12 14
+.ds Quarter Spring\~2021
+.TITLE CSE-112 \*[Quarter] "Study Guide"
+.RCS \
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.78 2021-06-01 23:57:22-07 - - $"
+.PWD
+.URL
+.SA 0
+.na
+.nr Hy 0
+.nh
+.de HHH
+.   DE
+.   DS
+.   fi
+.   H 1 "\\$1"
+..
+.DS
+.HHH "Week 1 \[em] Tuesday March 30"
+.ALX a ()
+.LI
+Syllabus, pair programming, course overview.
+Lab0 intro unix, and review of Data Structures labs.
+Reference to study guides.
+.LI
+.V= Languages/Hello ,
+.V= Languages/Collatz \[em]
+Examples of simple programs in multiple languages\(::
+Bash, C++, Ocaml, Perl, Prolog, Scheme, Smalltalk.
+.LI
+Lecture notes\(::
+.V= scheme-1-language.pdf 
+(p.\~1\[en]4).
+.if n .sp
+.LI
+.V= Languages/scheme/Examples/a-simple
+\[em]
+Simple introductory Scheme programs\(::
+.V= hello.scm ,
+.V= false.scm ,
+.V= factorial.scm ,
+.V= fibonacci.scm
+(with tracing).
+.LE
+.HHH "Week 1 \[em] Thursday April 1"
+.ALX a ()
+.LI
+Finish
+.V= a-simple/ .
+.ALX 1 () "" 0
+.LI
+.V= derivation-factorial 
+\[em]
+whowing tail vs non-atil call formula derivations.
+.LI
+.V= stack-tail-usage.scm
+\[em]
+program using small stack space with tail recursion
+but blowing up stack without tail calls.
+.LE
+.LI
+.V= Examples/b-arith
+\[em]
+examples showing interaction with the command line,
+hash-bang
+.=V ( #! )
+scripts,
+and other examples.
+.if n .sp
+.LI
+.V= asg1-scheme-mbir
+specifications.
+Writing an interpreter in Scheme for a small mini-basic language.
+.LI
+.V= code/mbir.scm
+\[em]
+brief overview of the starter code and introduction to
+interpretation.
+.LE
+.HHH "Week 2 \[em] Tuesday April 6"
+.ALX a ()
+.LI
+.V= Examples/c-evalexpr
+\[em] examples related to evaluating expressions and scanning
+for labels.
+.ALX 1 () "" 0
+.LI
+.V= euler.scm
+\[em]
+simple examples of using built-in 
+.V= eval
+function to evaluate lists as expressions.
+.LI
+.V= simple-eval.scm
+\[em]
+hand-coded simple evaluator of expressions.
+.LI
+.V= evalexpr.scm
+\[em]
+hand-coded evaluator of expressions with operators and
+variables stored in hash tables.
+.LI
+.V= hashexample.scm
+\[em]
+use of hash tables for storing infomration.
+.LI
+.V= labelhash.scm
+\[em]
+scanning a program list and identifying labels.
+.LI
+.V= readnums.scm
+\[em]
+reading numbers and detecting non-numbers and end of file.
+.LE
+.LI
+.V= misc-cons-lists.d/
+\[em]
+Simple diagram of some node configurations.
+.V= picture-21-let-if
+contains a diagram of the 
+.V= mbir
+program structure.
+.LI
+.V= mbir.scm
+\[em]
+detailed dissection of the starter code for the interpreter.
+.LE
+.HHH "Week 2 \[em] Thursday April 8"
+.ALX a ()
+.LI
+.V= Lecture-notes/scheme-1-language.pdf
+\[em]
+notes on Scheme made from Dybvig's text
+(p.\~4\[en]13).
+.LI
+Numerous online examples.
+.LE
+.HHH "Week 3 \[em] Tuesday April 13"
+.ALX a ()
+.LI
+.V= Lecture-notes/scheme-1-language.pdf
+(p.\~13\[en]end).
+.LI
+.V= scheme-2-higherorder.pdf
+\[em] Scheme higher order functions
+(p.\~1\[en]12).
+.LE
+.HHH "Week 3 \[em] Thursday April 15"
+.ALX a ()
+.LI
+.V= scheme-2-higherorder.pdf
+\[em] Scheme higher order functions
+(p.\~12\[en]end).
+.LI
+.V= Examples/d-functions
+\[em] wrap up examples with some programs.
+.V= mergesort.scm ,
+.V= mutualrec.scm ,
+.V= facfun.scm ,
+.V= quine.scm
+.LI
+.V= Lecture-notes/ocaml-1-notes.pdf
+(p.\~1\[en]2),
+plus numerous online examples.
+Introduction to Ocaml.
+.LE
+.HHH "Week 4 \[em] Tuesday April 20"
+.ALX a ()
+.LI
+.V= Examples/a-simple
+.ALX 1 () "" 0
+.LI
+.V= hello.ml ,
+.V= helloworld.ml
+.LI
+.V= argv.ml
+\[em] access to the command line
+.LI
+.V= epsilon.ml
+\[em] showing 1 + \[*e] \[==] 1
+.LI
+.V= factorial.ml ,
+.V= fibonacci.ml
+\[em] repeat of examples from Scheme tail call and tail recursions 
+discussion.
+.LI
+.V= length.ml
+\[em] another example of internal function with tail recursion
+.LE
+.LI
+.V= Examples/b-evalexpr
+.ALX 1 () "" 0
+.LI
+.V= eval1-simple.ml ,
+.V= eval2-symbols.ml
+\[em] examples of recursive evaluations of expressions,
+with and without a symbol table.
+.LI
+.V= find.ml
+\[em]
+example of type
+.V= "\&'a option"
+for returning an object that might not exist
+.LE
+.LI
+Assignment 2 specifications
+.LI
+.V= asg2/code
+.ALX 1 () "" 0
+.LI
+.V= absyn.mli
+\[em] abstract syntax of the interpreter
+.LI
+.V= parser.mly ,
+.V= scanner.mll
+\[em] brief overview of parser and scanner (provided,
+not written by students).
+.LI
+.V= main.ml
+\[em] main function calling interpreter
+.LE
+.LE
+.HHH "Week 4 \[em] Thursday April 22"
+.ALX a ()
+.LI
+.V= asg2/code
+\[em] finish discussion from last lecture.
+.ALX a () "" 0
+.LI
+.V= interp.{mli,ml}
+\[em] extensive discussion of interpreter,
+where students do the majority of coding for this project.
+.LI
+.V= tables.{mli,ml}
+\[em]
+variable and function tables for maintaining data.
+.LI
+.V= dumper.{mli,ml}
+\[em] data dumper and stringification functions for absyn.
+.LI
+.V= etc.{mli,ml}
+\[em] miscellaneous other functions.
+.LE
+.LI
+.V= Examples/b-evalexpr
+.ALX 1 () "" 0
+.LI
+.V= find-opt-exn.ml
+\[em] function for searching a list.
+Type
+.V= "\&'a option" .
+.LI
+.V= hashexample.ml
+\[em] use of
+.V= Hashtbl.find
+and
+.V= Hashtbl.find_opt 
+.LI
+.V= readnumber.ml
+\[em] scanning input for individual numbers from stdin.
+.LE
+.LI
+.V= Examples/c-functions
+\[em] brief look during remaining lecture time
+.LE
+.HHH "Week 5 \[em] Tuesday April 27"
+.ALX a ()
+.LI
+.V= Lecture-notes/ocaml-1-notes.pdf
+\[em] review.
+.LI
+.V= Examples/c-functions
+\[em] miscellaneous functions showing more Ocaml style\(::
+.ALX 1 () "" 0
+.LI
+.V= ackermann.ml
+\[em] test of computational complexity
+.LI
+.V= complex-nrs.ml
+\[em] module
+.V= Complex
+and
+.V= float
+numbers
+.LI
+.V= exponent.ml
+\[em] efficient integer exponent computation
+.LI
+.V= mergesort.ml
+\[em] polymorphic efficient sorting of a list
+.LI
+.V= odd-even.ml
+\[em] mututally recursive functions
+.LE
+.LI
+.V= Examples/x86-64-code
+\[em] generated x86-64 code showing how compilers eliminate
+tail recursion and rewrite as loops.
+Source code in Ocaml and C.
+.ALX 1 () "" 0
+.LI
+.V= boolconst.ml.s ,
+.V= boolvar.ml.s
+\[em] constant propagation to eliminate a boolean test always false.
+.LI
+.V= length.ml.s ,
+.V= facrec.c.s ,
+.V= factorial.ml.s
+\[em] tail recursive functions implemented as loops
+by the code generator.
+.LE
+.LE
+.HHH "Week 5 \[em] Thursday April 29"
+.ALX a ()
+.LI
+.V= Lecture-notes/ocaml-2-higherorder.pdf
+\[em] higher-order functions in Ocaml.
+.LI
+.V= Examples/d-higherorder
+\[em] examples of higher-order functions in Ocaml.
+.ALX 1 () "" 0
+.LI
+.V= p1-uncurry.ml
+\[em] functions
+.V= curry
+and
+.V= uncurry
+.LI
+.V= p2-apply.ml
+\[em] appliction of function argument to other arguments.
+.LI
+.V= p3-foldl.ml
+\[em] functions written directly using tail recursion,
+and functions written as arguments to fold left\(::
+.V= sum ,
+.V= length ,
+.V= reverse ,
+.V= member .
+.LI
+.V= p3-foldl.ml
+\[em] 
+.V= reduce ,
+exception producing folding, e.g.,
+.V= find_minimum
+using 
+.V= failwith
+and returning an
+.V= "\&'a option" .
+.LI
+.V= p4-foldr.ml
+\[em] fold right functions that can not be written tail
+recursively,
+implementation using direct recursion and as a parameter to
+fold right\(::
+.V= map ,
+.V= filter ,
+.V= append .
+.LI
+.V= p5-zip.ml
+\[em] merging and splitting lists\(::
+.V= unzip ,
+.V= zip ,
+.V= zipwith ,
+.V= inner_product .
+.LE
+.LE
+.HHH "Week 6 \[em] Tuesday May 4"
+.ALX a ()
+.LI
+.V= Examples/a-trivial.d
+.ALX 1 () "" 0
+.LI
+.V= hello.st ,
+.V= usage.st ,
+.V= echoargs.st ,
+.V= showargv.st
+\[em] trivial examples involving command line.
+.LI
+.V= arithmetic.st ,
+.V= divide.st ,
+.V= dictionary.st ,
+.V= fns-radix.st ,
+.V= intsort.st
+\[em] simple examples showing arithmetic and some 
+library data structures.
+.LI
+.V= collatz-block.st ,
+.V= collatz-class.st
+\[em] coding examples\(::
+blocks and a simple class.
+.LE
+.LI
+.V= Examples/b-simple.d
+\[em] slightly more advanced examples.
+.ALX 1 () "" 0
+.LI
+.V= arraysum.st ,
+.V= ashex.st ,
+.V= isgraph.st
+\[em] extending a class on the fly with new methods.
+.LI
+.V= perform.st
+\[em] use of keyword method
+.V= perform: 
+and
+.V= perform:with:
+as an analog to a functional language's
+.V= apply
+function.
+.LI
+.V= sillypet.st
+\[em] simple example of class inheritance of methods,
+dynamic typing,  and
+``duck typing''.
+.LI
+.V= simple-eval.st
+\[em]
+example of a numeric and expression class with inheritance,
+including
+.V= value ,
+.V= printOn: ,
+and
+.V= perform:with:\&
+methods.
+.LI
+.V= filein.st ,
+.V= parseargs.st ,
+.V= priority.st ,
+.V= string.st ,
+.V= terminalecho.st
+\[em] miscellaneous other simple examples.
+.LE
+.LE
+.HHH "Week 6 \[em] Thursday May 6"
+.ALX a ()
+.LI
+.V= asg3-smalltalk-mbst/
+.ALX 1 () "" 0
+.LI
+asg3-smalltalk-mbst specifications overview.
+.LI
+discussion of 
+.V= \&.mbst
+intermediate code files for interpreter
+.LI
+.V= code/mbint.st
+\[em]
+line by line analysis of starter code for project.
+.LE
+.LE
+.HHH "Week 7 \[em] Tuesday May 11"
+.ALX a ()
+.LI
+Midterm Examination.
+No lecture.
+.LE
+.HHH "Week 7 \[em] Thursday May 13"
+.ALX a ()
+.LI
+.V= asg3-smalltalk-mbst/
+.ALX 1 () "" 0
+.LI
+.V= code/mbint.st
+\[em] repetition of review of starter code.
+.LE
+.LI
+.V= asg3/misc
+\[em] comparison of similar problems illustrated by code in
+Scheme, Ocaml, and Smalltalk,
+all with the same purpose.
+.ALX 1 () "" 0
+.LI
+.V= euler.{scm,ml,st}
+\[em] examples of complex number arithmetic,
+somewhat combersome in Ocaml.
+.LI
+.V= perform.{scm,ml,st}
+\[em] application of operators to operands in various ways.
+.LI
+.V= evalexpr.{scm,ml,st}
+\[em] evaluations of symolic expressions from data structures.
+.LE
+.LI
+.V= Examples/c-involved.d
+\[em] various further examples of Smalltalk code\(::
+.br
+.V= binepsilon.st ,
+.V= complexx.st ,
+.V= epsilon.st ,
+.V= euler.st ,
+.V= floatd-inspect.st ,
+.V= floatd-format.cpp ,
+.V= initarray.st ,
+.V= sorted-names.st ,
+.V= treeleaf.st
+.LE
+.HHH "Week 8 \[em] Tuesday May 18"
+.ALX a ()
+.LI
+.V= perl/Examples/a-simple
+Some simple examples of Perl scripts involving
+command line, etc.\(::
+.V= hello.perl ,
+.V= argv.perl ,
+.V= ncat.perl ,
+.V= count.perl ,
+.V= xref.perl .
+.LI
+Lecture notes.
+.V= asg4/Perl-notes.d
+(lines 1\[en]298).
+Introduction to Perl syntax and semantics.
+.LE
+.HHH "Week 8 \[em] Thursday May 20"
+.ALX a ()
+.LI
+Review midterm exam with answers and variations.
+.LI
+.V= asg4-perl-pmake
+\[em] specifications for project,
+a small subset of the
+.V= make
+utility.
+.LI
+.V= asg4/misc
+\[em] some examples related to project.
+.ALX 1 () "" 0
+.LI
+.V= modtime.perl
+\[em] obtain modification time from a file.
+.LI
+.V= runcmd.perl
+\[em] run a command using the shell,
+obtain the resulting success or error status
+as a message.
+.LI
+.V= graph.perl
+\[em] sipmle example of how to create a graph in Perl.
+.LE
+.LI
+.V= asg4/code/pmake
+\[em] preliminary tour of the starter code,
+including parsing a
+.V= Makefile .
+.LI
+.V= asg4/dot.score
+and subdiretories\(:
+discussion of the test data and attendant
+.V= Makefile s.
+.LI
+.V= asg4/sample-output.d
+\[em] test data showing effects of actual
+.V= make .
+.LE
+.HHH "Week 9 \[em] Tuesday May 25"
+.ALX a ()
+.LI
+.V= asg4-perl-pmake
+\[em] details of pseudo-code for the make_goal algorithm
+and calling sequence for run_command.
+Special details of the 
+.V= @@
+and
+.V= -
+command markers.
+.LI
+.V= asg4/code/pmake
+\[em] detailed dissection of the starter code and discussion
+of the data structures.
+.LI
+.V= asg4/misc
+\[em] finish discussion of miscellaneous related Perl programs.
+.LI
+Answered many questions from zoom chat about the program
+and Perl in general.
+.LI
+Lecture notes.
+.V= asg4/Perl-notes.d
+(lines 298\[en]380).
+.LE
+.HHH "Week 9 \[em] Thursday May 27"
+.ALX a ()
+.LI
+Lecture notes.
+.V= asg4/Perl-notes.d
+(lines 380\[en]end),
+including regular expressions.
+.LI
+.V= Perl/Examples/b-moreso\(::
+.ALX 1 () "" 0
+.LI
+.V= cat.perl ,
+accessing files and iterating
+.V= @@ARGV .
+.LI
+.V= dumper ,
+showing
+.V= Data::Dumper .
+.LI
+.V= switch.perl ,
+implementing a switch statement by putting subs (lambdas)
+in a hash table.
+.LI
+.V= text2html.perl ,
+converting plain text into html and recognizing URLs.
+.LE
+.LI
+A short overview discussion of Javascript and timers on web pages.
+.LE
+.HHH "Week 10 \[em] Tuesday June 1"
+.ALX a ()
+.LI
+Further discussion of 
+.V= pmake
+assignment,
+answering students' questions.
+.ALX 1 () "" 0
+.LI
+Details of test scripts,
+discussion of 
+.V= bash
+code in each of the testing directories.
+.LI
+Example of copying test scripts to a
+.V= /tmp
+directory and replacing 
+.V= pmake
+with
+.V= make
+to determine expected output.
+.LI
+.V= asg4/misc/
+.V= quotameta.perl
+\[em] handling wildcards such as
+.V= "%.o : %.c" .
+.LI
+.V= asg4/misc/
+.V= subst-macros.perl
+\[em] substituting the values of
+.V= pmake
+macros.
+.LI
+.V=  asg4/misc/
+.V= modtime.perl
+\[em] finding the modification time of a file
+and determining existence of a file.
+.LE
+.LI
+Discusscion of shell scripting using
+.V= bash
+with examples of some production bash scripts in the
+.V= bin/
+directory.
+.LI
+Finish up lecture with brief introduction to lambda calculus.
+.LE
+.HHH "Week 10 \[em] Thursday June 3"
+.ALX a ()
+.LI
+Review of exams from previous quarters.
+.LE
+.DE
+@
+
+
+1.78
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.77 2021-06-01 23:56:09-07 - - $"
+d662 2
+@
+
+
+1.77
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.76 2021-06-01 23:55:52-07 - - $"
+a622 1
+.V= Makefile s,
+d626 8
+@
+
+
+1.76
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.75 2021-06-01 23:54:44-07 - - $"
+a614 1
+.LI
+@
+
+
+1.75
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.74 2021-05-28 17:00:02-07 - - $"
+a615 3
+.LE
+.HHH "Week 10 \[em] Thursday June 3"
+.ALX a ()
+d653 3
+@
+
+
+1.74
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.73 2021-05-28 16:59:33-07 - - $"
+d620 36
+@
+
+
+1.73
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.72 2021-05-25 22:42:03-07 - - $"
+d603 1
+a603 1
+switch.perl ,
+d607 1
+a607 1
+text2html.perl ,
+@
+
+
+1.72
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.71 2021-05-25 22:41:37-07 - - $"
+d587 25
+@
+
+
+1.71
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.70 2021-05-21 15:48:35-07 - - $"
+d578 1
+a578 1
+and perl in general.
+@
+
+
+1.70
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.69 2021-05-21 15:47:46-07 - - $"
+d561 22
+@
+
+
+1.69
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.68 2021-05-21 13:42:11-07 - - $"
+d520 1
+a520 1
+Review midterm exam.
+@
+
+
+1.68
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.67 2021-05-21 13:37:09-07 - - $"
+d549 1
+a549 1
+.V= dot.score
+d553 4
+@
+
+
+1.67
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.66 2021-05-21 13:36:46-07 - - $"
+d544 9
+@
+
+
+1.66
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.65 2021-05-19 18:34:27-07 - - $"
+a535 3
+\[em] run a command using the shell,
+obtain the resulting success or error status
+as a message.
+@
+
+
+1.65
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.64 2021-05-19 18:33:48-07 - - $"
+d519 27
+@
+
+
+1.64
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.63 2021-05-19 18:33:15-07 - - $"
+d513 1
+a513 1
+.V= asg4/Perl-nodes.d
+d515 1
+@
+
+
+1.63
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.62 2021-05-17 15:29:13-07 - - $"
+d514 1
+a514 1
+(lines 1\~298).
+@
+
+
+1.62
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.61 2021-05-17 15:23:09-07 - - $"
+d503 12
+@
+
+
+1.61
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.60 2021-05-17 15:22:37-07 - - $"
+d495 1
+@
+
+
+1.60
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.59 2021-05-07 21:29:17-07 - - $"
+d489 1
+@
+
+
+1.59
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.58 2021-05-07 21:28:50-07 - - $"
+d463 34
+@
+
+
+1.58
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.57 2021-05-05 22:24:48-07 - - $"
+d458 1
+@
+
+
+1.57
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.56 2021-05-05 22:24:09-07 - - $"
+d440 13
+@
+
+
+1.56
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.55 2021-05-05 22:23:37-07 - - $"
+d415 2
+a416 1
+\[em] simple example of class inheritance of methods and
+@
+
+
+1.55
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.54 2021-05-05 22:22:53-07 - - $"
+d425 1
+a425 1
+.V= perform:with: 
+@
+
+
+1.54
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.53 2021-05-05 22:21:15-07 - - $"
+d422 2
+a423 1
+.V= value
+d425 2
+a426 4
+.V= printOn:
+methods,
+also using 
+.V= perform:with: .
+@
+
+
+1.53
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.52 2021-05-05 22:06:59-07 - - $"
+d408 2
+d425 3
+a427 1
+methods.
+@
+
+
+1.52
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.51 2021-04-30 18:14:17-07 - - $"
+d399 32
+a430 4
+
+
+
+
+@
+
+
+1.51
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.50 2021-04-30 18:14:04-07 - - $"
+d373 31
+@
+
+
+1.50
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.49 2021-04-30 18:12:47-07 - - $"
+d363 1
+a363 1
+\[em] merging ans splitting lists\(::
+@
+
+
+1.49
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.48 2021-04-30 18:12:14-07 - - $"
+d358 3
+a360 1
+map, filter, append.
+d364 4
+a367 2
+unzip, zip, zipwith.
+usage to implement inner product.
+@
+
+
+1.48
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.47 2021-04-30 18:10:05-07 - - $"
+d351 1
+a351 1
+.V= \&'a option .
+@
+
+
+1.47
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.46 2021-04-30 18:09:51-07 - - $"
+d338 4
+a341 2
+sum of numbers in a list, length of a list,
+reversing a list, membership in a list.
+d346 2
+a347 2
+exception producing folding, such as fining a minimum
+element\(::
+@
+
+
+1.46
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.45 2021-04-30 18:08:24-07 - - $"
+d345 1
+a345 1
+element\(:
+@
+
+
+1.45
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.44 2021-04-30 16:03:29-07 - - $"
+d173 1
+a173 2
+Ocaml examples
+.V= a-simple
+d194 1
+a194 2
+.Ocaml examples
+.V= b-evalexpr
+@
+
+
+1.44
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.43 2021-04-30 16:02:58-07 - - $"
+d338 14
+a351 1
+\[em]
+d354 5
+a358 1
+\[em]
+d361 3
+a363 1
+\[em]
+@
+
+
+1.43
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.42 2021-04-30 16:01:24-07 - - $"
+d344 1
+a344 5
+\[em] combining lists into a single list\(::
+.V= zip ,
+.V= zipwith .
+Splitting alist of tuples\(::
+.V= unzip .
+@
+
+
+1.42
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.41 2021-04-30 16:00:59-07 - - $"
+d344 5
+a348 1
+\[em]
+@
+
+
+1.41
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.40 2021-04-30 15:55:05-07 - - $"
+d338 1
+@
+
+
+1.40
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.39 2021-04-30 15:50:57-07 - - $"
+d322 1
+a322 1
+\[em] notes on higher-order functions in Ocaml.
+d329 4
+a332 1
+\[em]
+d335 1
+a335 1
+\[em]
+a337 1
+\[em]
+@
+
+
+1.39
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.38 2021-04-30 15:48:12-07 - - $"
+d321 22
+@
+
+
+1.38
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.37 2021-04-30 15:46:30-07 - - $"
+d301 1
+a301 1
+.V= x86-64-code
+d314 2
+a315 1
+\[em] tail recursive functions implemented as loops.
+@
+
+
+1.37
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.36 2021-04-30 15:45:52-07 - - $"
+d273 3
+@
+
+
+1.36
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.35 2021-04-30 15:45:38-07 - - $"
+d284 3
+a286 1
+and real numbers
+@
+
+
+1.35
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.34 2021-04-30 15:45:10-07 - - $"
+d282 3
+a284 1
+\[em] module Complex and real numbers
+@
+
+
+1.34
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.33 2021-04-30 15:44:38-07 - - $"
+d304 1
+a304 1
+.V= length.ml.s
+@
+
+
+1.33
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.32 2021-04-30 09:32:43-07 - - $"
+a307 1
+.LI
+@
+
+
+1.32
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.31 2021-04-23 20:19:53-07 - - $"
+d274 36
+@
+
+
+1.31
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.30 2021-04-23 20:19:08-07 - - $"
+d290 1
+a290 2
+Midterm exam.
+No lecture.
+@
+
+
+1.30
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.29 2021-04-23 20:18:48-07 - - $"
+d269 1
+a269 1
+\[em] brief look to finish lecture.
+@
+
+
+1.29
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.28 2021-04-23 20:18:12-07 - - $"
+d259 1
+a259 1
+\[em] use 
+@
+
+
+1.28
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.27 2021-04-23 20:17:48-07 - - $"
+d259 4
+a262 1
+\[em] searching a Hashtbl with find and find_opt.
+@
+
+
+1.27
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.26 2021-04-23 20:17:02-07 - - $"
+d258 1
+a258 1
+hashexample.ml
+@
+
+
+1.26
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.25 2021-04-21 12:31:33-07 - - $"
+d237 1
+a237 1
+the most coding for the students.
+@
+
+
+1.25
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.24 2021-04-21 12:29:28-07 - - $"
+d231 36
+@
+
+
+1.24
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.23 2021-04-18 13:43:14-07 - - $"
+d184 1
+a184 1
+\[em] showing 1 + \[*e] == 1
+@
+
+
+1.23
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.22 2021-04-14 10:02:23-07 - - $"
+d173 54
+@
+
+
+1.22
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.21 2021-04-14 10:01:55-07 - - $"
+d154 15
+@
+
+
+1.21
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.20 2021-04-14 10:00:13-07 - - $"
+a144 2
+\[em]
+notes on Scheme made from Dybvig's text
+@
+
+
+1.20
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.19 2021-04-14 08:07:35-07 - - $"
+d134 1
+a134 1
+.V= Lecture-notes/scheme-1-higherorder.pdf
+d144 1
+a144 1
+.V= Lecture-notes/scheme-1-higherorder.pdf
+@
+
+
+1.19
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.17 2021-04-09 09:55:07-07 - - $"
+d144 8
+@
+
+
+1.18
+log
+@-
+@
+text
+@a143 69
+Lab0
+.V= cpp-version/
+wountwords \[em]
+showing\(::
+.ALX 1 () "" 0
+.LI
+iteration over filenames in
+.V= argv
+and using
+.V= cin
+when none
+.LI
+handling errors in opening files
+.LI
+iteration over
+.V= <map>
+.LI
+use of 
+.V= regex
+to scan words from files
+.LE
+.LI
+.V= Examples/wk01b-hello-cpp
+.ALX 1 () "" 0
+.LI
+relationship between header
+.=V ( .h )
+and implementation
+.=V ( .cpp )
+files
+.LI
+tracing through code with macros
+.LI
+constructor and destructor
+.LE
+.LI
+.V= Exaples/wk01c-using-stl
+.ALX 1 () "" 0
+.LI
+.V= basename.cpp ,
+.V= countwords.cpp
+\[em] simple examples
+.LI
+.V= fnmap.cpp
+\[em] function pointers in a
+.V= map
+.LI
+.V= predefmacros.cpp
+\[em]
+various macros that may be used in programs,
+such as
+.V= __FILE__ ,
+.V= __LINE__ ,
+.V= __PRETTY_FUNCTION__ ,
+etc.
+.LI
+.V= sortingfn.cpp ,
+.V= vecsort.cpp
+\[em] using the 
+.V= <algorithm>
+.V= sort
+in several ways.
+.LE
+.LI
+.V= Examples/wk01c-using-stl
+\[em] some simple examples\(::
+iteration on a
+.V= map ,
+converting strings to numbers.
+@
+
+
+1.17
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.16 2021-04-09 09:54:38-07 - - $"
+d144 69
+@
+
+
+1.16
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.15 2021-04-09 09:54:00-07 - - $"
+d138 2
+@
+
+
+1.15
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.14 2021-04-07 15:18:24-07 - - $"
+d136 1
+a136 1
+notes on Scheme made from Dybvig book
+@
+
+
+1.14
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.13 2021-04-07 13:29:48-07 - - $"
+d134 4
+@
+
+
+1.13
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.12 2021-04-02 19:34:23-07 - - $"
+d118 8
+@
+
+
+1.12
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.11 2021-04-02 19:33:44-07 - - $"
+d86 36
+@
+
+
+1.11
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.10 2021-04-02 19:33:09-07 - - $"
+d72 1
+@
+
+
+1.10
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.9 2021-04-02 19:32:53-07 - - $"
+d65 1
+a65 1
+.v+ Examples/b-arith
+@
+
+
+1.9
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.8 2021-03-31 22:40:59-07 - - $"
+d59 1
+a59 1
+V= stack-tail-usage.scm
+@
+
+
+1.8
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.7 2021-03-31 20:47:38-07 - - $"
+d44 2
+a45 1
+.V= factorial.scm
+d51 30
+@
+
+
+1.7
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.6 2021-03-31 20:46:10-07 - - $"
+d39 1
+a39 1
+.V= Languages/scheme/Examples
+@
+
+
+1.6
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.5 2021-03-31 20:45:05-07 - - $"
+d36 2
+a37 1
+p.\~1\[en]4.
+@
+
+
+1.5
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.4 2021-03-31 20:44:43-07 - - $"
+d35 2
+a36 3
+.V= scheme-1-language.pdf
+(p.\~1\[en]4).
+.sp
+@
+
+
+1.4
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.3 2021-03-31 20:24:10-07 - - $"
+d37 1
+a37 1
+.br
+@
+
+
+1.3
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.2 2021-03-24 17:10:31-07 - - $"
+d37 1
+@
+
+
+1.2
+log
+@-
+@
+text
+@d8 1
+a8 1
+"$Id: cse112-study-guide-2021-q2spring.mm,v 1.1 2021-03-24 17:09:16-07 - - $"
+d25 20
+@
+
+
+1.1
+log
+@-
+@
+text
+@d6 1
+a6 1
+.TITLE CSE-111 \*[Quarter] "Study Guide"
+d8 1
+a8 1
+"$Id: cse111-study-guide-2021-q2spring.mm,v 1.2 2021-03-24 17:05:46-07 - - $"
+@

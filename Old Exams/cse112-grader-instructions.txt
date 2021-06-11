@@ -1,0 +1,103 @@
+~s cse112-wm.s21: Instructions for grading
+
+-----------------------------------------------------------------
+
+General information:
+
+NOTE:  Graders must stay within the time budget for each
+project as listed in the emailed instructions to grade.
+Students cannot work more than 220 hours per quarter, 20 hours
+per week, or 8 hours per day, all campus jobs combined, during
+the academic year.
+
+If at any time a grader has a question about grading, please
+email me AND the TAs, and the other graders.  Either I or
+the TA in charge of a particular lab/asg will respond to all
+course staff.  You probably want to set up an email alias
+inside your emailer to make this task easier.
+
+Better yet, just do a REPLYALL to the email from me or a TA
+instructing you to do the grading.  Reply to that message,
+not to this one, so that the SUBJECT heading is correct.
+TAs:  always reply to such questions including other TAs,
+all graders, and me.
+
+-----------------------------------------------------------------
+
+Instructions for grading (cse112-wm.s21):
+
+Read about the details in
+/afs/cats.ucsc.edu/courses/cse112-wm/Assignments/
+https://www2.ucsc.edu/courses/cse112-wm/:/Assignments/
+
+Log into unix.ucsc.edu.
+All grading must be done via ssh unix.ucsc.edu.
+
+Check who to grade:
+cd /afs/cats.ucsc.edu/class/cse112-wm.s21/.admin/.graders
+./scorecheck.perl
+This will make a list of who you are assigned to grade.
+There are two kinds of output lines for individuals:
+
+asg1/student1/SCORE    :no SCORE file: grader1
+says that grader1 has not yet started on student1, who has
+no partner.
+
+asg1/student2/SCORE     :no SCORE file: grader2  pair=student3
+says that grader2 must grade student2 in the usual way, then
+assign the same grade to student3.  This is done with a symlink.
+After grading student2:
+   cd ../student3
+   ln -s ../student2/SCORE
+   ls -la should show a symlink SCORE -> ../student2/SCORE
+
+cd /afs/cats.ucsc.edu/class/cse112-wm.s21/.admin/asg1 will
+get you to the students' directories.  cd into one of their
+usenames is where the grading actually is done.  Ignore the
+subdirectory .revisions
+
+To grade in the student's directory:
+   cp ../.score/* .
+
+Run the scripts mk.build and mk.tests or other scripts in
+the directory in order to build and test the students work.
+Then study the student's submitted work and output from the
+programs.
+
+Determine if the student is doing pair programming, and if so,
+fill in the form SCORE.pair.  Then transfer either TOTAL1 or
+TOTAL2 to the SCORE file.
+
+Then look at the SCORE file.  After every line like:
+   (3)  Some comment or other about submitted work
+if they have satisfied the requirements, do nothing on that
+line.  If there is a problem, immediately below that line,
+write a negative number for points deducted and write a brief
+(1 or 2 line) reason for deducting points.
+
+When grading for a student is done, use ls -la to check for
+large files.  If any large files are found, delete them and
+make a note in SCORE.  A student with an infinite loop could
+fill up the entire volume, causing an emergency panic among
+student trying to submit the next program.
+
+Make sure the SCORE file has a line with TOTALSCORE= followed
+on that line by digits.  For example
+
+TOTALSCORE=45
+
+Specifically, there should be no characters on the line other
+than TOTALSCORE= followed by a single number.  When all grading
+is done, rerun cd .admin/.graders and run ./scorecheck.perl
+to verify that your work is complete.
+
+When grading is complete, graders may not change scores.
+Only TAs may change scores if students complain.  Students will
+be informed of their scores and all grading complaints should go
+from students to one or other TA.  If a grader gets a complaint
+from a student, please forward it to me and to the TAs.
+
+To verify that you have completed the grading, again run
+scorecheck.perl to see if the script has all of your scores
+in the appropriate SCORE files.
+
